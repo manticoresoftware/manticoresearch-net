@@ -18,6 +18,7 @@ Run a query in SQL format. Expects a query string passed through `body` paramete
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -30,7 +31,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new UtilsApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new UtilsApi(httpClient, config, httpClientHandler);
             var body = SHOW TABLES;  // string | A query parameter string. 
             var rawResponse = true;  // bool? | Optional parameter, defines a format of response. Can be set to `False` for Select only queries and set to `True` or omitted for any type of queries:  (optional)  (default to true)
 

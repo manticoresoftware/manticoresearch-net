@@ -19,6 +19,7 @@ Performs a percolate search.  This method must be used only on percolate indexes
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -31,7 +32,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new SearchApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SearchApi(httpClient, config, httpClientHandler);
             var index = "index_example";  // string | Name of the percolate index
             var percolateRequest = new PercolateRequest(); // PercolateRequest | 
 
@@ -113,6 +117,7 @@ Performs a search
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -125,7 +130,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new SearchApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SearchApi(httpClient, config, httpClientHandler);
             var searchRequest = new SearchRequest(); // SearchRequest | 
 
             try

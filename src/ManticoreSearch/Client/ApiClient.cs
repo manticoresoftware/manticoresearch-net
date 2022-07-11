@@ -23,12 +23,12 @@ using System.Text;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Polly;
 
 namespace ManticoreSearch.Client
 {
@@ -488,7 +488,23 @@ namespace ManticoreSearch.Client
             InterceptRequest(req);
 
             HttpResponseMessage response;
+            if (RetryConfiguration.AsyncRetryPolicy != null)
+            {
+                var policy = RetryConfiguration.AsyncRetryPolicy;
+                var policyResult = await policy
+                    .ExecuteAndCaptureAsync(() => _httpClient.SendAsync(req, cancellationToken))
+                    .ConfigureAwait(false);
+                response = (policyResult.Outcome == OutcomeType.Successful) ?
+                    policyResult.Result : new HttpResponseMessage()
+                    {
+                        ReasonPhrase = policyResult.FinalException.ToString(),
+                        RequestMessage = req
+                    };
+            }
+            else
+            {
                 response = await _httpClient.SendAsync(req, cancellationToken).ConfigureAwait(false);
+            }
 
             if (!response.IsSuccessStatusCode)
             {

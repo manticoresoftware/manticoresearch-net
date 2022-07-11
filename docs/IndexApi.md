@@ -22,6 +22,7 @@ Sends multiple operatons like inserts, updates, replaces or deletes.  For each o
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -34,7 +35,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new IndexApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var body = ["'{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"title\": \"Title 1\"}}},\\n{\"insert\": {\"index\": \"test\", \"id\": 2, \"doc\": {\"title\": \"Title 2\"}}}'"];  // string | 
 
             try
@@ -114,6 +118,7 @@ Delete one or several documents. The method has 2 ways of deleting: either by id
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -126,7 +131,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new IndexApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var deleteDocumentRequest = new DeleteDocumentRequest(); // DeleteDocumentRequest | 
 
             try
@@ -206,6 +214,7 @@ Insert a document.  Expects an object like:     ```   {'index':'movies','id':701
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -218,7 +227,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new IndexApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var insertDocumentRequest = new InsertDocumentRequest(); // InsertDocumentRequest | 
 
             try
@@ -298,6 +310,7 @@ Replace an existing document. Input has same format as `insert` operation. <br/>
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -310,7 +323,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new IndexApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var insertDocumentRequest = new InsertDocumentRequest(); // InsertDocumentRequest | 
 
             try
@@ -390,6 +406,7 @@ Update one or several documents. The update can be made by passing the id or by 
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using ManticoreSearch.Api;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
@@ -402,7 +419,10 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
-            var apiInstance = new IndexApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var updateDocumentRequest = new UpdateDocumentRequest(); // UpdateDocumentRequest | 
 
             try
