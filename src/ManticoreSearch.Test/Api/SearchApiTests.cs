@@ -14,8 +14,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using System.Net.Http;
 using Xunit;
+using System.Net.Http;
 
 using ManticoreSearch.Client;
 using ManticoreSearch.Api;
@@ -33,25 +33,103 @@ namespace ManticoreSearch.Test.Api
     /// </remarks>
     public class SearchApiTests : IDisposable
     {
-        private SearchApi instance;
+    	private SearchApi instance;
+        private HttpClientHandler httpClientHandler;
+        private HttpClient httpClient;
+        private Configuration config;
 
+        private Dictionary<string, Dictionary<string,Func<Object>>> implementedTests;
+
+        private void InitTests()
+        {
+            config = new Configuration();
+            config.BasePath = "http://127.0.0.1:9308";
+            httpClient = new HttpClient();
+            httpClientHandler = new HttpClientHandler();
+            string body = "CREATE TABLE IF NOT EXISTS test (body text, title string)";
+            var utilsApi = new UtilsApi();
+            utilsApi.Sql(body, true);
+            instance = new SearchApi(httpClient, config, httpClientHandler);
+        }
+                
+        private object CheckTest(string testName)
+        {
+            Dictionary<string,Func<Object>> classTests;
+            if (implementedTests.TryGetValue("SearchApi", out classTests))
+            {
+                Func<Object> test;    
+                if (classTests.TryGetValue(testName, out test))
+                {
+                    return test();
+                }
+            }
+            return null;
+        }     
+        
         public SearchApiTests()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://127.0.0.1:9308";
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            instance = new IndexApi(httpClient, config, httpClientHandler);
-            var utilsApi = new UtilsApi();
-            string body ="DROP TABLE IF EXISTS test";
-            utilsApi.Sql(body, true);
-            body = "CREATE TABLE IF NOT EXISTS test (body text, title string)";
-            utilsApi.Sql(body, true);
+            implementedTests = new Dictionary<string, Dictionary<string,Func<Object>>>()
+            {
+                { "IndexApi", 
+                    new Dictionary<string, Func<Object>>()
+                    {
+                        { "InsertTest", () => 
+                            {
+                                Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
+                                doc.Add("body", "test");
+                                doc.Add("title", "test");
+                                InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 1, doc: doc);
+                                insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 2, doc: doc);
+                                var obj = new IndexApi(httpClient, config, httpClientHandler);
+                                return obj.Insert(insertDocumentRequest);
+                            }
+                        },
+                        { "BulkTest", () => 
+		                	{
+		                		string body = "{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"body\": \"test\", \"title\": \"test\"}}}" + "\n";
+		                		var obj = new IndexApi(httpClient, config, httpClientHandler);
+		            			return obj.Bulk(body);
+		                	}
+		                },
+		                { "ReplaceTest", () => 
+		                	{
+								Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
+		            			doc.Add("body", "test 2");
+		            			doc.Add("title", "test");
+		            			InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 1, doc: doc);
+		            			var obj = new IndexApi(httpClient, config, httpClientHandler);
+		            			return obj.Replace(insertDocumentRequest);
+		                	}
+		                },
+		                { "UpdateTest", () => 
+		                	{
+								Dictionary<string, Object> doc = new Dictionary<string, Object>();
+					            doc.Add("title", "test 2");
+					            UpdateDocumentRequest updateDocumentRequest = new UpdateDocumentRequest(index: "test", id: 2, doc: doc);
+					            var obj = new IndexApi(httpClient, config, httpClientHandler);
+					            return obj.Update(updateDocumentRequest);
+		                	}
+		                },
+		                { "DeleteTest", () => 
+		                	{
+								DeleteDocumentRequest deleteDocumentRequest = new DeleteDocumentRequest(index: "test", id: 1);
+								var obj = new IndexApi(httpClient, config, httpClientHandler);
+		            			return obj.Delete(deleteDocumentRequest);
+		                	}
+		                },
+                    }
+                }
+            };
+
+            InitTests();
+            
         }
 
         public void Dispose()
         {
-            // Cleanup when everything is done.
+            var utilsApi = new UtilsApi();
+            string body ="DROP TABLE IF EXISTS test";
+            utilsApi.Sql(body, true);
         }
 
         /// <summary>
@@ -60,78 +138,40 @@ namespace ManticoreSearch.Test.Api
         [Fact]
         public void InstanceTest()
         {
-            // TODO uncomment below to test 'IsType' SearchApi
             Assert.IsType<SearchApi>(instance);
         }
-        
+
         /// <summary>
-        /// Test Bulk
+        /// Test Percolate
         /// </summary>
         [Fact]
-        public void BulkTest()
+        public void PercolateTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            string body = "{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"title\": \"Title 1\"}}}" + "\n";
-            var response = instance.Bulk(body);
-            Assert.IsType<BulkResponse>(response);
-        }
-        
-        /// <summary>
-        /// Test Insert
-        /// </summary>
-        [Fact]
-        public void InsertTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-           Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
-           doc.Add("body", "test");
-           doc.Add("title", "test");
-           InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 1, doc: doc);
-           insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 2, doc: doc);
-           var response = instance.Insert(insertDocumentRequest);
-           Assert.IsType<SuccessResponse>(response);
+            //string index = null;
+            //PercolateRequest percolateRequest = null;
+            //var response = instance.Percolate(index, percolateRequest);
+			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
+            if (response != null)
+            {
+            	Assert.IsType<SearchResponse>(response);
+            }
         }
 
         /// <summary>
-        /// Test Replace
+        /// Test Search
         /// </summary>
         [Fact]
-        public void ReplaceTest()
+        public void SearchTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
-            doc.Add("body", "test 2");
-            doc.Add("title", "test");
-            InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(index: "test", id: 1, doc: doc);
-            var response = instance.Replace(insertDocumentRequest);
-            Assert.IsType<SuccessResponse>(response);
+            //SearchRequest searchRequest = null;
+            //var response = instance.Search(searchRequest);
+			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
+            if (response != null)
+            {
+            	Assert.IsType<SearchResponse>(response);
+            }
         }
-
-        /// <summary>
-        /// Test Update
-        /// </summary>
-        [Fact]
-        public void UpdateTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            Dictionary<string, Object> doc = new Dictionary<string, Object>();
-            doc.Add("title", "test 2");
-            UpdateDocumentRequest updateDocumentRequest = new UpdateDocumentRequest(index: "test", id: 2, doc: doc);
-            var response = instance.Update(updateDocumentRequest);
-            Assert.IsType<UpdateResponse>(response);
-        }
-        
-        /// <summary>
-        /// Test Delete
-        /// </summary>
-        [Fact]
-        public void DeleteTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            DeleteDocumentRequest deleteDocumentRequest = new DeleteDocumentRequest(index: "test", id: 2);
-            var response = instance.Delete(deleteDocumentRequest);
-            Assert.IsType<DeleteResponse>(response);
-        }
-        
     }
 }
