@@ -31,7 +31,7 @@ namespace ManticoreSearch.Model
     /// Success bulk response
     /// </summary>
     [DataContract(Name = "bulkResponse")]
-    public partial class BulkResponse : Dictionary<String, Object>, IEquatable<BulkResponse>, IValidatableObject
+    public partial class BulkResponse : IEquatable<BulkResponse>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkResponse" /> class.

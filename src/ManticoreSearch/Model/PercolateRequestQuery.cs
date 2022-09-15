@@ -31,7 +31,7 @@ namespace ManticoreSearch.Model
     /// PercolateRequestQuery
     /// </summary>
     [DataContract(Name = "percolateRequest_query")]
-    public partial class PercolateRequestQuery : Dictionary<String, Object>, IEquatable<PercolateRequestQuery>, IValidatableObject
+    public partial class PercolateRequestQuery : IEquatable<PercolateRequestQuery>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PercolateRequestQuery" /> class.

@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net.Mime;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
+using System.Web;
 
 namespace ManticoreSearch.Api
 {
@@ -516,7 +517,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<BulkResponse>("/json/bulk", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Bulk", localVarResponse);
@@ -633,7 +634,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<DeleteResponse>("/json/delete", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Delete", localVarResponse);
@@ -750,7 +751,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SuccessResponse>("/json/insert", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Insert", localVarResponse);
@@ -867,7 +868,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SuccessResponse>("/json/replace", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Replace", localVarResponse);
@@ -984,7 +985,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<UpdateResponse>("/json/update", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Update", localVarResponse);

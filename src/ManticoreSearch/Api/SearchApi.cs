@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net.Mime;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
+using System.Web;
 
 namespace ManticoreSearch.Api
 {
@@ -395,7 +396,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SearchResponse>("/json/pq/{index}/search", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Percolate", localVarResponse);
@@ -519,7 +520,7 @@ namespace ManticoreSearch.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SearchResponse>("/json/search", localVarRequestOptions, this.Configuration);
-
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Search", localVarResponse);

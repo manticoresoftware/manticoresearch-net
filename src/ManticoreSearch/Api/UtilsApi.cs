@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net.Mime;
 using ManticoreSearch.Client;
 using ManticoreSearch.Model;
+using System.Web;
 
 namespace ManticoreSearch.Api
 {
@@ -346,11 +347,31 @@ namespace ManticoreSearch.Api
                 localVarRequestOptions.QueryParameters.Add(ManticoreSearch.Client.ClientUtils.ParameterToMultiMap("", "raw_response", rawResponse));
             }
             localVarRequestOptions.Data = body;
+			if  (localVarRequestOptions.Data != null) 
+			{
+			  if  (rawResponse == false) 
+			  {
+			    localVarRequestOptions.Data = "query=" + HttpUtility.UrlEncode( body.ToString() ).Replace("+", "%20");
+			  } else 
+			  {
+			    localVarRequestOptions.Data = "mode=raw&query=" + HttpUtility.UrlEncode( body.ToString() ).Replace("+", "%20");
+			  }
+			}
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<List<Object>>("/sql", localVarRequestOptions, this.Configuration);
-
+            var localVarResponse = new ManticoreSearch.Client.ApiResponse<List<Object>>( new HttpStatusCode(), null);
+            if  (rawResponse == false) 
+            {
+                var res = this.Client.Post<Object>("/sql", localVarRequestOptions, this.Configuration);
+                List<Object> resList = new List<Object>();
+                resList.Add( res.Data );
+                localVarResponse = new ManticoreSearch.Client.ApiResponse<List<Object>>(res.StatusCode, res.Headers, resList);
+            } else 
+            {
+                localVarResponse = this.Client.Post<List<Object>>("/sql", localVarRequestOptions, this.Configuration);
+            }
+			
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Sql", localVarResponse);
