@@ -127,9 +127,9 @@ namespace ManticoreSearch.Test.Api
 
         public void Dispose()
         {
-            var utilsApi = new UtilsApi();
-            string body ="DROP TABLE IF EXISTS test";
-            utilsApi.Sql(body, true);
+            //var utilsApi = new UtilsApi();
+            //string body ="DROP TABLE IF EXISTS test";
+            //utilsApi.Sql(body, true);
         }
 
         /// <summary>
