@@ -129,7 +129,7 @@ namespace ManticoreSearch.Test.Api
         {
             //var utilsApi = new UtilsApi();
             //string body ="DROP TABLE IF EXISTS test";
-            /utilsApi.Sql(body, true);
+            //utilsApi.Sql(body, true);
         }
 
         /// <summary>
