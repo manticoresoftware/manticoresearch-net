@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
     <RootNamespace>ManticoreSearch</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>3.3.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ManticoreSearch.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/manticoresoftware/manticoresearch-csharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

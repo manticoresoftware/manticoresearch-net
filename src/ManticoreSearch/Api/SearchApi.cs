@@ -20,6 +20,12 @@ using ManticoreSearch.Client;
 using ManticoreSearch.Model;
 using System.Web;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Dynamic;
+
+
 namespace ManticoreSearch.Api
 {
 
@@ -33,7 +39,7 @@ namespace ManticoreSearch.Api
         /// Perform reverse search on a percolate index
         /// </summary>
         /// <remarks>
-        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -45,7 +51,7 @@ namespace ManticoreSearch.Api
         /// Perform reverse search on a percolate index
         /// </summary>
         /// <remarks>
-        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -56,7 +62,7 @@ namespace ManticoreSearch.Api
         /// Performs a search
         /// </summary>
         /// <remarks>
-        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -67,7 +73,7 @@ namespace ManticoreSearch.Api
         /// Performs a search
         /// </summary>
         /// <remarks>
-        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -86,7 +92,7 @@ namespace ManticoreSearch.Api
         /// Perform reverse search on a percolate index
         /// </summary>
         /// <remarks>
-        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -99,7 +105,7 @@ namespace ManticoreSearch.Api
         /// Perform reverse search on a percolate index
         /// </summary>
         /// <remarks>
-        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -111,7 +117,7 @@ namespace ManticoreSearch.Api
         /// Performs a search
         /// </summary>
         /// <remarks>
-        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -123,7 +129,7 @@ namespace ManticoreSearch.Api
         /// Performs a search
         /// </summary>
         /// <remarks>
-        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        ///  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -344,7 +350,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -357,7 +363,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -365,6 +371,8 @@ namespace ManticoreSearch.Api
         /// <returns>ApiResponse of SearchResponse</returns>
         public ManticoreSearch.Client.ApiResponse<SearchResponse> PercolateWithHttpInfo(string index, PercolateRequest percolateRequest)
         {
+        	
+
             // verify the required parameter 'index' is set
             if (index == null)
                 throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'index' when calling SearchApi->Percolate");
@@ -407,7 +415,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -421,7 +429,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {\&quot;query\&quot;:{\&quot;percolate\&quot;:{\&quot;document\&quot;:{\&quot;content\&quot;:\&quot;sample content\&quot;}}}}   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;max_score&#39;:1,&#39;hits&#39;:[{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;match&#39;:{&#39;title&#39;:&#39;some&#39;},}}},{&#39;_index&#39;:&#39;idx_pq_1&#39;,&#39;_type&#39;:&#39;doc&#39;,&#39;_id&#39;:&#39;5&#39;,&#39;_score&#39;:&#39;1&#39;,&#39;_source&#39;:{&#39;query&#39;:{&#39;ql&#39;:&#39;some | none&#39;}}}]}}   &#x60;&#x60;&#x60; 
+        /// Perform reverse search on a percolate index Performs a percolate search.  This method must be used only on percolate indexes.  Expects two parameters: the index name and an object with array of documents to be tested. An example of the documents object:    &#x60;&#x60;&#x60;   {     \&quot;query\&quot;:     {       \&quot;percolate\&quot;:       {         \&quot;document\&quot;:         {           \&quot;content\&quot;:\&quot;sample content\&quot;         }       }     }   }   &#x60;&#x60;&#x60;  Responds with an object with matched stored queries:     &#x60;&#x60;&#x60;   {     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;max_score&#39;:1,       &#39;hits&#39;:       [         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;2&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;match&#39;:{&#39;title&#39;:&#39;some&#39;}             }           }         },         {           &#39;_index&#39;:&#39;idx_pq_1&#39;,           &#39;_type&#39;:&#39;doc&#39;,           &#39;_id&#39;:&#39;5&#39;,           &#39;_score&#39;:&#39;1&#39;,           &#39;_source&#39;:           {             &#39;query&#39;:             {               &#39;ql&#39;:&#39;some | none&#39;             }           }         }       ]     }   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="index">Name of the percolate index</param>
@@ -475,7 +483,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -487,13 +495,138 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
         /// <returns>ApiResponse of SearchResponse</returns>
         public ManticoreSearch.Client.ApiResponse<SearchResponse> SearchWithHttpInfo(SearchRequest searchRequest)
         {
+        	
+            JObject RestructObj(JObject obj, string objType)
+ 			{
+ 			    if (!obj.ContainsKey("attr") && !obj.ContainsKey("name") && !obj.ContainsKey("query_fields") && !obj.ContainsKey("value") && !obj.ContainsKey("values")
+ 			        && !obj.ContainsKey("field") && !obj.ContainsKey("location_anchor") && !obj.ContainsKey("must") && !obj.ContainsKey("must_not") && !obj.ContainsKey("should"))
+ 			    {
+ 			        return obj;
+ 			    }
+ 			    
+ 			    var newObj = new JObject();
+ 			    string keyPropVal;
+ 			    
+ 			    if (objType == "fulltext_filter")
+				{
+				    if (obj.ContainsKey("query_fields"))
+				    {
+				        keyPropVal = (string)obj["query_fields"];
+				        if (obj.ContainsKey("query_phrase"))
+				        {
+				            var matchPhraseObj = new JObject();
+				            matchPhraseObj[keyPropVal] = obj["query_phrase"];
+				            newObj["match_phrase"] = matchPhraseObj;
+				        }
+				        else
+				        {
+				            var matchObj = new JObject();
+				            matchObj[keyPropVal] = obj.ContainsKey("operator")
+				                ? new JObject { { "query", obj["query_string"] }, { "operator", obj["operator"] } }
+				                : obj["query_string"];
+				            newObj["match"] = matchObj;
+				        }
+				    }
+				    else
+				    {
+				        newObj = obj;
+				    }
+				}
+				else if (objType == "attr_filter")
+			    {
+			        if (obj.ContainsKey("field"))
+			        {
+			            keyPropVal = (string)obj["field"];
+			            if (obj.ContainsKey("value"))
+			            {
+			                var equalsObj = new JObject();
+			                equalsObj[keyPropVal] = obj["value"];
+			                newObj["equals"] = equalsObj;
+			            }
+			            else if (obj.ContainsKey("values"))
+			            {
+			                var inObj = new JObject();
+			                inObj[keyPropVal] = obj["values"];
+			                newObj["in"] = inObj;
+			            }
+			            else
+			            {
+			            	obj.Remove("field");
+			                newObj[keyPropVal] = obj;
+			                newObj = new JObject { { "range", newObj } };
+			            }
+			        }
+			        else 
+			        {
+			        	if (!obj.ContainsKey("must") && !obj.ContainsKey("must_not") && !obj.ContainsKey("should")) 
+			        	{
+							newObj["geo_distance"] = obj;
+						} else 
+						{
+							JObject RestructFilter(JObject filter)
+							{
+								return (filter.ContainsKey("query_fields") || filter.ContainsKey("query_string"))
+									? RestructObj(filter, "fulltext_filter")
+									: RestructObj(filter, "attr_filter");
+							}
+
+							new[] {"must", "must_not", "should"}.ToList().ForEach(propName =>
+							{
+								if (obj.ContainsKey(propName) && obj[propName] != null) {
+									
+									newObj[propName] = JArray.FromObject(
+										obj[propName].Select( filter => RestructFilter((JObject)filter) )
+									);
+								}
+							});
+							
+							newObj = new JObject { { "bool", newObj } };
+						}
+			        }
+			    } 
+				else {
+	 			    var keyPropName = obj.ContainsKey("attr") ? "attr" : "name";
+	 		        keyPropVal = (string)obj[keyPropName];
+	 		        obj.Remove(keyPropName);
+	 		        if (objType == "aggs")
+	 		        {
+	 		            newObj[keyPropVal] = JObject.FromObject(new { terms = obj } );
+	 		        }
+	 		        else
+	 		        {
+			        	newObj[keyPropVal] = obj;
+	 		        }
+	 		    }
+ 		        
+ 		        return newObj;
+ 			}
+ 			
+ 			JObject RestructNestedObj(List<JContainer> nestedObj, List<string> propNames)
+			{
+			    var newProp = new JObject();
+			    foreach (JObject propVal in (JArray)nestedObj[nestedObj.Count - 1])
+			    {
+			        var oldProp = RestructObj(propVal, propNames[propNames.Count - 1]);
+			        newProp.Merge(oldProp);
+			        //newProp = newProp.Concat(oldProp).ToDictionary(x => x.Key, x => x.Value);
+			    }
+			    nestedObj[nestedObj.Count - 1] = newProp;
+			
+			    for (int i = propNames.Count - 1; i >= 0; i--)
+			    {
+			        nestedObj[i][propNames[i]] = nestedObj[i + 1];
+			    }
+			    
+			    return (JObject)nestedObj[0];
+			}
+
             // verify the required parameter 'searchRequest' is set
             if (searchRequest == null)
                 throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'searchRequest' when calling SearchApi->Search");
@@ -515,7 +648,72 @@ namespace ManticoreSearch.Api
             var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = searchRequest;
+            var dict = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(searchRequest));
+			
+			if (dict.ContainsKey("source")) 
+			{
+ 				dict["_source"] = dict["source"];
+ 				dict.Remove("source");
+ 			}
+ 
+ 			if (dict.ContainsKey("sort"))
+ 			{
+	 		    var sortList = new JArray();
+	 		    foreach (object sort in (JArray)dict["sort"])
+	 		    {
+	 		    	if (sort is JObject)
+	 		    	{
+	 		        	sortList.Add(RestructObj((JObject)sort, "sort"));
+	 		        }
+	 		        else
+	 		        {
+	 		        	sortList.Add(sort);
+	 		        } 
+	 		    }
+	 		    dict["sort"] = sortList;
+	 		}
+	 		
+	 		if (dict.ContainsKey("highlight"))
+	 		{
+	 			var highlightDict = (JObject)dict["highlight"];
+	 			if (highlightDict.ContainsKey("highlight_query"))
+	 			{
+	 				highlightDict.Remove("highlight_query");
+	 			}
+	 		}
+ 		    
+ 		    if (dict.ContainsKey("fulltext_filter") || dict.ContainsKey("attr_filter")) {
+				var query = new JObject();
+				var filterObj = new JObject();
+				
+				new[] { "fulltext_filter", "attr_filter" }.ToList().ForEach(propName => 
+				{
+					if (dict.ContainsKey(propName)) {
+						filterObj = RestructObj((JObject)dict[propName], propName);
+						query.Merge(filterObj);
+						dict.Remove(propName);
+					}
+				});
+				
+				dict["query"] = query;
+			}
+ 		    
+ 		    new[] { "expressions", "aggs", "highlight.fields" }.ToList().ForEach(propSign =>
+			{
+			    var propNames = propSign.Split('.').ToList();
+			    var nestedObj = new List<JContainer> { dict };
+			    for (int i = 0; i < propNames.Count; i++)
+			    {
+		        	var subObj =  (JObject)nestedObj[i];
+		        	if (!subObj.ContainsKey(propNames[i]))
+		            	return;
+					nestedObj.Add((JContainer)nestedObj[i][propNames[i]]);
+			    }
+			
+			    dict = RestructNestedObj(nestedObj, propNames);
+			});
+						
+			localVarRequestOptions.Data = dict;
 
 
             // make the HTTP request
@@ -531,7 +729,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>
@@ -544,7 +742,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;query&#39;:{&#39;bool&#39;:{&#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]}},&#39;script_fields&#39;:{&#39;myexpr&#39;:{&#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;}}},&#39;sort&#39;:[{&#39;myexpr&#39;:&#39;desc&#39;},{&#39;_score&#39;:&#39;desc&#39;}],&#39;profile&#39;:true}   &#x60;&#x60;&#x60;  It responds with an object with: - time of execution - if the query timed out - an array with hits (matched documents) - additional, if profiling is enabled, an array with profiling information is attached     &#x60;&#x60;&#x60;   {&#39;took&#39;:10,&#39;timed_out&#39;:false,&#39;hits&#39;:{&#39;total&#39;:2,&#39;hits&#39;:[{&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},{&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}]}}   &#x60;&#x60;&#x60;  For more information about the match query syntax, additional paramaters that can be set to the input and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
+        /// Performs a search  Expects an object with mandatory properties: * the index name * the match query object Example :    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:[{&#39;query_string&#39;:&#39; movie&#39;}]       }     },     &#39;script_fields&#39;:     {       &#39;myexpr&#39;:       {         &#39;script&#39;:{&#39;inline&#39;:&#39;IF(rating&gt;8,1,0)&#39;       }     },     &#39;sort&#39;:     [       {&#39;myexpr&#39;:&#39;desc&#39;},       {&#39;_score&#39;:&#39;desc&#39;}     ],     &#39;profile&#39;:true   }   &#x60;&#x60;&#x60;  It responds with an object with: - an array with hits (matched documents) found - if the query is timed out - time of execution - if profiling is enabled, an additional array with profiling information attached     &#x60;&#x60;&#x60;   {     &#39;took&#39;:10,     &#39;timed_out&#39;:false,     &#39;hits&#39;:     {       &#39;total&#39;:2,       &#39;hits&#39;:       [         {&#39;_id&#39;:&#39;1&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:11}},         {&#39;_id&#39;:&#39;2&#39;,&#39;_score&#39;:1,&#39;_source&#39;:{&#39;gid&#39;:12}}       ]     }   }   &#x60;&#x60;&#x60;  Alternatively, you can use auxiliary query objects to build your search queries as it&#39;s shown in the example below. For more information about the match query syntax and additional parameters that can be added to  request and response, please check: https://manual.manticoresearch.com/Searching/Full_text_matching/Basic_usage#HTTP. 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="searchRequest"></param>

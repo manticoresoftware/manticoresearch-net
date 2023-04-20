@@ -87,7 +87,7 @@ namespace ManticoreSearch.Model
         /// Query tree object
         /// </summary>
         /// <value>Query tree object</value>
-        [DataMember(Name = "query", EmitDefaultValue = false)]
+        [DataMember(Name = "query", EmitDefaultValue = true)]
         public Dictionary<string, Object> Query { get; set; }
 
         /// <summary>

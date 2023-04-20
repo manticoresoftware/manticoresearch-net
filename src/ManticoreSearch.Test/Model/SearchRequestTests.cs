@@ -74,6 +74,22 @@ namespace ManticoreSearch.Test.Model
             // TODO unit test for the property 'Query'
         }
         /// <summary>
+        /// Test the property 'FulltextFilter'
+        /// </summary>
+        [Fact]
+        public void FulltextFilterTest()
+        {
+            // TODO unit test for the property 'FulltextFilter'
+        }
+        /// <summary>
+        /// Test the property 'AttrFilter'
+        /// </summary>
+        [Fact]
+        public void AttrFilterTest()
+        {
+            // TODO unit test for the property 'AttrFilter'
+        }
+        /// <summary>
         /// Test the property 'Limit'
         /// </summary>
         [Fact]
@@ -104,6 +120,14 @@ namespace ManticoreSearch.Test.Model
         public void SortTest()
         {
             // TODO unit test for the property 'Sort'
+        }
+        /// <summary>
+        /// Test the property 'SortOld'
+        /// </summary>
+        [Fact]
+        public void SortOldTest()
+        {
+            // TODO unit test for the property 'SortOld'
         }
         /// <summary>
         /// Test the property 'Aggs'
@@ -152,6 +176,14 @@ namespace ManticoreSearch.Test.Model
         public void ProfileTest()
         {
             // TODO unit test for the property 'Profile'
+        }
+        /// <summary>
+        /// Test the property 'TrackScores'
+        /// </summary>
+        [Fact]
+        public void TrackScoresTest()
+        {
+            // TODO unit test for the property 'TrackScores'
         }
 
     }

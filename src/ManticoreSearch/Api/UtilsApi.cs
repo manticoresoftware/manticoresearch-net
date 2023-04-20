@@ -20,6 +20,12 @@ using ManticoreSearch.Client;
 using ManticoreSearch.Model;
 using System.Web;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.Dynamic;
+
+
 namespace ManticoreSearch.Api
 {
 
@@ -321,6 +327,8 @@ namespace ManticoreSearch.Api
         /// <returns>ApiResponse of List&lt;Object&gt;</returns>
         public ManticoreSearch.Client.ApiResponse<List<Object>> SqlWithHttpInfo(string body, bool? rawResponse = default(bool?))
         {
+        	
+
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'body' when calling UtilsApi->Sql");

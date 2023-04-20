@@ -41,19 +41,23 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchRequest" /> class.
         /// </summary>
-        /// <param name="index">index (required).</param>
-        /// <param name="query">query (required).</param>
+        /// <param name="index">index (required) (default to &quot;&quot;).</param>
+        /// <param name="query">query.</param>
+        /// <param name="fulltextFilter">fulltextFilter.</param>
+        /// <param name="attrFilter">attrFilter.</param>
         /// <param name="limit">limit.</param>
         /// <param name="offset">offset.</param>
         /// <param name="maxMatches">maxMatches.</param>
         /// <param name="sort">sort.</param>
+        /// <param name="sortOld">sortOld.</param>
         /// <param name="aggs">aggs.</param>
         /// <param name="expressions">expressions.</param>
         /// <param name="highlight">highlight.</param>
         /// <param name="source">source.</param>
         /// <param name="options">options.</param>
         /// <param name="profile">profile.</param>
-        public SearchRequest(string index = default(string), Object query = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), Dictionary<string, Object> aggs = default(Dictionary<string, Object>), Object expressions = default(Object), Object highlight = default(Object), List<string> source = default(List<string>), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool))
+        /// <param name="trackScores">trackScores.</param>
+        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), List<Object> sortOld = default(List<Object>), List<Aggregation> aggs = default(List<Aggregation>), List<Object> expressions = default(List<Object>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
         {
             // to ensure "index" is required (not null)
             if (index == null)
@@ -61,22 +65,21 @@ namespace ManticoreSearch.Model
                 throw new ArgumentNullException("index is a required property for SearchRequest and cannot be null");
             }
             this.Index = index;
-            // to ensure "query" is required (not null)
-            if (query == null)
-            {
-                throw new ArgumentNullException("query is a required property for SearchRequest and cannot be null");
-            }
             this.Query = query;
+            this.FulltextFilter = fulltextFilter;
+            this.AttrFilter = attrFilter;
             this.Limit = limit;
             this.Offset = offset;
             this.MaxMatches = maxMatches;
             this.Sort = sort;
+            this.SortOld = sortOld;
             this.Aggs = aggs;
             this.Expressions = expressions;
             this.Highlight = highlight;
             this.Source = source;
             this.Options = options;
             this.Profile = profile;
+            this.TrackScores = trackScores;
         }
 
         /// <summary>
@@ -85,11 +88,28 @@ namespace ManticoreSearch.Model
         [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = false)]
         public string Index { get; set; }
 
+        Object _Query;
         /// <summary>
         /// Gets or Sets Query
         /// </summary>
-        [DataMember(Name = "query", IsRequired = true, EmitDefaultValue = false)]
-        public Object Query { get; set; }
+        [DataMember(Name = "query", EmitDefaultValue = false)]
+        public Object Query 
+        {
+         	get { return _Query; } 
+        	set { _Query = value; this.FulltextFilter = null; this.AttrFilter = null; }  
+        }
+
+        /// <summary>
+        /// Gets or Sets FulltextFilter
+        /// </summary>
+        [DataMember(Name = "fulltext_filter", EmitDefaultValue = false)]
+        public Object FulltextFilter { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AttrFilter
+        /// </summary>
+        [DataMember(Name = "attr_filter", EmitDefaultValue = false)]
+        public Object AttrFilter { get; set; }
 
         /// <summary>
         /// Gets or Sets Limit
@@ -116,28 +136,34 @@ namespace ManticoreSearch.Model
         public List<Object> Sort { get; set; }
 
         /// <summary>
+        /// Gets or Sets SortOld
+        /// </summary>
+        [DataMember(Name = "sort_old", EmitDefaultValue = false)]
+        public List<Object> SortOld { get; set; }
+
+        /// <summary>
         /// Gets or Sets Aggs
         /// </summary>
         [DataMember(Name = "aggs", EmitDefaultValue = false)]
-        public Dictionary<string, Object> Aggs { get; set; }
+        public List<Aggregation> Aggs { get; set; }
 
         /// <summary>
         /// Gets or Sets Expressions
         /// </summary>
         [DataMember(Name = "expressions", EmitDefaultValue = false)]
-        public Object Expressions { get; set; }
+        public List<Object> Expressions { get; set; }
 
         /// <summary>
         /// Gets or Sets Highlight
         /// </summary>
         [DataMember(Name = "highlight", EmitDefaultValue = false)]
-        public Object Highlight { get; set; }
+        public Highlight Highlight { get; set; }
 
         /// <summary>
         /// Gets or Sets Source
         /// </summary>
-        [DataMember(Name = "_source", EmitDefaultValue = false)]
-        public List<string> Source { get; set; }
+        [DataMember(Name = "source", EmitDefaultValue = false)]
+        public Object Source { get; set; }
 
         /// <summary>
         /// Gets or Sets Options
@@ -152,6 +178,12 @@ namespace ManticoreSearch.Model
         public bool Profile { get; set; }
 
         /// <summary>
+        /// Gets or Sets TrackScores
+        /// </summary>
+        [DataMember(Name = "track_scores", EmitDefaultValue = true)]
+        public bool TrackScores { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -161,16 +193,20 @@ namespace ManticoreSearch.Model
             sb.Append("class SearchRequest {\n");
             sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
+            sb.Append("  FulltextFilter: ").Append(FulltextFilter).Append("\n");
+            sb.Append("  AttrFilter: ").Append(AttrFilter).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Offset: ").Append(Offset).Append("\n");
             sb.Append("  MaxMatches: ").Append(MaxMatches).Append("\n");
             sb.Append("  Sort: ").Append(Sort).Append("\n");
+            sb.Append("  SortOld: ").Append(SortOld).Append("\n");
             sb.Append("  Aggs: ").Append(Aggs).Append("\n");
             sb.Append("  Expressions: ").Append(Expressions).Append("\n");
             sb.Append("  Highlight: ").Append(Highlight).Append("\n");
             sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  Profile: ").Append(Profile).Append("\n");
+            sb.Append("  TrackScores: ").Append(TrackScores).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -217,6 +253,16 @@ namespace ManticoreSearch.Model
                     this.Query.Equals(input.Query))
                 ) && 
                 (
+                    this.FulltextFilter == input.FulltextFilter ||
+                    (this.FulltextFilter != null &&
+                    this.FulltextFilter.Equals(input.FulltextFilter))
+                ) && 
+                (
+                    this.AttrFilter == input.AttrFilter ||
+                    (this.AttrFilter != null &&
+                    this.AttrFilter.Equals(input.AttrFilter))
+                ) && 
+                (
                     this.Limit == input.Limit ||
                     this.Limit.Equals(input.Limit)
                 ) && 
@@ -235,6 +281,12 @@ namespace ManticoreSearch.Model
                     this.Sort.SequenceEqual(input.Sort)
                 ) && 
                 (
+                    this.SortOld == input.SortOld ||
+                    this.SortOld != null &&
+                    input.SortOld != null &&
+                    this.SortOld.SequenceEqual(input.SortOld)
+                ) && 
+                (
                     this.Aggs == input.Aggs ||
                     this.Aggs != null &&
                     input.Aggs != null &&
@@ -242,8 +294,9 @@ namespace ManticoreSearch.Model
                 ) && 
                 (
                     this.Expressions == input.Expressions ||
-                    (this.Expressions != null &&
-                    this.Expressions.Equals(input.Expressions))
+                    this.Expressions != null &&
+                    input.Expressions != null &&
+                    this.Expressions.SequenceEqual(input.Expressions)
                 ) && 
                 (
                     this.Highlight == input.Highlight ||
@@ -252,9 +305,8 @@ namespace ManticoreSearch.Model
                 ) && 
                 (
                     this.Source == input.Source ||
-                    this.Source != null &&
-                    input.Source != null &&
-                    this.Source.SequenceEqual(input.Source)
+                    (this.Source != null &&
+                    this.Source.Equals(input.Source))
                 ) && 
                 (
                     this.Options == input.Options ||
@@ -265,6 +317,10 @@ namespace ManticoreSearch.Model
                 (
                     this.Profile == input.Profile ||
                     this.Profile.Equals(input.Profile)
+                ) && 
+                (
+                    this.TrackScores == input.TrackScores ||
+                    this.TrackScores.Equals(input.TrackScores)
                 );
         }
 
@@ -285,12 +341,24 @@ namespace ManticoreSearch.Model
                 {
                     hashCode = (hashCode * 59) + this.Query.GetHashCode();
                 }
+                if (this.FulltextFilter != null)
+                {
+                    hashCode = (hashCode * 59) + this.FulltextFilter.GetHashCode();
+                }
+                if (this.AttrFilter != null)
+                {
+                    hashCode = (hashCode * 59) + this.AttrFilter.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Limit.GetHashCode();
                 hashCode = (hashCode * 59) + this.Offset.GetHashCode();
                 hashCode = (hashCode * 59) + this.MaxMatches.GetHashCode();
                 if (this.Sort != null)
                 {
                     hashCode = (hashCode * 59) + this.Sort.GetHashCode();
+                }
+                if (this.SortOld != null)
+                {
+                    hashCode = (hashCode * 59) + this.SortOld.GetHashCode();
                 }
                 if (this.Aggs != null)
                 {
@@ -313,6 +381,7 @@ namespace ManticoreSearch.Model
                     hashCode = (hashCode * 59) + this.Options.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Profile.GetHashCode();
+                hashCode = (hashCode * 59) + this.TrackScores.GetHashCode();
                 return hashCode;
             }
         }
