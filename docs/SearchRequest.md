@@ -1,5 +1,5 @@
 # ManticoreSearch.Model.SearchRequest
-Payload for search operation
+Request object for search operation
 
 ## Properties
 

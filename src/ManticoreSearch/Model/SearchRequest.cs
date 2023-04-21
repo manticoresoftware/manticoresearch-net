@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Payload for search operation
+    /// Request object for search operation
     /// </summary>
     [DataContract(Name = "searchRequest")]
     public partial class SearchRequest : IEquatable<SearchRequest>, IValidatableObject
