@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Must** | **List&lt;Object&gt;** |  | [optional] 
 **MustNot** | **List&lt;Object&gt;** |  | [optional] 
 
-[[Using in search requests]](SearchApi.md#BoolFilter)
+[[Using in search requests]](SearchRequest.md#BoolFilter)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

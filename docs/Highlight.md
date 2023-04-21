@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **HtmlStripMode** | **string** |  | [optional] 
 **SnippetBoundary** | **string** |  | [optional] 
 
-[[Using in search requests]](SearchApi.md#Highlight)
+[[Using in search requests]](SearchRequest.md#Highlight)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **LimitWords** | **int** |  | [optional] [default to 0]
 **LimitSnippets** | **int** |  | [optional] [default to 0]
 
-[[Using in search requests]](SearchApi.md#HighlightField)
+[[Using in search requests]](SearchRequest.md#HighlightField)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

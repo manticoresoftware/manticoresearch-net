@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **DistanceType** | **string** |  | [optional] 
 **Distance** | **string** |  | [optional] 
 
-[[Using in search requests]](SearchApi.md#GeoDistanceFilter)
+[[Using in search requests]](SearchRequest.md#GeoDistanceFilter)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

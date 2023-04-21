@@ -4,11 +4,11 @@ All URIs are relative to *http://127.0.0.1:9308*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**Bulk**](IndexApi.md#bulk) | **POST** /json/bulk | Bulk index operations |
-| [**Delete**](IndexApi.md#delete) | **POST** /json/delete | Delete a document in an index |
-| [**Insert**](IndexApi.md#insert) | **POST** /json/insert | Create a new document in an index |
-| [**Replace**](IndexApi.md#replace) | **POST** /json/replace | Replace new document in an index |
-| [**Update**](IndexApi.md#update) | **POST** /json/update | Update a document in an index |
+| [**Bulk**](IndexApi.md#bulk) | **POST** /bulk | Bulk index operations |
+| [**Delete**](IndexApi.md#delete) | **POST** /delete | Delete a document in an index |
+| [**Insert**](IndexApi.md#insert) | **POST** /insert | Create a new document in an index |
+| [**Replace**](IndexApi.md#replace) | **POST** /replace | Replace new document in an index |
+| [**Update**](IndexApi.md#update) | **POST** /update | Update a document in an index |
 
 <a name="bulk"></a>
 # **Bulk**

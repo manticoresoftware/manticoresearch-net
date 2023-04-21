@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Includes** | **List&lt;string&gt;** |  | 
 **Excludes** | **List&lt;string&gt;** |  | 
 
-[[Using in search requests]](SearchApi.md#SourceByRules)
+[[Using in search requests]](SearchRequest.md#SourceByRules)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
