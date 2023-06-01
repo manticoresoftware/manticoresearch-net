@@ -49,7 +49,6 @@ namespace ManticoreSearch.Model
         /// <param name="offset">offset.</param>
         /// <param name="maxMatches">maxMatches.</param>
         /// <param name="sort">sort.</param>
-        /// <param name="sortOld">sortOld.</param>
         /// <param name="aggs">aggs.</param>
         /// <param name="expressions">expressions.</param>
         /// <param name="highlight">highlight.</param>
@@ -57,7 +56,7 @@ namespace ManticoreSearch.Model
         /// <param name="options">options.</param>
         /// <param name="profile">profile.</param>
         /// <param name="trackScores">trackScores.</param>
-        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), List<Object> sortOld = default(List<Object>), List<Aggregation> aggs = default(List<Aggregation>), List<Object> expressions = default(List<Object>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
+        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), List<Aggregation> aggs = default(List<Aggregation>), List<Object> expressions = default(List<Object>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
         {
             // to ensure "index" is required (not null)
             if (index == null)
@@ -72,7 +71,6 @@ namespace ManticoreSearch.Model
             this.Offset = offset;
             this.MaxMatches = maxMatches;
             this.Sort = sort;
-            this.SortOld = sortOld;
             this.Aggs = aggs;
             this.Expressions = expressions;
             this.Highlight = highlight;
@@ -136,12 +134,6 @@ namespace ManticoreSearch.Model
         public List<Object> Sort { get; set; }
 
         /// <summary>
-        /// Gets or Sets SortOld
-        /// </summary>
-        [DataMember(Name = "sort_old", EmitDefaultValue = false)]
-        public List<Object> SortOld { get; set; }
-
-        /// <summary>
         /// Gets or Sets Aggs
         /// </summary>
         [DataMember(Name = "aggs", EmitDefaultValue = false)]
@@ -199,7 +191,6 @@ namespace ManticoreSearch.Model
             sb.Append("  Offset: ").Append(Offset).Append("\n");
             sb.Append("  MaxMatches: ").Append(MaxMatches).Append("\n");
             sb.Append("  Sort: ").Append(Sort).Append("\n");
-            sb.Append("  SortOld: ").Append(SortOld).Append("\n");
             sb.Append("  Aggs: ").Append(Aggs).Append("\n");
             sb.Append("  Expressions: ").Append(Expressions).Append("\n");
             sb.Append("  Highlight: ").Append(Highlight).Append("\n");
@@ -281,12 +272,6 @@ namespace ManticoreSearch.Model
                     this.Sort.SequenceEqual(input.Sort)
                 ) && 
                 (
-                    this.SortOld == input.SortOld ||
-                    this.SortOld != null &&
-                    input.SortOld != null &&
-                    this.SortOld.SequenceEqual(input.SortOld)
-                ) && 
-                (
                     this.Aggs == input.Aggs ||
                     this.Aggs != null &&
                     input.Aggs != null &&
@@ -355,10 +340,6 @@ namespace ManticoreSearch.Model
                 if (this.Sort != null)
                 {
                     hashCode = (hashCode * 59) + this.Sort.GetHashCode();
-                }
-                if (this.SortOld != null)
-                {
-                    hashCode = (hashCode * 59) + this.SortOld.GetHashCode();
                 }
                 if (this.Aggs != null)
                 {

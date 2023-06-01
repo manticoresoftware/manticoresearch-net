@@ -122,14 +122,6 @@ namespace ManticoreSearch.Test.Model
             // TODO unit test for the property 'Sort'
         }
         /// <summary>
-        /// Test the property 'SortOld'
-        /// </summary>
-        [Fact]
-        public void SortOldTest()
-        {
-            // TODO unit test for the property 'SortOld'
-        }
-        /// <summary>
         /// Test the property 'Aggs'
         /// </summary>
         [Fact]

@@ -88,26 +88,37 @@ namespace ManticoreSearch.Test.Api
 	                			var indexApi = new IndexApi(httpClient, config, httpClientHandler);
 	            				var res = indexApi.Bulk(string.Join("\n", docs));
 	            				
-		            			object query =  new { query_string="Star" };
-		            				
-		            			var searchRequest = new SearchRequest("movies", query);
+	            				var searchApi = new SearchApi();
 
+		            			var searchRequest = new SearchRequest("movies");
+		            			var searchRes = searchApi.Search(searchRequest);
+
+								object query =  new { query_string="Star" };
+								searchRequest.Query = query;
 								searchRequest.Limit = 10;
+
+								searchRes = searchApi.Search(searchRequest);
 								
 								searchRequest.Options = new Dictionary<string, Object>();
 								searchRequest.Options["cutoff"] = 5;
 								searchRequest.Options["ranker"] = "bm25";
         						searchRequest.Source = "title";
+
+        						searchRes = searchApi.Search(searchRequest);
         													
 	        					var includes = new List<string> {"title", "year"};
         						var excludes = new List<string> {"code"};
         						searchRequest.Source = new SourceByRules(includes, excludes);
-	        					
+
+        						searchRes = searchApi.Search(searchRequest);
+
 	        					searchRequest.Sort = new List<Object> {"year"};
 	        					var sort2 = new SortOrder("rating", SortOrder.OrderEnum.Asc);
 	        					searchRequest.Sort.Add(sort2);
 	        					var sort3 = new SortMVA("code", SortMVA.OrderEnum.Desc, SortMVA.ModeEnum.Max);
 	        					searchRequest.Sort.Add(sort3);
+
+	        					searchRes = searchApi.Search(searchRequest);
 	        					
 	        					var expr = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
 	        					searchRequest.Expressions = new List<Object>();
@@ -115,11 +126,15 @@ namespace ManticoreSearch.Test.Api
 					        	searchRequest.Expressions.Add( new Dictionary<string, string> { {"expr2", "max(year,2100)"} } );
 					        	includes.Add("expr2");
 					        	searchRequest.Source = new SourceByRules(includes, excludes);
+
+					        	searchRes = searchApi.Search(searchRequest);
 					        	
 					        	var agg1 = new Aggregation("agg1", "year");
 					        	agg1.Size = 10;
         						searchRequest.Aggs = new List<Aggregation> {agg1};
         						searchRequest.Aggs.Add(new Aggregation("agg2", "rating"));
+
+        						searchRes = searchApi.Search(searchRequest);
 					        	
 					        	var highlight = new Highlight();
 					        	highlight.Fieldnames = new List<string> {"title"};
@@ -127,62 +142,93 @@ namespace ManticoreSearch.Test.Api
  					    	    highlight.Encoder = Highlight.EncoderEnum.Default;
  						        highlight.SnippetBoundary = Highlight.SnippetBoundaryEnum.Sentence;
  					        	searchRequest.Highlight = highlight;
+
+ 					        	searchRes = searchApi.Search(searchRequest);
         	
 					        	var highlightField = new HighlightField("title");
 								highlightField.Limit = 5;
 								highlight.Fields = new List<HighlightField> {highlightField};
+
+								searchRes = searchApi.Search(searchRequest);
 								
 								var highlightField2 = new HighlightField("plot");
 								highlightField2.LimitWords = 10;
 					        	highlight.Fields.Add(highlightField2);
 					        	searchRequest.Highlight = highlight;
-					        	
+
+					        	searchRes = searchApi.Search(searchRequest);
+
+								highlight.HighlightQuery = new Dictionary<string, Object> {{ "match",  new Dictionary<string, Object> { { "*", "Star"} } }};
+
+								searchRes = searchApi.Search(searchRequest);
+
 					        	searchRequest.FulltextFilter = new QueryFilter("Star Trek 2");
+
+					        	searchRes = searchApi.Search(searchRequest);
+
 					        	searchRequest.FulltextFilter = new MatchFilter("Nemesis", "title");
+
+					        	searchRes = searchApi.Search(searchRequest);
+
 					        	searchRequest.FulltextFilter = new MatchPhraseFilter("Star Trek 2", "title");
+
+					        	searchRes = searchApi.Search(searchRequest);
+
 					        	searchRequest.FulltextFilter = new MatchOpFilter("Enterprise test", "title,plot", MatchOpFilter.OperatorEnum.Or);
+
+					        	searchRes = searchApi.Search(searchRequest);
 					        	
 					        	searchRequest.AttrFilter = new EqualsFilter("year", 2003);
 					        	
+								searchRes = searchApi.Search(searchRequest);
+
 					        	var inFilter = new InFilter("year", new List<Object> {2001, 2002});
 					        	var addValues = new List<Object> {10,11};
 					    	    inFilter.Values.AddRange(addValues);
 						        searchRequest.AttrFilter = inFilter;
 	        
+	        					searchRes = searchApi.Search(searchRequest);
+
 	        					var rangeFilter = new RangeFilter("year");
 								rangeFilter.Lte = 2002;
-								rangeFilter.Gte = 1000;
+								rangeFilter.Gte = 0;
 								searchRequest.AttrFilter = rangeFilter;
-								
+
+								searchRes = searchApi.Search(searchRequest);
+
 								var geoFilter = new GeoDistanceFilter();
 								var locAnchor = new GeoDistanceFilterLocationAnchor(10, 20);
 								geoFilter.LocationAnchor = locAnchor;
-								geoFilter.LocationSource = "field3,field4";
+								geoFilter.LocationSource = "year,rating";
 								geoFilter.DistanceType = GeoDistanceFilter.DistanceTypeEnum.Adaptive;
 								geoFilter.Distance = "100km";
-        						//searchRequest.AttrFilter = geoFilter;
-	        		        					
+        						searchRequest.AttrFilter = geoFilter;
+
+								searchRes = searchApi.Search(searchRequest);
+
         						var boolFilter = new BoolFilter();
         						boolFilter.Must = new List<Object> { new EqualsFilter("year", 2001) };
         						rangeFilter = new RangeFilter("rating");
 								rangeFilter.Lte = 20;
         						boolFilter.Must.Add(rangeFilter);
         						searchRequest.AttrFilter = boolFilter;
+
+								searchRes = searchApi.Search(searchRequest);
         	
         						boolFilter.MustNot = new List<Object> { new EqualsFilter("year", 2001) };
 								searchRequest.AttrFilter = boolFilter;
+
+								searchRes = searchApi.Search(searchRequest);
 								
 								var fulltextFilter = new MatchFilter("Star", "title");
         						var nestedBoolFilter = new BoolFilter();
         						nestedBoolFilter.Should = new List<Object> { new EqualsFilter("rating", 6.5), fulltextFilter };
         						boolFilter.Must = new List<Object> {nestedBoolFilter};
             					searchRequest.AttrFilter = boolFilter;
+
+								searchRes = searchApi.Search(searchRequest);
         	
-        						var searchApi = new SearchApi();
-                                var searchRes = searchApi.Search(searchRequest);
-                                
                                 return searchRes;
-                                
                             }
                         },
                     }

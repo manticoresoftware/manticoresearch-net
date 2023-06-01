@@ -5,8 +5,8 @@ Geo pin point object
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Lat** | **int** | Geo latitude of pin point in degrees | [optional] 
-**Lon** | **int** | Geo longitude pf pin point in degrees | [optional] 
+**Lat** | **decimal** | Geo latitude of pin point in degrees | [optional] 
+**Lon** | **decimal** | Geo longitude pf pin point in degrees | [optional] 
 
 
 

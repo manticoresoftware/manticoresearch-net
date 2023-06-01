@@ -559,6 +559,16 @@ namespace ManticoreSearch.Api
 			            else
 			            {
 			            	obj.Remove("field");
+							// Check if the filter's values are actually integers
+                            new[] { "gte", "lte", "gt", "lt" }.ToList().ForEach(propName => 
+                            {
+                                decimal? propVal = (decimal?)obj[propName];
+                                if (propVal.HasValue && Math.Round((decimal)propVal) == propVal)
+                                {
+                                    obj[propName] = (int)propVal;
+                                }
+                            });
+
 			                newObj[keyPropVal] = obj;
 			                newObj = new JObject { { "range", newObj } };
 			            }
@@ -615,7 +625,6 @@ namespace ManticoreSearch.Api
 			    {
 			        var oldProp = RestructObj(propVal, propNames[propNames.Count - 1]);
 			        newProp.Merge(oldProp);
-			        //newProp = newProp.Concat(oldProp).ToDictionary(x => x.Key, x => x.Value);
 			    }
 			    nestedObj[nestedObj.Count - 1] = newProp;
 			
@@ -648,7 +657,8 @@ namespace ManticoreSearch.Api
             var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            var dict = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(searchRequest));
+			JsonSerializerSettings convertSettings = new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore};
+            var dict = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(searchRequest, convertSettings));
 			
 			if (dict.ContainsKey("source")) 
 			{

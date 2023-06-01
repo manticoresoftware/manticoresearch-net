@@ -46,7 +46,7 @@ namespace ManticoreSearch.Model
         /// <param name="gte">gte.</param>
         /// <param name="lt">lt.</param>
         /// <param name="gt">gt.</param>
-        public RangeFilter(string field = default(string), decimal lte = default(decimal), decimal gte = default(decimal), decimal lt = default(decimal), decimal gt = default(decimal))
+        public RangeFilter(string field = default(string), decimal? lte = default(decimal?), decimal? gte = default(decimal?), decimal? lt = default(decimal?), decimal? gt = default(decimal?))
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -69,26 +69,26 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Gets or Sets Lte
         /// </summary>
-        [DataMember(Name = "lte", EmitDefaultValue = false)]
-        public decimal Lte { get; set; }
+        [DataMember(Name = "lte", EmitDefaultValue = true)]
+        public decimal? Lte { get; set; }
 
         /// <summary>
         /// Gets or Sets Gte
         /// </summary>
-        [DataMember(Name = "gte", EmitDefaultValue = false)]
-        public decimal Gte { get; set; }
+        [DataMember(Name = "gte", EmitDefaultValue = true)]
+        public decimal? Gte { get; set; }
 
         /// <summary>
         /// Gets or Sets Lt
         /// </summary>
-        [DataMember(Name = "lt", EmitDefaultValue = false)]
-        public decimal Lt { get; set; }
+        [DataMember(Name = "lt", EmitDefaultValue = true)]
+        public decimal? Lt { get; set; }
 
         /// <summary>
         /// Gets or Sets Gt
         /// </summary>
-        [DataMember(Name = "gt", EmitDefaultValue = false)]
-        public decimal Gt { get; set; }
+        [DataMember(Name = "gt", EmitDefaultValue = true)]
+        public decimal? Gt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,19 +145,23 @@ namespace ManticoreSearch.Model
                 ) && 
                 (
                     this.Lte == input.Lte ||
-                    this.Lte.Equals(input.Lte)
+                    (this.Lte != null &&
+                    this.Lte.Equals(input.Lte))
                 ) && 
                 (
                     this.Gte == input.Gte ||
-                    this.Gte.Equals(input.Gte)
+                    (this.Gte != null &&
+                    this.Gte.Equals(input.Gte))
                 ) && 
                 (
                     this.Lt == input.Lt ||
-                    this.Lt.Equals(input.Lt)
+                    (this.Lt != null &&
+                    this.Lt.Equals(input.Lt))
                 ) && 
                 (
                     this.Gt == input.Gt ||
-                    this.Gt.Equals(input.Gt)
+                    (this.Gt != null &&
+                    this.Gt.Equals(input.Gt))
                 );
         }
 
@@ -174,10 +178,22 @@ namespace ManticoreSearch.Model
                 {
                     hashCode = (hashCode * 59) + this.Field.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Lte.GetHashCode();
-                hashCode = (hashCode * 59) + this.Gte.GetHashCode();
-                hashCode = (hashCode * 59) + this.Lt.GetHashCode();
-                hashCode = (hashCode * 59) + this.Gt.GetHashCode();
+                if (this.Lte != null)
+                {
+                    hashCode = (hashCode * 59) + this.Lte.GetHashCode();
+                }
+                if (this.Gte != null)
+                {
+                    hashCode = (hashCode * 59) + this.Gte.GetHashCode();
+                }
+                if (this.Lt != null)
+                {
+                    hashCode = (hashCode * 59) + this.Lt.GetHashCode();
+                }
+                if (this.Gt != null)
+                {
+                    hashCode = (hashCode * 59) + this.Gt.GetHashCode();
+                }
                 return hashCode;
             }
         }

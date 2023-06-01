@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **Offset** | **int** |  | [optional] 
 **MaxMatches** | **int** |  | [optional] 
 **Sort** | **List&lt;Object&gt;** |  | [optional] 
-**SortOld** | **List&lt;Object&gt;** |  | [optional] 
 **Aggs** | [**List&lt;Aggregation&gt;**](Aggregation.md) |  | [optional] 
 **Expressions** | **List&lt;Object&gt;** |  | [optional] 
 **Highlight** | [**Highlight**](Highlight.md) |  | [optional] 

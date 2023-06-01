@@ -14,10 +14,8 @@ Performs a search on an index.
 
 The method expects an object with the following mandatory properties:
         
-* the name of the index to search
+* the name of the index to search | string
         
-* the match query object
-
 For details, see the documentation on [**SearchRequest**](SearchRequest.md)
 
 The method returns an object with the following properties:
@@ -45,7 +43,7 @@ Here is an example search response:
     [
       {
         '_id':'1',
-        '_score':1,'
+        '_score':1,
         _source':{'gid':11}
       },
       {
@@ -124,10 +122,10 @@ No authorization required
 
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Ok |  -  |
-| **500** | error |  -  |
+| Status code | Description |
+|-------------|-------------|
+| **200** | Success, query processed |
+| **500** | Server Error |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -140,10 +138,12 @@ Perform a reverse search on a percolate index
 Performs a percolate search. 
 This method must be used only on percolate indexes.
 
-Expects two parameters: the index name and an object with an array of documents to search with.
-Here is an example of the document object:    
-```   
-{"query":
+Expects two parameters: the index name and an object with a document or an array of documents to search by.
+Here is an example of the object with a single document:
+
+```
+{
+  "query":
   {
     "percolate":
     {
@@ -153,8 +153,8 @@ Here is an example of the document object:
       }
     }
   }
-}   
-```  
+}
+```
 
 Responds with an object with matched stored queries:     
 ```   
@@ -193,6 +193,28 @@ Responds with an object with matched stored queries:
   }
 }   
 ``` 
+
+And here is an example of the object with multiple documents:
+
+```
+{
+  "query":
+  {
+    "percolate":
+    {
+      "documents": [
+        {
+          "content":"sample content"
+        },
+        {
+          "content":"another sample content"
+        }
+      ]
+    }
+  }
+}
+```
+
 
 ### Example
 ```csharp
@@ -277,10 +299,10 @@ No authorization required
 
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | items found |  -  |
-| **500** | error |  -  |
+| Status code | Description |
+|-------------|-------------|
+| **200** | Success, query processed |
+| **500** | Server error |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -38,7 +38,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <param name="lat">Geo latitude of pin point in degrees.</param>
         /// <param name="lon">Geo longitude pf pin point in degrees.</param>
-        public GeoDistanceFilterLocationAnchor(int lat = default(int), int lon = default(int))
+        public GeoDistanceFilterLocationAnchor(decimal lat = default(decimal), decimal lon = default(decimal))
         {
             this.Lat = lat;
             this.Lon = lon;
@@ -49,14 +49,14 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Geo latitude of pin point in degrees</value>
         [DataMember(Name = "lat", EmitDefaultValue = false)]
-        public int Lat { get; set; }
+        public decimal Lat { get; set; }
 
         /// <summary>
         /// Geo longitude pf pin point in degrees
         /// </summary>
         /// <value>Geo longitude pf pin point in degrees</value>
         [DataMember(Name = "lon", EmitDefaultValue = false)]
-        public int Lon { get; set; }
+        public decimal Lon { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
