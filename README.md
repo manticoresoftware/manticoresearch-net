@@ -1,5 +1,6 @@
 # ManticoreSearch - the C# library for the Manticore Search Client
 
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/3.3.0
 
 - API version: 3.3.0
 - Build package: org.openapitools.codegen.languages.CSharpNetCoreClientCodegen
