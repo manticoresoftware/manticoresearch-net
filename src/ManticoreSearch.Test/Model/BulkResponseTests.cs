@@ -66,6 +66,14 @@ namespace ManticoreSearch.Test.Model
             // TODO unit test for the property 'Items'
         }
         /// <summary>
+        /// Test the property 'Errors'
+        /// </summary>
+        [Fact]
+        public void ErrorsTest()
+        {
+            // TODO unit test for the property 'Errors'
+        }
+        /// <summary>
         /// Test the property 'Error'
         /// </summary>
         [Fact]

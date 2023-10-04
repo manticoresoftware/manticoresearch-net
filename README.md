@@ -1,8 +1,5 @@
 # Manticore .Net client
 
-Official client for Manticore Search.
-
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/3.3.0
 
 - API version: 3.3.0
 - Build package: org.openapitools.codegen.languages.CSharpNetCoreClientCodegen
@@ -22,6 +19,12 @@ Official client for Manticore Search.
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 
 The DLLs included in the package may not be the latest version. We recommend using [NuGet](https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
+
+| Manticore Search  | manticoresearch-net     |
+| ----------------- | ----------------------- |
+| >= 6.2.0          | 3.3.1                   |
+| >= 2.5.1          | 1.0.x                   |
+
 ```
 Install-Package Newtonsoft.Json
 Install-Package JsonSubTypes
