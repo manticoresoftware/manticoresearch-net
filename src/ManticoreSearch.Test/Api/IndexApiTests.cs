@@ -44,7 +44,7 @@ namespace ManticoreSearch.Test.Api
         private void InitTests()
         {
             config = new Configuration();
-            config.BasePath = "http://manticoresearch-manticore:9308";
+            config.BasePath = "http://localhost:9308";
             httpClient = new HttpClient();
             httpClientHandler = new HttpClientHandler();
             instance = new IndexApi(httpClient, config, httpClientHandler);
