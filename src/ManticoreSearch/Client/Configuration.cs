@@ -32,7 +32,7 @@ namespace ManticoreSearch.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "3.3.1";
+        public const string Version = "4.0.0";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -109,8 +109,8 @@ namespace ManticoreSearch.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = "OpenAPI-Generator/3.3.1/csharp";
-            BasePath = "http://127.0.0.1:9308";
+            UserAgent = "OpenAPI-Generator/4.0.0/csharp";
+            BasePath = "http://localhost:9408";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -118,7 +118,7 @@ namespace ManticoreSearch.Client
             {
                 {
                     new Dictionary<string, object> {
-                        {"url", "http://127.0.0.1:9308"},
+                        {"url", "http://localhost:9408"},
                         {"description", "Default Manticore Search HTTP"},
                     }
                 }
@@ -139,7 +139,7 @@ namespace ManticoreSearch.Client
             IDictionary<string, string> defaultHeaders,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "http://127.0.0.1:9308") : this()
+            string basePath = "http://localhost:9408") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");
@@ -517,7 +517,7 @@ namespace ManticoreSearch.Client
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 3.3.1\n";
-            report += "    SDK Package Version: 3.3.1\n";
+            report += "    SDK Package Version: 4.0.0\n";
 
             return report;
         }

@@ -56,7 +56,7 @@ namespace ManticoreSearch.Model
         /// <param name="options">options.</param>
         /// <param name="profile">profile.</param>
         /// <param name="trackScores">trackScores.</param>
-        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), List<Aggregation> aggs = default(List<Aggregation>), List<Object> expressions = default(List<Object>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
+        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), Dictionary<string, Aggregation> aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> expressions = default(Dictionary<string, string>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
         {
             // to ensure "index" is required (not null)
             if (index == null)
@@ -137,13 +137,13 @@ namespace ManticoreSearch.Model
         /// Gets or Sets Aggs
         /// </summary>
         [DataMember(Name = "aggs", EmitDefaultValue = false)]
-        public List<Aggregation> Aggs { get; set; }
+        public Dictionary<string, Aggregation> Aggs { get; set; }
 
         /// <summary>
         /// Gets or Sets Expressions
         /// </summary>
         [DataMember(Name = "expressions", EmitDefaultValue = false)]
-        public List<Object> Expressions { get; set; }
+        public Dictionary<string, string> Expressions { get; set; }
 
         /// <summary>
         /// Gets or Sets Highlight

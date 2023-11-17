@@ -44,7 +44,7 @@ namespace ManticoreSearch.Test.Api
         private void InitTests()
         {
             config = new Configuration();
-            config.BasePath = "http://localhost:9308";
+            config.BasePath = "http://localhost:9408";
             httpClient = new HttpClient();
             httpClientHandler = new HttpClientHandler();
             instance = new UtilsApi(httpClient, config, httpClientHandler);
@@ -120,20 +120,23 @@ namespace ManticoreSearch.Test.Api
 
 	        					searchRes = searchApi.Search(searchRequest);
 	        					
-	        					var expr = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
-	        					searchRequest.Expressions = new List<Object>();
-					        	searchRequest.Expressions.Add(expr);
-					        	searchRequest.Expressions.Add( new Dictionary<string, string> { {"expr2", "max(year,2100)"} } );
+	        					searchRequest.Expressions = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
+	        					includes.Add("expr");
+					        	searchRequest.Expressions["expr2"] = "max(year,2100)";
 					        	includes.Add("expr2");
 					        	searchRequest.Source = new SourceByRules(includes, excludes);
 
 					        	searchRes = searchApi.Search(searchRequest);
 					        	
-					        	var agg1 = new Aggregation("agg1", "year");
-					        	agg1.Size = 10;
-        						searchRequest.Aggs = new List<Aggregation> {agg1};
-        						searchRequest.Aggs.Add(new Aggregation("agg2", "rating"));
-
+					        	var aggTerms = new AggregationTerms("year", 10);
+					        	var agg1 = new Aggregation(aggTerms);
+        						searchRequest.Aggs = new Dictionary<string, Aggregation> { {"agg1", agg1} };
+        						aggTerms = new AggregationTerms("rating"); 
+        						var sortExpr = new AggregationSortInnerValue("asc");
+        						var sort = new Dictionary<string, AggregationSortInnerValue> { { "rating", sortExpr} };
+        						var aggSort = new List<Dictionary<string, AggregationSortInnerValue>> {sort};
+        						searchRequest.Aggs["agg2"] = new Aggregation(aggTerms, aggSort);
+	        					
         						searchRes = searchApi.Search(searchRequest);
 					        	
 					        	var highlight = new Highlight();

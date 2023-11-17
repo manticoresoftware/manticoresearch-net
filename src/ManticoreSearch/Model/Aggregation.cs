@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Query aggregation object
+    /// Aggregation Alias
     /// </summary>
     [DataContract(Name = "aggregation")]
     public partial class Aggregation : IEquatable<Aggregation>, IValidatableObject
@@ -36,48 +36,25 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Aggregation" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Aggregation() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Aggregation" /> class.
-        /// </summary>
-        /// <param name="name">name (required).</param>
-        /// <param name="field">field (required).</param>
-        /// <param name="size">size (default to 20).</param>
-        public Aggregation(string name = default(string), string field = default(string), int size = 20)
+        /// <param name="terms">terms.</param>
+        /// <param name="sort">sort.</param>
+        public Aggregation(AggregationTerms terms = default(AggregationTerms), List<Dictionary<string, AggregationSortInnerValue>> sort = default(List<Dictionary<string, AggregationSortInnerValue>>))
         {
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for Aggregation and cannot be null");
-            }
-            this.Name = name;
-            // to ensure "field" is required (not null)
-            if (field == null)
-            {
-                throw new ArgumentNullException("field is a required property for Aggregation and cannot be null");
-            }
-            this.Field = field;
-            this.Size = size;
+            this.Terms = terms;
+            this.Sort = sort;
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Terms
         /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = false)]
-        public string Name { get; set; }
+        [DataMember(Name = "terms", EmitDefaultValue = false)]
+        public AggregationTerms Terms { get; set; }
 
         /// <summary>
-        /// Gets or Sets Field
+        /// Gets or Sets Sort
         /// </summary>
-        [DataMember(Name = "field", IsRequired = true, EmitDefaultValue = false)]
-        public string Field { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Size
-        /// </summary>
-        [DataMember(Name = "size", EmitDefaultValue = false)]
-        public int Size { get; set; }
+        [DataMember(Name = "sort", EmitDefaultValue = false)]
+        public List<Dictionary<string, AggregationSortInnerValue>> Sort { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -87,9 +64,8 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Aggregation {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Field: ").Append(Field).Append("\n");
-            sb.Append("  Size: ").Append(Size).Append("\n");
+            sb.Append("  Terms: ").Append(Terms).Append("\n");
+            sb.Append("  Sort: ").Append(Sort).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -126,18 +102,15 @@ namespace ManticoreSearch.Model
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Terms == input.Terms ||
+                    (this.Terms != null &&
+                    this.Terms.Equals(input.Terms))
                 ) && 
                 (
-                    this.Field == input.Field ||
-                    (this.Field != null &&
-                    this.Field.Equals(input.Field))
-                ) && 
-                (
-                    this.Size == input.Size ||
-                    this.Size.Equals(input.Size)
+                    this.Sort == input.Sort ||
+                    this.Sort != null &&
+                    input.Sort != null &&
+                    this.Sort.SequenceEqual(input.Sort)
                 );
         }
 
@@ -150,15 +123,14 @@ namespace ManticoreSearch.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
+                if (this.Terms != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Terms.GetHashCode();
                 }
-                if (this.Field != null)
+                if (this.Sort != null)
                 {
-                    hashCode = (hashCode * 59) + this.Field.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Sort.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Size.GetHashCode();
                 return hashCode;
             }
         }

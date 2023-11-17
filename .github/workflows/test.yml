@@ -19,7 +19,7 @@ jobs:
       manticoresearch-manticore:
         image: manticoresearch/manticore:dev
         ports:
-          - 9308:9308
+          - 9408:9308
 
     steps:
       - uses: actions/checkout@v3

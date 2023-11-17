@@ -4,6 +4,8 @@ ManticoreSearch.sln
 README.md
 appveyor.yml
 docs/Aggregation.md
+docs/AggregationSortInnerValue.md
+docs/AggregationTerms.md
 docs/BoolFilter.md
 docs/BulkResponse.md
 docs/DeleteDocumentRequest.md
@@ -49,6 +51,8 @@ src/ManticoreSearch.Test/Api/IndexApiTests.cs
 src/ManticoreSearch.Test/Api/SearchApiTests.cs
 src/ManticoreSearch.Test/Api/UtilsApiTests.cs
 src/ManticoreSearch.Test/ManticoreSearch.Test.csproj
+src/ManticoreSearch.Test/Model/AggregationSortInnerValueTests.cs
+src/ManticoreSearch.Test/Model/AggregationTermsTests.cs
 src/ManticoreSearch.Test/Model/AggregationTests.cs
 src/ManticoreSearch.Test/Model/BoolFilterTests.cs
 src/ManticoreSearch.Test/Model/BulkResponseTests.cs
@@ -110,6 +114,8 @@ src/ManticoreSearch/Client/WebRequestPathBuilder.cs
 src/ManticoreSearch/ManticoreSearch.csproj
 src/ManticoreSearch/Model/AbstractOpenAPISchema.cs
 src/ManticoreSearch/Model/Aggregation.cs
+src/ManticoreSearch/Model/AggregationSortInnerValue.cs
+src/ManticoreSearch/Model/AggregationTerms.cs
 src/ManticoreSearch/Model/BoolFilter.cs
 src/ManticoreSearch/Model/BulkResponse.cs
 src/ManticoreSearch/Model/DeleteDocumentRequest.cs

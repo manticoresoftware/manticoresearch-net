@@ -1,13 +1,12 @@
 # ManticoreSearch.Model.Aggregation
-Query aggregation object
+Aggregation Alias
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Field** | **string** |  | 
-**Size** | **int** |  | [optional] [default to 20]
+**Terms** | [**AggregationTerms**](AggregationTerms.md) |  | [optional] 
+**Sort** | **List&lt;Dictionary&lt;string, AggregationSortInnerValue&gt;&gt;** |  | [optional] 
 
 [[Using in search requests]](SearchRequest.md#Aggregation)
 

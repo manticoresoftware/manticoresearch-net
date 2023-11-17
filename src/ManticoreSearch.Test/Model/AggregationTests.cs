@@ -58,28 +58,20 @@ namespace ManticoreSearch.Test.Model
 
 
         /// <summary>
-        /// Test the property 'Name'
+        /// Test the property 'Terms'
         /// </summary>
         [Fact]
-        public void NameTest()
+        public void TermsTest()
         {
-            // TODO unit test for the property 'Name'
+            // TODO unit test for the property 'Terms'
         }
         /// <summary>
-        /// Test the property 'Field'
+        /// Test the property 'Sort'
         /// </summary>
         [Fact]
-        public void FieldTest()
+        public void SortTest()
         {
-            // TODO unit test for the property 'Field'
-        }
-        /// <summary>
-        /// Test the property 'Size'
-        /// </summary>
-        [Fact]
-        public void SizeTest()
-        {
-            // TODO unit test for the property 'Size'
+            // TODO unit test for the property 'Sort'
         }
 
     }

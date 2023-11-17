@@ -605,14 +605,7 @@ namespace ManticoreSearch.Api
 	 			    var keyPropName = obj.ContainsKey("attr") ? "attr" : "name";
 	 		        keyPropVal = (string)obj[keyPropName];
 	 		        obj.Remove(keyPropName);
-	 		        if (objType == "aggs")
-	 		        {
-	 		            newObj[keyPropVal] = JObject.FromObject(new { terms = obj } );
-	 		        }
-	 		        else
-	 		        {
-			        	newObj[keyPropVal] = obj;
-	 		        }
+			        newObj[keyPropVal] = obj;
 	 		    }
  		        
  		        return newObj;
@@ -708,7 +701,7 @@ namespace ManticoreSearch.Api
 				dict["query"] = query;
 			}
  		    
- 		    new[] { "expressions", "aggs", "highlight.fields" }.ToList().ForEach(propSign =>
+ 		    new[] { "highlight.fields" }.ToList().ForEach(propSign =>
 			{
 			    var propNames = propSign.Split('.').ToList();
 			    var nestedObj = new List<JContainer> { dict };

@@ -1,11 +1,9 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/3.3.1
+Сlient for Manticore Search.
 
-- API version: 3.3.1
-- Build package: org.openapitools.codegen.languages.CSharpNetCoreClientCodegen
-    For more information, please visit [https://manticoresearch.com/contact-us/](https://manticoresearch.com/contact-us/)
 
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-typescript/tree/3.3.1
 
 ## Frameworks supported
 - .NET Core >=1.0
@@ -97,7 +95,7 @@ namespace Example
         {
 
             Configuration config = new Configuration();
-            config.BasePath = "http://127.0.0.1:9308";
+            config.BasePath = "http://localhost:9408";
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -143,7 +141,7 @@ namespace Example
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://127.0.0.1:9308*
+All URIs are relative to *http://localhost:9408*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -160,6 +158,8 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.Aggregation](docs/Aggregation.md)
+ - [Model.AggregationSortInnerValue](docs/AggregationSortInnerValue.md)
+ - [Model.AggregationTerms](docs/AggregationTerms.md)
  - [Model.BoolFilter](docs/BoolFilter.md)
  - [Model.BulkResponse](docs/BulkResponse.md)
  - [Model.DeleteDocumentRequest](docs/DeleteDocumentRequest.md)

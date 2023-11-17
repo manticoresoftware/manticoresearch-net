@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **Offset** | **int** |  | [optional] 
 **MaxMatches** | **int** |  | [optional] 
 **Sort** | **List&lt;Object&gt;** |  | [optional] 
-**Aggs** | [**List&lt;Aggregation&gt;**](Aggregation.md) |  | [optional] 
-**Expressions** | **List&lt;Object&gt;** |  | [optional] 
+**Aggs** | [**Dictionary&lt;string, Aggregation&gt;**](Aggregation.md) |  | [optional] 
+**Expressions** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 **Highlight** | [**Highlight**](Highlight.md) |  | [optional] 
 **Source** | **Object** |  | [optional] 
 **Options** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
@@ -102,11 +102,9 @@ Debug.WriteLine(result);
 object query =  new { query_string="Star" };
 var searchRequest = new SearchRequest("movies", query);
 
-var expr = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
-searchRequest.Expressions = new List<Object>();
-searchRequest.Expressions.Add(expr);
-searchRequest.Expressions.Add( new Dictionary<string, string> { {"expr2", "max(year,2100)"} } );
-					        	
+searchRequest.Expressions = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
+searchRequest.Expressions["expr2"] = "max(year,2100)";
+
 SearchResponse result = apiInstance.Search(searchRequest);
 Debug.WriteLine(result);
 ```
@@ -121,10 +119,15 @@ Debug.WriteLine(result);
 object query =  new { query_string="Star" };
 var searchRequest = new SearchRequest("movies", query);
 
-var agg1 = new Aggregation("agg1", "year");
-agg1.Size = 10;
-searchRequest.Aggs = new List<Aggregation> {agg1};
-searchRequest.Aggs.Add(new Aggregation("agg2", "rating"));
+var aggTerms = new AggregationTerms("year", 10);
+var agg1 = new Aggregation(aggTerms);
+searchRequest.Aggs = new Dictionary<string, Aggregation> { {"agg1", agg1} };
+
+aggTerms = new AggregationTerms("rating"); 
+var sortExpr = new AggregationSortInnerValue("asc");
+var sort = new Dictionary<string, AggregationSortInnerValue> { { "rating", sortExpr} };
+var aggSort = new List<Dictionary<string, AggregationSortInnerValue>> {sort};
+searchRequest.Aggs["agg2"] = new Aggregation(aggTerms, aggSort);
 
 SearchResponse result = apiInstance.Search(searchRequest);
 Debug.WriteLine(result);

@@ -1,0 +1,17 @@
+name: Publishing
+
+on:
+  push:
+    branches-ignore: [ master ]
+
+jobs:
+  publish:
+    name: Publish the client to the public registry
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        echo "Ok"
+
+
