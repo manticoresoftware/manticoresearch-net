@@ -3,7 +3,7 @@
 Сlient for Manticore Search.
 
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-typescript/tree/3.3.1
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-typescript/tree/4.0.0
 
 ## Frameworks supported
 - .NET Core >=1.0
@@ -21,6 +21,7 @@ The DLLs included in the package may not be the latest version. We recommend usi
 
 | Manticore Search  | manticoresearch-net     |
 | ----------------- | ----------------------- |
+| >= 6.2.0          | 4.0.0                   |
 | >= 6.2.0          | 3.3.1                   |
 | >= 2.5.1          | 1.0.x                   |
 
