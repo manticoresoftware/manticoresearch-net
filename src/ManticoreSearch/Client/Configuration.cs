@@ -110,7 +110,7 @@ namespace ManticoreSearch.Client
         {
             Proxy = null;
             UserAgent = "OpenAPI-Generator/4.0.0/csharp";
-            BasePath = "http://localhost:9408";
+            BasePath = "http://127.0.0.1:9308";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -118,7 +118,7 @@ namespace ManticoreSearch.Client
             {
                 {
                     new Dictionary<string, object> {
-                        {"url", "http://localhost:9408"},
+                        {"url", "http://127.0.0.1:9308"},
                         {"description", "Default Manticore Search HTTP"},
                     }
                 }
@@ -139,7 +139,7 @@ namespace ManticoreSearch.Client
             IDictionary<string, string> defaultHeaders,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "http://localhost:9408") : this()
+            string basePath = "http://127.0.0.1:9308") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");

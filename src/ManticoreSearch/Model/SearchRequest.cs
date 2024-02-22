@@ -42,6 +42,7 @@ namespace ManticoreSearch.Model
         /// Initializes a new instance of the <see cref="SearchRequest" /> class.
         /// </summary>
         /// <param name="index">index (required) (default to &quot;&quot;).</param>
+        /// <param name="knn">knn.</param>
         /// <param name="query">query.</param>
         /// <param name="fulltextFilter">fulltextFilter.</param>
         /// <param name="attrFilter">attrFilter.</param>
@@ -56,7 +57,10 @@ namespace ManticoreSearch.Model
         /// <param name="options">options.</param>
         /// <param name="profile">profile.</param>
         /// <param name="trackScores">trackScores.</param>
-        public SearchRequest(string index = "", Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), Dictionary<string, Aggregation> aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> expressions = default(Dictionary<string, string>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool))
+        /// <param name="queryVector">queryVector.</param>
+        /// <param name="docId">docId.</param>
+        /// <param name="k">k.</param>
+        public SearchRequest(string index = "", SearchRequestKnn knn = default(SearchRequestKnn), Object query = default(Object), Object fulltextFilter = default(Object), Object attrFilter = default(Object), int limit = default(int), int offset = default(int), int maxMatches = default(int), List<Object> sort = default(List<Object>), Dictionary<string, Aggregation> aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> expressions = default(Dictionary<string, string>), Highlight highlight = default(Highlight), Object source = default(Object), Dictionary<string, Object> options = default(Dictionary<string, Object>), bool profile = default(bool), bool trackScores = default(bool), Object queryVector = default(Object), Object docId = default(Object), Object k = default(Object))
         {
             // to ensure "index" is required (not null)
             if (index == null)
@@ -64,6 +68,7 @@ namespace ManticoreSearch.Model
                 throw new ArgumentNullException("index is a required property for SearchRequest and cannot be null");
             }
             this.Index = index;
+            this.Knn = knn;
             this.Query = query;
             this.FulltextFilter = fulltextFilter;
             this.AttrFilter = attrFilter;
@@ -78,6 +83,9 @@ namespace ManticoreSearch.Model
             this.Options = options;
             this.Profile = profile;
             this.TrackScores = trackScores;
+            this.QueryVector = queryVector;
+            this.DocId = docId;
+            this.K = k;
         }
 
         /// <summary>
@@ -85,6 +93,12 @@ namespace ManticoreSearch.Model
         /// </summary>
         [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = false)]
         public string Index { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Knn
+        /// </summary>
+        [DataMember(Name = "knn", EmitDefaultValue = false)]
+        public SearchRequestKnn Knn { get; set; }
 
         Object _Query;
         /// <summary>
@@ -176,6 +190,24 @@ namespace ManticoreSearch.Model
         public bool TrackScores { get; set; }
 
         /// <summary>
+        /// Gets or Sets QueryVector
+        /// </summary>
+        [DataMember(Name = "query_vector", EmitDefaultValue = true)]
+        public Object QueryVector { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DocId
+        /// </summary>
+        [DataMember(Name = "doc_id", EmitDefaultValue = true)]
+        public Object DocId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets K
+        /// </summary>
+        [DataMember(Name = "k", EmitDefaultValue = true)]
+        public Object K { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -184,6 +216,7 @@ namespace ManticoreSearch.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SearchRequest {\n");
             sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Knn: ").Append(Knn).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  FulltextFilter: ").Append(FulltextFilter).Append("\n");
             sb.Append("  AttrFilter: ").Append(AttrFilter).Append("\n");
@@ -198,6 +231,9 @@ namespace ManticoreSearch.Model
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  TrackScores: ").Append(TrackScores).Append("\n");
+            sb.Append("  QueryVector: ").Append(QueryVector).Append("\n");
+            sb.Append("  DocId: ").Append(DocId).Append("\n");
+            sb.Append("  K: ").Append(K).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -237,6 +273,11 @@ namespace ManticoreSearch.Model
                     this.Index == input.Index ||
                     (this.Index != null &&
                     this.Index.Equals(input.Index))
+                ) && 
+                (
+                    this.Knn == input.Knn ||
+                    (this.Knn != null &&
+                    this.Knn.Equals(input.Knn))
                 ) && 
                 (
                     this.Query == input.Query ||
@@ -306,6 +347,21 @@ namespace ManticoreSearch.Model
                 (
                     this.TrackScores == input.TrackScores ||
                     this.TrackScores.Equals(input.TrackScores)
+                ) && 
+                (
+                    this.QueryVector == input.QueryVector ||
+                    (this.QueryVector != null &&
+                    this.QueryVector.Equals(input.QueryVector))
+                ) && 
+                (
+                    this.DocId == input.DocId ||
+                    (this.DocId != null &&
+                    this.DocId.Equals(input.DocId))
+                ) && 
+                (
+                    this.K == input.K ||
+                    (this.K != null &&
+                    this.K.Equals(input.K))
                 );
         }
 
@@ -321,6 +377,10 @@ namespace ManticoreSearch.Model
                 if (this.Index != null)
                 {
                     hashCode = (hashCode * 59) + this.Index.GetHashCode();
+                }
+                if (this.Knn != null)
+                {
+                    hashCode = (hashCode * 59) + this.Knn.GetHashCode();
                 }
                 if (this.Query != null)
                 {
@@ -363,6 +423,18 @@ namespace ManticoreSearch.Model
                 }
                 hashCode = (hashCode * 59) + this.Profile.GetHashCode();
                 hashCode = (hashCode * 59) + this.TrackScores.GetHashCode();
+                if (this.QueryVector != null)
+                {
+                    hashCode = (hashCode * 59) + this.QueryVector.GetHashCode();
+                }
+                if (this.DocId != null)
+                {
+                    hashCode = (hashCode * 59) + this.DocId.GetHashCode();
+                }
+                if (this.K != null)
+                {
+                    hashCode = (hashCode * 59) + this.K.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -23,6 +23,8 @@ docs/HighlightField.md
 docs/InFilter.md
 docs/IndexApi.md
 docs/InsertDocumentRequest.md
+docs/KnnQueryByDocId.md
+docs/KnnQueryByVector.md
 docs/MatchFilter.md
 docs/MatchOp.md
 docs/MatchOpFilter.md
@@ -36,6 +38,7 @@ docs/QueryFilter.md
 docs/RangeFilter.md
 docs/SearchApi.md
 docs/SearchRequest.md
+docs/SearchRequestKnn.md
 docs/SearchResponse.md
 docs/SearchResponseHits.md
 docs/SortMVA.md
@@ -70,6 +73,8 @@ src/ManticoreSearch.Test/Model/HighlightFieldTests.cs
 src/ManticoreSearch.Test/Model/HighlightTests.cs
 src/ManticoreSearch.Test/Model/InFilterTests.cs
 src/ManticoreSearch.Test/Model/InsertDocumentRequestTests.cs
+src/ManticoreSearch.Test/Model/KnnQueryByDocIdTests.cs
+src/ManticoreSearch.Test/Model/KnnQueryByVectorTests.cs
 src/ManticoreSearch.Test/Model/MatchFilterTests.cs
 src/ManticoreSearch.Test/Model/MatchOpFilterTests.cs
 src/ManticoreSearch.Test/Model/MatchOpTests.cs
@@ -81,6 +86,7 @@ src/ManticoreSearch.Test/Model/PercolateRequestQueryTests.cs
 src/ManticoreSearch.Test/Model/PercolateRequestTests.cs
 src/ManticoreSearch.Test/Model/QueryFilterTests.cs
 src/ManticoreSearch.Test/Model/RangeFilterTests.cs
+src/ManticoreSearch.Test/Model/SearchRequestKnnTests.cs
 src/ManticoreSearch.Test/Model/SearchRequestTests.cs
 src/ManticoreSearch.Test/Model/SearchResponseHitsTests.cs
 src/ManticoreSearch.Test/Model/SearchResponseTests.cs
@@ -132,6 +138,8 @@ src/ManticoreSearch/Model/Highlight.cs
 src/ManticoreSearch/Model/HighlightField.cs
 src/ManticoreSearch/Model/InFilter.cs
 src/ManticoreSearch/Model/InsertDocumentRequest.cs
+src/ManticoreSearch/Model/KnnQueryByDocId.cs
+src/ManticoreSearch/Model/KnnQueryByVector.cs
 src/ManticoreSearch/Model/MatchFilter.cs
 src/ManticoreSearch/Model/MatchOp.cs
 src/ManticoreSearch/Model/MatchOpFilter.cs
@@ -144,6 +152,7 @@ src/ManticoreSearch/Model/PercolateRequestQuery.cs
 src/ManticoreSearch/Model/QueryFilter.cs
 src/ManticoreSearch/Model/RangeFilter.cs
 src/ManticoreSearch/Model/SearchRequest.cs
+src/ManticoreSearch/Model/SearchRequestKnn.cs
 src/ManticoreSearch/Model/SearchResponse.cs
 src/ManticoreSearch/Model/SearchResponseHits.cs
 src/ManticoreSearch/Model/SortMVA.cs

@@ -715,8 +715,8 @@ namespace ManticoreSearch.Api
 			
 			    dict = RestructNestedObj(nestedObj, propNames);
 			});
-						
-			localVarRequestOptions.Data = dict;
+			
+            localVarRequestOptions.Data = dict;
 
 
             // make the HTTP request

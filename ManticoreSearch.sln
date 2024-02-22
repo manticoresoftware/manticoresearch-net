@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManticoreSearch", "src\ManticoreSearch\ManticoreSearch.csproj", "{8437C01C-ECAC-4995-B73A-2D728007AD71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManticoreSearch", "src\ManticoreSearch\ManticoreSearch.csproj", "{1EAD6938-FF60-4488-92A4-45A0D413172C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManticoreSearch.Test", "src\ManticoreSearch.Test\ManticoreSearch.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8437C01C-ECAC-4995-B73A-2D728007AD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8437C01C-ECAC-4995-B73A-2D728007AD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8437C01C-ECAC-4995-B73A-2D728007AD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8437C01C-ECAC-4995-B73A-2D728007AD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EAD6938-FF60-4488-92A4-45A0D413172C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EAD6938-FF60-4488-92A4-45A0D413172C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EAD6938-FF60-4488-92A4-45A0D413172C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EAD6938-FF60-4488-92A4-45A0D413172C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

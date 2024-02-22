@@ -74,21 +74,21 @@ namespace ManticoreSearch.Test.Api
                     {
                     	{ "SearchTest", () => 
                             {
-                            	var utilsApi = new UtilsApi();
+                            	var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
                         		utilsApi.Sql("DROP TABLE IF EXISTS movies", true);
-					        	utilsApi.Sql("CREATE TABLE IF NOT EXISTS movies (title text, plot text, year integer, rating float, code multi)", true);
+					        	utilsApi.Sql("CREATE TABLE IF NOT EXISTS movies (title text, plot text, _year integer, rating float, code multi, type_vector float_vector knn_type='hnsw' knn_dims='3' hnsw_similarity='l2')", true);
 					        	
 					        	string[] docs = {
-									"{\"insert\": {\"index\" : \"movies\", \"id\" : 1, \"doc\" : {\"title\" : \"Star Trek 2: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"year\": 2002, \"rating\": 6.4, \"code\": [1,2,3]}}}",
-						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 2, \"doc\" : {\"title\" : \"Star Trek 1: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"year\": 2001, \"rating\": 6.5, \"code\": [1,12,3]}}}",
-						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 3, \"doc\" : {\"title\" : \"Star Trek 3: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"year\": 2003, \"rating\": 6.6, \"code\": [11,2,3]}}}",
-						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 4, \"doc\" : {\"title\" : \"Star Trek 4: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"year\": 2003, \"rating\": 6.5, \"code\": [1,2,4]}}}"					        	
+						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 1, \"doc\" : {\"title\" : \"Star Trek 2: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2002, \"rating\": 6.4, \"code\": [1,2,3], \"type_vector\": [0.2, 1.4, -2.3]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 2, \"doc\" : {\"title\" : \"Star Trek 1: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2001, \"rating\": 6.5, \"code\": [1,12,3], \"type_vector\": [0.8, 0.4, 1.3]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 3, \"doc\" : {\"title\" : \"Star Trek 3: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6.6, \"code\": [11,2,3], \"type_vector\": [1.5, -1.0, 1.6]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 4, \"doc\" : {\"title\" : \"Star Trek 4: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6, \"code\": [1,2,4], \"type_vector\": [0.4, 2.4, 0.9]}}}"					        	
 						        };
 					        						        	
 	                			var indexApi = new IndexApi(httpClient, config, httpClientHandler);
 	            				var res = indexApi.Bulk(string.Join("\n", docs));
-	            				
-	            				var searchApi = new SearchApi();
+	            					            				
+	            				var searchApi = new SearchApi(httpClient, config, httpClientHandler);
 
 		            			var searchRequest = new SearchRequest("movies");
 		            			var searchRes = searchApi.Search(searchRequest);
@@ -98,7 +98,7 @@ namespace ManticoreSearch.Test.Api
 								searchRequest.Limit = 10;
 
 								searchRes = searchApi.Search(searchRequest);
-								
+
 								searchRequest.Options = new Dictionary<string, Object>();
 								searchRequest.Options["cutoff"] = 5;
 								searchRequest.Options["ranker"] = "bm25";
@@ -106,13 +106,13 @@ namespace ManticoreSearch.Test.Api
 
         						searchRes = searchApi.Search(searchRequest);
         													
-	        					var includes = new List<string> {"title", "year"};
+	        					var includes = new List<string> {"title", "_year"};
         						var excludes = new List<string> {"code"};
         						searchRequest.Source = new SourceByRules(includes, excludes);
 
         						searchRes = searchApi.Search(searchRequest);
 
-	        					searchRequest.Sort = new List<Object> {"year"};
+	        					searchRequest.Sort = new List<Object> {"_year"};
 	        					var sort2 = new SortOrder("rating", SortOrder.OrderEnum.Asc);
 	        					searchRequest.Sort.Add(sort2);
 	        					var sort3 = new SortMVA("code", SortMVA.OrderEnum.Desc, SortMVA.ModeEnum.Max);
@@ -120,15 +120,15 @@ namespace ManticoreSearch.Test.Api
 
 	        					searchRes = searchApi.Search(searchRequest);
 	        					
-	        					searchRequest.Expressions = new Dictionary<string, string> { {"expr", "min(year,2900)"} };
+	        					searchRequest.Expressions = new Dictionary<string, string> { {"expr", "min(_year,2900)"} };
 	        					includes.Add("expr");
-					        	searchRequest.Expressions["expr2"] = "max(year,2100)";
+					        	searchRequest.Expressions["expr2"] = "max(_year,2100)";
 					        	includes.Add("expr2");
 					        	searchRequest.Source = new SourceByRules(includes, excludes);
 
 					        	searchRes = searchApi.Search(searchRequest);
 					        	
-					        	var aggTerms = new AggregationTerms("year", 10);
+					        	var aggTerms = new AggregationTerms("_year", 10);
 					        	var agg1 = new Aggregation(aggTerms);
         						searchRequest.Aggs = new Dictionary<string, Aggregation> { {"agg1", agg1} };
         						aggTerms = new AggregationTerms("rating"); 
@@ -181,18 +181,18 @@ namespace ManticoreSearch.Test.Api
 
 					        	searchRes = searchApi.Search(searchRequest);
 					        	
-					        	searchRequest.AttrFilter = new EqualsFilter("year", 2003);
+					        	searchRequest.AttrFilter = new EqualsFilter("_year", 2003);
 					        	
 								searchRes = searchApi.Search(searchRequest);
 
-					        	var inFilter = new InFilter("year", new List<Object> {2001, 2002});
+					        	var inFilter = new InFilter("_year", new List<Object> {2001, 2002});
 					        	var addValues = new List<Object> {10,11};
 					    	    inFilter.Values.AddRange(addValues);
 						        searchRequest.AttrFilter = inFilter;
 	        
 	        					searchRes = searchApi.Search(searchRequest);
 
-	        					var rangeFilter = new RangeFilter("year");
+	        					var rangeFilter = new RangeFilter("_year");
 								rangeFilter.Lte = 2002;
 								rangeFilter.Gte = 0;
 								searchRequest.AttrFilter = rangeFilter;
@@ -202,7 +202,7 @@ namespace ManticoreSearch.Test.Api
 								var geoFilter = new GeoDistanceFilter();
 								var locAnchor = new GeoDistanceFilterLocationAnchor(10, 20);
 								geoFilter.LocationAnchor = locAnchor;
-								geoFilter.LocationSource = "year,rating";
+								geoFilter.LocationSource = "_year,rating";
 								geoFilter.DistanceType = GeoDistanceFilter.DistanceTypeEnum.Adaptive;
 								geoFilter.Distance = "100km";
         						searchRequest.AttrFilter = geoFilter;
@@ -210,7 +210,7 @@ namespace ManticoreSearch.Test.Api
 								searchRes = searchApi.Search(searchRequest);
 
         						var boolFilter = new BoolFilter();
-        						boolFilter.Must = new List<Object> { new EqualsFilter("year", 2001) };
+        						boolFilter.Must = new List<Object> { new EqualsFilter("_year", 2001) };
         						rangeFilter = new RangeFilter("rating");
 								rangeFilter.Lte = 20;
         						boolFilter.Must.Add(rangeFilter);
@@ -218,7 +218,7 @@ namespace ManticoreSearch.Test.Api
 
 								searchRes = searchApi.Search(searchRequest);
         	
-        						boolFilter.MustNot = new List<Object> { new EqualsFilter("year", 2001) };
+        						boolFilter.MustNot = new List<Object> { new EqualsFilter("_year", 2001) };
 								searchRequest.AttrFilter = boolFilter;
 
 								searchRes = searchApi.Search(searchRequest);
@@ -230,7 +230,47 @@ namespace ManticoreSearch.Test.Api
             					searchRequest.AttrFilter = boolFilter;
 
 								searchRes = searchApi.Search(searchRequest);
-        	
+        						
+        						searchRequest = new SearchRequest("movies");
+        						var knnQueryByVector = new KnnQueryByVector("type_vector", new List<Decimal> {(decimal)1.5, (decimal)-1.0, (decimal)1.6}, 5);
+        						var searchRequestKnn = new SearchRequestKnn(knnQueryByVector);
+
+        						searchRequest.Knn = searchRequestKnn;
+        						searchRes = searchApi.Search(searchRequest);
+
+
+								var knnQueryByDocId = new KnnQueryByDocId("type_vector", 2, 5);
+        						searchRequestKnn = new SearchRequestKnn(knnQueryByDocId);
+
+        						searchRequest.Knn = searchRequestKnn;
+        						searchRes = searchApi.Search(searchRequest);
+								
+								var knnBoolFilter = new Dictionary<string, Object> {{ 
+									"bool",  
+									new Dictionary<string, Object> {{ 
+										"must", 
+										new List<Object> {
+											new Dictionary<string, Object> {{ 
+												"equals", 
+												new Dictionary<string, Object> {{ "id", 3}}
+											}}
+										}
+									}} 
+								}};
+								
+								knnQueryByVector.Filter = knnBoolFilter;
+        						searchRequestKnn = new SearchRequestKnn(knnQueryByVector);
+
+        						searchRequest.Knn = searchRequestKnn;
+        						searchRes = searchApi.Search(searchRequest);
+
+								knnQueryByDocId.Filter = knnBoolFilter;
+        						searchRequestKnn = new SearchRequestKnn(knnQueryByDocId);
+
+        						searchRequest.Knn = searchRequestKnn;
+        						searchRes = searchApi.Search(searchRequest);
+
+
                                 return searchRes;
                             }
                         },
@@ -243,7 +283,7 @@ namespace ManticoreSearch.Test.Api
                         { "InsertTest", () => 
                             {
                             	string body = "CREATE TABLE IF NOT EXISTS test (body text, title string)";
-            					var utilsApi = new UtilsApi();
+            					var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
             					utilsApi.Sql(body, true);
                                 Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
                                 doc.Add("body", "test");
@@ -257,7 +297,7 @@ namespace ManticoreSearch.Test.Api
                         { "BulkTest", () => 
 		                	{
 		                		string body = "CREATE TABLE IF NOT EXISTS test (body text, title string)";
-            					var utilsApi = new UtilsApi();
+            					var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
             					utilsApi.Sql("DROP TABLE IF EXISTS test", true);
             					utilsApi.Sql(body, true);
 		                		body = "{\"insert\": {\"index\": \"test\", \"id\": 1, \"doc\": {\"body\": \"test\", \"title\": \"test\"}}}" + "\n";

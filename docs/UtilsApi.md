@@ -1,6 +1,6 @@
 # ManticoreSearch.Api.UtilsApi
 
-All URIs are relative to *http://localhost:9408*
+All URIs are relative to *http://127.0.0.1:9308*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -30,7 +30,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "http://localhost:9408";
+            config.BasePath = "http://127.0.0.1:9308";
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();

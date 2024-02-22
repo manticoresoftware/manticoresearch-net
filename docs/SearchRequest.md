@@ -6,6 +6,7 @@ Request object for search operation
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Index** | **string** |  | [default to ""]
+**Knn** | [**SearchRequestKnn**](SearchRequestKnn.md) |  | [optional] 
 **Query** | **Object** |  | [optional] 
 **FulltextFilter** | **Object** |  | [optional] 
 **AttrFilter** | **Object** |  | [optional] 
@@ -20,6 +21,9 @@ Name | Type | Description | Notes
 **Options** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
 **Profile** | **bool** |  | [optional] 
 **TrackScores** | **bool** |  | [optional] 
+**QueryVector** | **Object** |  | [optional] 
+**DocId** | **Object** |  | [optional] 
+**K** | **Object** |  | [optional] 
 
 
 ## Building a search request
