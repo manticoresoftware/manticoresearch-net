@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
 *IndexApi* | [**Insert**](docs/IndexApi.md#insert) | **POST** /insert | Create a new document in an index
 *IndexApi* | [**Replace**](docs/IndexApi.md#replace) | **POST** /replace | Replace new document in an index
 *IndexApi* | [**Update**](docs/IndexApi.md#update) | **POST** /update | Update a document in an index
+*IndexApi* | [**Update_0**](docs/IndexApi.md#update_0) | **POST** /{index}/_update/{id} | Partially replaces a document in an index
 *SearchApi* | [**Percolate**](docs/SearchApi.md#percolate) | **POST** /pq/{index}/search | Perform reverse search on a percolate index
 *SearchApi* | [**Search**](docs/SearchApi.md#search) | **POST** /search | Performs a search on an index
 *UtilsApi* | [**Sql**](docs/UtilsApi.md#sql) | **POST** /sql | Perform SQL requests
@@ -188,6 +189,7 @@ Class | Method | HTTP request | Description
  - [Model.PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [Model.QueryFilter](docs/QueryFilter.md)
  - [Model.RangeFilter](docs/RangeFilter.md)
+ - [Model.ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [Model.SearchRequest](docs/SearchRequest.md)
  - [Model.SearchResponse](docs/SearchResponse.md)
  - [Model.SearchResponseHits](docs/SearchResponseHits.md)

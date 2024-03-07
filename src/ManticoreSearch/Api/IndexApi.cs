@@ -140,6 +140,33 @@ namespace ManticoreSearch.Api
         /// <param name="updateDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
         ApiResponse<UpdateResponse> UpdateWithHttpInfo(UpdateDocumentRequest updateDocumentRequest);
+        
+        /// <summary>
+        /// Partially replaces a document in an index
+        /// </summary>
+        /// <remarks>
+        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <returns>UpdateResponse</returns>
+        UpdateResponse Update_0(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest);
+
+        /// <summary>
+        /// Partially replaces a document in an index
+        /// </summary>
+        /// <remarks>
+        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <returns>ApiResponse of UpdateResponse</returns>
+        ApiResponse<UpdateResponse> Update_0WithHttpInfo(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest);
+
         #endregion Synchronous Operations
     }
 
@@ -264,6 +291,35 @@ namespace ManticoreSearch.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> UpdateWithHttpInfoAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        
+        /// <summary>
+        /// Partially replaces a document in an index
+        /// </summary>
+        /// <remarks>
+        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateResponse</returns>
+        System.Threading.Tasks.Task<UpdateResponse> Update_0Async(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Partially replaces a document in an index
+        /// </summary>
+        /// <remarks>
+        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> Update_0WithHttpInfoAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
         #endregion Asynchronous Operations
     }
 
@@ -1076,6 +1132,150 @@ namespace ManticoreSearch.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Update", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <returns>UpdateResponse</returns>
+        public UpdateResponse Update_0(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest)
+        {
+            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = Update_0WithHttpInfo(index, id, replaceDocumentRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <returns>ApiResponse of UpdateResponse</returns>
+        public ManticoreSearch.Client.ApiResponse<UpdateResponse> Update_0WithHttpInfo(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest)
+        {
+        	var dict = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(index));
+        	if (dict.ContainsKey("id") && dict.ContainsKey("query"))
+	 		{
+	 			dict.Remove("query");
+	 		}
+        	
+
+            // verify the required parameter 'index' is set
+            if (index == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'index' when calling IndexApi->Update_0");
+
+            // verify the required parameter 'replaceDocumentRequest' is set
+            if (replaceDocumentRequest == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'replaceDocumentRequest' when calling IndexApi->Update_0");
+
+            ManticoreSearch.Client.RequestOptions localVarRequestOptions = new ManticoreSearch.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = ManticoreSearch.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("index", ManticoreSearch.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ManticoreSearch.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = dict;
+
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateResponse>("/{index}/_update/{id}", localVarRequestOptions, this.Configuration);
+			
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Update_0", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateResponse</returns>
+        public async System.Threading.Tasks.Task<UpdateResponse> Update_0Async(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await Update_0WithHttpInfoAsync(index, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="index">Name of the percolate index</param>
+        /// <param name="id">Id of the document to replace</param>
+        /// <param name="replaceDocumentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateResponse)</returns>
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> Update_0WithHttpInfoAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'index' is set
+            if (index == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'index' when calling IndexApi->Update_0");
+
+            // verify the required parameter 'replaceDocumentRequest' is set
+            if (replaceDocumentRequest == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'replaceDocumentRequest' when calling IndexApi->Update_0");
+
+
+            ManticoreSearch.Client.RequestOptions localVarRequestOptions = new ManticoreSearch.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = ManticoreSearch.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("index", ManticoreSearch.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", ManticoreSearch.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = replaceDocumentRequest;
+
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateResponse>("/{index}/_update/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Update_0", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
