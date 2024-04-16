@@ -160,6 +160,9 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [Model.Aggregation](docs/Aggregation.md)
+ - [Model.AggregationComposite](docs/AggregationComposite.md)
+ - [Model.AggregationCompositeSourcesInnerValue](docs/AggregationCompositeSourcesInnerValue.md)
+ - [Model.AggregationCompositeSourcesInnerValueTerms](docs/AggregationCompositeSourcesInnerValueTerms.md)
  - [Model.AggregationSortInnerValue](docs/AggregationSortInnerValue.md)
  - [Model.AggregationTerms](docs/AggregationTerms.md)
  - [Model.BoolFilter](docs/BoolFilter.md)

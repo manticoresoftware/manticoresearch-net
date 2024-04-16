@@ -138,6 +138,19 @@ namespace ManticoreSearch.Test.Api
         						searchRequest.Aggs["agg2"] = new Aggregation(aggTerms, aggSort);
 	        					
         						searchRes = searchApi.Search(searchRequest);
+        						
+								var compAggTerms1 = new AggregationCompositeSourcesInnerValueTerms("_year");
+								var compAggTerms2 = new AggregationCompositeSourcesInnerValueTerms("rating");
+								var compAgg1 = new AggregationCompositeSourcesInnerValue(compAggTerms1);
+								var compAgg2 = new AggregationCompositeSourcesInnerValue(compAggTerms2);
+								var source1 = new Dictionary<string, AggregationCompositeSourcesInnerValue> { { "comp_agg_1", compAgg1 } };
+								var source2 = new Dictionary<string, AggregationCompositeSourcesInnerValue> { { "comp_agg_2", compAgg2 } };
+								var compSources = new List<Dictionary<string, AggregationCompositeSourcesInnerValue>> {source1, source2};
+								var composite = new AggregationComposite(size: 5, sources: compSources);
+								var agg = new Aggregation(composite: composite);
+								searchRequest.Aggs = new Dictionary<string, Aggregation> { {"comp_agg", agg} };
+								
+								searchRes = searchApi.Search(searchRequest);
 					        	
 					        	var highlight = new Highlight();
 					        	highlight.Fieldnames = new List<string> {"title"};

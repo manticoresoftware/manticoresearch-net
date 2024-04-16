@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Terms** | [**AggregationTerms**](AggregationTerms.md) |  | [optional] 
 **Sort** | **List&lt;Dictionary&lt;string, AggregationSortInnerValue&gt;&gt;** |  | [optional] 
+**Composite** | [**AggregationComposite**](AggregationComposite.md) |  | [optional] 
 
 [[Using in search requests]](SearchRequest.md#Aggregation)
 

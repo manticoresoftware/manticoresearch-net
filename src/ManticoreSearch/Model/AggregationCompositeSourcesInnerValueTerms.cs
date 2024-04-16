@@ -28,41 +28,26 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Aggregation Alias
+    /// AggregationCompositeSourcesInnerValueTerms
     /// </summary>
-    [DataContract(Name = "aggregation")]
-    public partial class Aggregation : IEquatable<Aggregation>, IValidatableObject
+    [DataContract(Name = "aggregation_composite_sources_inner_value_terms")]
+    public partial class AggregationCompositeSourcesInnerValueTerms : IEquatable<AggregationCompositeSourcesInnerValueTerms>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Aggregation" /> class.
+        /// Initializes a new instance of the <see cref="AggregationCompositeSourcesInnerValueTerms" /> class.
         /// </summary>
-        /// <param name="terms">terms.</param>
-        /// <param name="sort">sort.</param>
-        /// <param name="composite">composite.</param>
-        public Aggregation(AggregationTerms terms = default(AggregationTerms), List<Dictionary<string, AggregationSortInnerValue>> sort = default(List<Dictionary<string, AggregationSortInnerValue>>), AggregationComposite composite = default(AggregationComposite))
+        /// <param name="field">Name of attribute to aggregate by.</param>
+        public AggregationCompositeSourcesInnerValueTerms(string field = default(string))
         {
-            this.Terms = terms;
-            this.Sort = sort;
-            this.Composite = composite;
+            this.Field = field;
         }
 
         /// <summary>
-        /// Gets or Sets Terms
+        /// Name of attribute to aggregate by
         /// </summary>
-        [DataMember(Name = "terms", EmitDefaultValue = false)]
-        public AggregationTerms Terms { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Sort
-        /// </summary>
-        [DataMember(Name = "sort", EmitDefaultValue = false)]
-        public List<Dictionary<string, AggregationSortInnerValue>> Sort { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Composite
-        /// </summary>
-        [DataMember(Name = "composite", EmitDefaultValue = false)]
-        public AggregationComposite Composite { get; set; }
+        /// <value>Name of attribute to aggregate by</value>
+        [DataMember(Name = "field", EmitDefaultValue = false)]
+        public string Field { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,10 +56,8 @@ namespace ManticoreSearch.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Aggregation {\n");
-            sb.Append("  Terms: ").Append(Terms).Append("\n");
-            sb.Append("  Sort: ").Append(Sort).Append("\n");
-            sb.Append("  Composite: ").Append(Composite).Append("\n");
+            sb.Append("class AggregationCompositeSourcesInnerValueTerms {\n");
+            sb.Append("  Field: ").Append(Field).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,15 +78,15 @@ namespace ManticoreSearch.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Aggregation);
+            return this.Equals(input as AggregationCompositeSourcesInnerValueTerms);
         }
 
         /// <summary>
-        /// Returns true if Aggregation instances are equal
+        /// Returns true if AggregationCompositeSourcesInnerValueTerms instances are equal
         /// </summary>
-        /// <param name="input">Instance of Aggregation to be compared</param>
+        /// <param name="input">Instance of AggregationCompositeSourcesInnerValueTerms to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Aggregation input)
+        public bool Equals(AggregationCompositeSourcesInnerValueTerms input)
         {
             if (input == null)
             {
@@ -111,20 +94,9 @@ namespace ManticoreSearch.Model
             }
             return 
                 (
-                    this.Terms == input.Terms ||
-                    (this.Terms != null &&
-                    this.Terms.Equals(input.Terms))
-                ) && 
-                (
-                    this.Sort == input.Sort ||
-                    this.Sort != null &&
-                    input.Sort != null &&
-                    this.Sort.SequenceEqual(input.Sort)
-                ) && 
-                (
-                    this.Composite == input.Composite ||
-                    (this.Composite != null &&
-                    this.Composite.Equals(input.Composite))
+                    this.Field == input.Field ||
+                    (this.Field != null &&
+                    this.Field.Equals(input.Field))
                 );
         }
 
@@ -137,17 +109,9 @@ namespace ManticoreSearch.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Terms != null)
+                if (this.Field != null)
                 {
-                    hashCode = (hashCode * 59) + this.Terms.GetHashCode();
-                }
-                if (this.Sort != null)
-                {
-                    hashCode = (hashCode * 59) + this.Sort.GetHashCode();
-                }
-                if (this.Composite != null)
-                {
-                    hashCode = (hashCode * 59) + this.Composite.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Field.GetHashCode();
                 }
                 return hashCode;
             }
