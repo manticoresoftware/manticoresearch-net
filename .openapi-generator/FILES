@@ -36,6 +36,8 @@ docs/PercolateRequest.md
 docs/PercolateRequestQuery.md
 docs/QueryFilter.md
 docs/RangeFilter.md
+docs/RangeFilterValue.md
+docs/ReplaceDocumentRequest.md
 docs/SearchApi.md
 docs/SearchRequest.md
 docs/SearchRequestKnn.md
@@ -86,6 +88,8 @@ src/ManticoreSearch.Test/Model/PercolateRequestQueryTests.cs
 src/ManticoreSearch.Test/Model/PercolateRequestTests.cs
 src/ManticoreSearch.Test/Model/QueryFilterTests.cs
 src/ManticoreSearch.Test/Model/RangeFilterTests.cs
+src/ManticoreSearch.Test/Model/RangeFilterValueTests.cs
+src/ManticoreSearch.Test/Model/ReplaceDocumentRequestTests.cs
 src/ManticoreSearch.Test/Model/SearchRequestKnnTests.cs
 src/ManticoreSearch.Test/Model/SearchRequestTests.cs
 src/ManticoreSearch.Test/Model/SearchResponseHitsTests.cs
@@ -151,6 +155,8 @@ src/ManticoreSearch/Model/PercolateRequest.cs
 src/ManticoreSearch/Model/PercolateRequestQuery.cs
 src/ManticoreSearch/Model/QueryFilter.cs
 src/ManticoreSearch/Model/RangeFilter.cs
+src/ManticoreSearch/Model/RangeFilterValue.cs
+src/ManticoreSearch/Model/ReplaceDocumentRequest.cs
 src/ManticoreSearch/Model/SearchRequest.cs
 src/ManticoreSearch/Model/SearchRequestKnn.cs
 src/ManticoreSearch/Model/SearchResponse.cs

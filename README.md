@@ -192,6 +192,7 @@ Class | Method | HTTP request | Description
  - [Model.PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [Model.QueryFilter](docs/QueryFilter.md)
  - [Model.RangeFilter](docs/RangeFilter.md)
+ - [Model.RangeFilterValue](docs/RangeFilterValue.md)
  - [Model.ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [Model.SearchRequest](docs/SearchRequest.md)
  - [Model.SearchResponse](docs/SearchResponse.md)

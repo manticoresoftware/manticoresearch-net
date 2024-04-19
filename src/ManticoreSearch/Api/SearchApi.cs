@@ -562,10 +562,13 @@ namespace ManticoreSearch.Api
 							// Check if the filter's values are actually integers
                             new[] { "gte", "lte", "gt", "lt" }.ToList().ForEach(propName => 
                             {
-                                decimal? propVal = (decimal?)obj[propName];
-                                if (propVal.HasValue && Math.Round((decimal)propVal) == propVal)
+                                if (!(obj[propName] is null) && (obj[propName].Type == JTokenType.Float))
                                 {
-                                    obj[propName] = (int)propVal;
+                                    decimal? propVal = (decimal?)obj[propName];
+                                    if (propVal.HasValue && Math.Round((decimal)propVal) == propVal)
+                                    {
+                                        obj[propName] = (int)propVal;
+                                    }
                                 }
                             });
 

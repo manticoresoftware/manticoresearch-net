@@ -284,9 +284,9 @@ Debug.WriteLine(result);
 //Using a RangeFilter object
 var searchRequest = new SearchRequest("movies");
 
-var rangeFilter = new RangeFilter("year");
-rangeFilter.Lte = 2002;
-rangeFilter.Gte = 1000;
+var rangeFilter = new RangeFilter("_year");
+rangeFilter.Lte = new RangeFilterValue(2002);
+rangeFilter.Gte = new RangeFilterValue(1000);
 searchRequest.AttrFilter = rangeFilter;
 
 SearchResponse result = apiInstance.Search(searchRequest);

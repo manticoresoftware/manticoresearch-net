@@ -76,13 +76,13 @@ namespace ManticoreSearch.Test.Api
                             {
                             	var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
                         		utilsApi.Sql("DROP TABLE IF EXISTS movies", true);
-					        	utilsApi.Sql("CREATE TABLE IF NOT EXISTS movies (title text, plot text, _year integer, rating float, code multi, type_vector float_vector knn_type='hnsw' knn_dims='3' hnsw_similarity='l2')", true);
+					        	utilsApi.Sql("CREATE TABLE IF NOT EXISTS movies (title text, plot text, _year integer, rating float, cat string, code multi, type_vector float_vector knn_type='hnsw' knn_dims='3' hnsw_similarity='l2')", true);
 					        	
 					        	string[] docs = {
-						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 1, \"doc\" : {\"title\" : \"Star Trek 2: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2002, \"rating\": 6.4, \"code\": [1,2,3], \"type_vector\": [0.2, 1.4, -2.3]}}}",
-				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 2, \"doc\" : {\"title\" : \"Star Trek 1: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2001, \"rating\": 6.5, \"code\": [1,12,3], \"type_vector\": [0.8, 0.4, 1.3]}}}",
-				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 3, \"doc\" : {\"title\" : \"Star Trek 3: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6.6, \"code\": [11,2,3], \"type_vector\": [1.5, -1.0, 1.6]}}}",
-				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 4, \"doc\" : {\"title\" : \"Star Trek 4: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6, \"code\": [1,2,4], \"type_vector\": [0.4, 2.4, 0.9]}}}"					        	
+						            "{\"insert\": {\"index\" : \"movies\", \"id\" : 1, \"doc\" : {\"title\" : \"Star Trek 2: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2002, \"rating\": 6.4, \"cat\": \"R\", \"code\": [1,2,3], \"type_vector\": [0.2, 1.4, -2.3]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 2, \"doc\" : {\"title\" : \"Star Trek 1: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2001, \"rating\": 6.5, \"cat\": \"PG-13\", \"code\": [1,12,3], \"type_vector\": [0.8, 0.4, 1.3]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 3, \"doc\" : {\"title\" : \"Star Trek 3: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6.6, \"cat\": \"R\", \"code\": [11,2,3], \"type_vector\": [1.5, -1.0, 1.6]}}}",
+				        			"{\"insert\": {\"index\" : \"movies\", \"id\" : 4, \"doc\" : {\"title\" : \"Star Trek 4: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6, \"cat\": \"R\", \"code\": [1,2,4], \"type_vector\": [0.4, 2.4, 0.9]}}}"					        	
 						        };
 					        						        	
 	                			var indexApi = new IndexApi(httpClient, config, httpClientHandler);
@@ -206,10 +206,15 @@ namespace ManticoreSearch.Test.Api
 	        					searchRes = searchApi.Search(searchRequest);
 
 	        					var rangeFilter = new RangeFilter("_year");
-								rangeFilter.Lte = 2002;
-								rangeFilter.Gte = 0;
+								rangeFilter.Lte = new RangeFilterValue(2002);
+								rangeFilter.Gte = new RangeFilterValue(0);
 								searchRequest.AttrFilter = rangeFilter;
 
+								searchRes = searchApi.Search(searchRequest);
+
+								rangeFilter = new RangeFilter("cat");
+								rangeFilter.Gte = new RangeFilterValue("R");
+								searchRequest.AttrFilter = rangeFilter;
 								searchRes = searchApi.Search(searchRequest);
 
 								var geoFilter = new GeoDistanceFilter();
@@ -225,7 +230,7 @@ namespace ManticoreSearch.Test.Api
         						var boolFilter = new BoolFilter();
         						boolFilter.Must = new List<Object> { new EqualsFilter("_year", 2001) };
         						rangeFilter = new RangeFilter("rating");
-								rangeFilter.Lte = 20;
+								rangeFilter.Lte = new RangeFilterValue(20);
         						boolFilter.Must.Add(rangeFilter);
         						searchRequest.AttrFilter = boolFilter;
 

@@ -46,7 +46,7 @@ namespace ManticoreSearch.Model
         /// <param name="gte">gte.</param>
         /// <param name="lt">lt.</param>
         /// <param name="gt">gt.</param>
-        public RangeFilter(string field = default(string), decimal? lte = default(decimal?), decimal? gte = default(decimal?), decimal? lt = default(decimal?), decimal? gt = default(decimal?))
+        public RangeFilter(string field = default(string), RangeFilterValue lte = default(RangeFilterValue), RangeFilterValue gte = default(RangeFilterValue), RangeFilterValue lt = default(RangeFilterValue), RangeFilterValue gt = default(RangeFilterValue))
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -70,25 +70,25 @@ namespace ManticoreSearch.Model
         /// Gets or Sets Lte
         /// </summary>
         [DataMember(Name = "lte", EmitDefaultValue = true)]
-        public decimal? Lte { get; set; }
+        public RangeFilterValue Lte { get; set; }
 
         /// <summary>
         /// Gets or Sets Gte
         /// </summary>
         [DataMember(Name = "gte", EmitDefaultValue = true)]
-        public decimal? Gte { get; set; }
+        public RangeFilterValue Gte { get; set; }
 
         /// <summary>
         /// Gets or Sets Lt
         /// </summary>
         [DataMember(Name = "lt", EmitDefaultValue = true)]
-        public decimal? Lt { get; set; }
+        public RangeFilterValue Lt { get; set; }
 
         /// <summary>
         /// Gets or Sets Gt
         /// </summary>
         [DataMember(Name = "gt", EmitDefaultValue = true)]
-        public decimal? Gt { get; set; }
+        public RangeFilterValue Gt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

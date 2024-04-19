@@ -6,10 +6,10 @@ Range attribute filter
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Field** | **string** |  | 
-**Lte** | **decimal?** |  | [optional] 
-**Gte** | **decimal?** |  | [optional] 
-**Lt** | **decimal?** |  | [optional] 
-**Gt** | **decimal?** |  | [optional] 
+**Lte** | [**RangeFilterValue**](RangeFilterValue.md) |  | [optional] 
+**Gte** | [**RangeFilterValue**](RangeFilterValue.md) |  | [optional] 
+**Lt** | [**RangeFilterValue**](RangeFilterValue.md) |  | [optional] 
+**Gt** | [**RangeFilterValue**](RangeFilterValue.md) |  | [optional] 
 
 [[Using in search requests]](SearchRequest.md#RangeFilter)
 
