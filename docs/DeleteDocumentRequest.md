@@ -6,11 +6,9 @@ Payload for delete request. Documents can be deleted either one by one by specif
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Index** | **string** | Index name | 
-**Cluster** | **string** | cluster name | [optional] 
-**Id** | **long** | Document ID | [optional] 
-**Query** | **Object** | Query tree object | [optional] 
-
-
+**Cluster** | **string** | Cluster name | [optional] 
+**Id** | **long** | The ID of document for deletion | [optional] 
+**Query** | **Object** | Defines the criteria to match documents for deletion | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,16 +1,15 @@
 # ManticoreSearch.Model.UpdateDocumentRequest
-Payload for update document
+Payload for updating a document or multiple documents in an index
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** |  | 
-**Doc** | **Dictionary&lt;string, Object&gt;** | Index name | 
+**Index** | **string** | Name of the document index | 
+**Cluster** | **string** | Name of the document cluster | [optional] 
+**Doc** | **Object** | Object containing the document fields to update | 
 **Id** | **long** | Document ID | [optional] 
-**Query** | **Dictionary&lt;string, Object&gt;** | Query tree object | [optional] 
-
-
+**Query** | [**QueryFilter**](QueryFilter.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

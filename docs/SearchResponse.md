@@ -1,18 +1,16 @@
 # ManticoreSearch.Model.SearchResponse
-Response object of a search request
+Response object containing the results of a search request
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Took** | **int** |  | [optional] 
-**TimedOut** | **bool** |  | [optional] 
-**Aggregations** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
+**Took** | **int** | Time taken to execute the search | [optional] 
+**TimedOut** | **bool** | Indicates whether the search operation timed out | [optional] 
+**Aggregations** | **Object** | Aggregated search results grouped by the specified criteria | [optional] 
 **Hits** | [**SearchResponseHits**](SearchResponseHits.md) |  | [optional] 
-**Profile** | **Object** |  | [optional] 
-**Warning** | **Dictionary&lt;string, Object&gt;** |  | [optional] 
-
-
+**Profile** | **Object** | Profile information about the search execution, if profiling is enabled | [optional] 
+**Warning** | **Object** | Warnings encountered during the search operation | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

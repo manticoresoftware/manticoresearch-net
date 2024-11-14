@@ -6,9 +6,9 @@ All URIs are relative to *http://127.0.0.1:9308*
 |--------|--------------|-------------|
 | [**Sql**](UtilsApi.md#sql) | **POST** /sql | Perform SQL requests |
 
-<a name="sql"></a>
+<a id="sql"></a>
 # **Sql**
-> List&lt;Object&gt; Sql (string body, bool? rawResponse = null)
+> SqlResponse Sql (string body, bool? rawResponse = null)
 
 Perform SQL requests
 
@@ -36,12 +36,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new UtilsApi(httpClient, config, httpClientHandler);
             var body = SHOW TABLES;  // string | A query parameter string. 
-            var rawResponse = true;  // bool? | Optional parameter, defines a format of response. Can be set to `False` for Select only queries and set to `True` or omitted for any type of queries:  (optional)  (default to true)
+            var rawResponse = true;  // bool? | Optional parameter, defines a format of response. Can be set to `False` for Select only queries and set to `True` for any type of queries. Default value is 'True'.  (optional)  (default to true)
 
             try
             {
                 // Perform SQL requests
-                List<Object> result = apiInstance.Sql(body, rawResponse);
+                SqlResponse result = apiInstance.Sql(body, rawResponse);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -62,7 +62,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Perform SQL requests
-    ApiResponse<List<Object>> response = apiInstance.SqlWithHttpInfo(body, rawResponse);
+    ApiResponse<SqlResponse> response = apiInstance.SqlWithHttpInfo(body, rawResponse);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -80,11 +80,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **body** | **string** | A query parameter string.  |  |
-| **rawResponse** | **bool?** | Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; or omitted for any type of queries:  | [optional] [default to true] |
+| **rawResponse** | **bool?** | Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; for any type of queries. Default value is &#39;True&#39;.  | [optional] [default to true] |
 
 ### Return type
 
-**List<Object>**
+[**SqlResponse**](SqlResponse.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | In case of SELECT-only in mode none the response schema is the same as of &#x60;search&#x60;. In case of &#x60;mode&#x3D;raw&#x60; the response depends on the query executed.  |  -  |
+| **200** | In case of SELECT-only in mode none the response schema is the same as of &#x60;search&#x60;. In case of &#x60;mode&#x3D;raw&#x60; or &#x60;raw_response&#x3D;true&#x60; the response depends on the query executed.  |  -  |
 | **0** | error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
