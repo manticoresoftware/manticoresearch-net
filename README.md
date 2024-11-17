@@ -20,6 +20,8 @@ The DLLs included in the package may not be the latest version. We recommend usi
 
 | Manticore Search  | manticoresearch-net     |
 | ----------------- | ----------------------- |
+| dev               | dev                     |
+| >= 6.3.6          | >= 5.0.0                |
 | >= 6.2.0          | >= 3.3.1                |
 | >= 2.5.1          | >= 1.0.x                |
 
@@ -102,37 +104,41 @@ namespace Example
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
-            var body = "body_example";  // string | 
-
-            try
-            {
-                // Bulk index operations
-                BulkResponse result = apiInstance.Bulk(body);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException e)
-            {
-                Debug.Print("Exception when calling IndexApi.Bulk: " + e.Message );
-                Debug.Print("Status Code: "+ e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
             
-            apiInstance = new SearchApi(httpClient, config, httpClientHandler);
-            
-            // Create SearchRequest
-            var basicSearchRequest = new BasicSearchRequest(index: "test", query: "Title 1");
-            var searchRequest = new SearchRequest(basicSearchRequest);
-
-            try
+            // Perform insert and search operations
+            var indexApi = new IndexApi(httpClient, config, httpClientHandler);
+			var searchApi = new SearchApi(httpClient, config, httpClientHandler);
+            try 
             {
-                // Perform a search
-                SearchResponse result = apiInstance.Search(searchRequest);
-                Debug.WriteLine(result);
-            }
+            	string tableName = "products";
+	
+				Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
+				doc.Add("title", "Crossbody Bag with Tassel");
+				doc.Add("price", 19.85);
+
+                InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(Index: "products", Doc: doc);
+                indexApi.Insert(insertDocumentRequest);
+
+	            SearchRequest searchRequest = new SearchRequest(Index: "products");
+                                
+                Highlight queryHighlight = new Highlight();
+                List<string> highlightFields = new List<string>();
+                highlightFields.Add("title");
+                queryHighlight.Fields = highlightFields;
+
+                SearchQuery query = new SearchQuery();
+                query.QueryString = "@title Bag";
+                
+                searchRequest.Query = query;
+                searchRequest.Highlight = queryHighlight;
+                
+                SearchResponse searchResponse = searchApi.Search(searchRequest);
+						
+				Console.WriteLine(searchResponse);
+			}
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling SearchApi.Search: " + e.Message);
+                Debug.Print("Exception when calling Api method: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }

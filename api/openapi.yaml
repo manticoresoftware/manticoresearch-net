@@ -1161,13 +1161,13 @@ components:
     sqlObjResponse:
       type: object
     sqlResponse:
+      anyOf:
+      - $ref: '#/components/schemas/sqlRawResponse'
+      - $ref: '#/components/schemas/sqlObjResponse'
       description: List of responses from executed SQL queries
       example:
       - total: 0
         error: null
-      oneOf:
-      - $ref: '#/components/schemas/sqlRawResponse'
-      - $ref: '#/components/schemas/sqlObjResponse'
     updateDocumentRequest:
       description: Payload for updating a document or multiple documents in an index
       properties:
