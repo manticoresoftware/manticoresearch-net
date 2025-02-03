@@ -8,6 +8,9 @@
 
 <a id="frameworks-supported"></a>
 ## Frameworks supported
+- .NET Core >=1.0
+- .NET Framework >=4.6
+- Mono/Xamarin >=vNext
 
 <a id="dependencies"></a>
 ## Dependencies
@@ -37,9 +40,8 @@ Install-Package System.ComponentModel.Annotations
 ```
 <a id="installation"></a>
 ## Installation
-Run the following command to generate the DLL
-- [Mac/Linux] `/bin/sh build.sh`
-- [Windows] `build.bat`
+
+Generate the DLL using your preferred tool (e.g. `dotnet build`)
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
