@@ -8,10 +8,14 @@ jobs:
   publish:
     name: Publish the client to the public registry
     runs-on: ubuntu-latest
+    env:
+      APIKEY: ${{ secrets.APIKEY }}
 
     steps:
     - uses: actions/checkout@v4
     - run: |
-        echo "Ok"
+       dotnet pack
+       echo "Publish"
+       ls
 
 

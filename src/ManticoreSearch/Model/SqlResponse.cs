@@ -42,9 +42,9 @@ namespace ManticoreSearch.Model
         /// <param name="actualInstance">An instance of List&lt;Object&gt;.</param>
         public SqlResponse(List<Object> actualInstance)
         {
-            IsNullable = false;
-            SchemaType= "anyOf";
-            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace ManticoreSearch.Model
         /// <param name="actualInstance">An instance of Object.</param>
         public SqlResponse(Object actualInstance)
         {
-            IsNullable = false;
-            SchemaType= "anyOf";
-            ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
 
@@ -75,11 +75,11 @@ namespace ManticoreSearch.Model
             {
                 if (value.GetType() == typeof(List<Object>) || value is List<Object>)
                 {
-                    _actualInstance = value;
+                    this._actualInstance = value;
                 }
                 else if (value.GetType() == typeof(Object) || value is Object)
                 {
-                    _actualInstance = value;
+                    this._actualInstance = value;
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace ManticoreSearch.Model
         /// <returns>An instance of List&lt;Object&gt;</returns>
         public List<Object> GetList()
         {
-            return (List<Object>)ActualInstance;
+            return (List<Object>)this.ActualInstance;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace ManticoreSearch.Model
         /// <returns>An instance of Object</returns>
         public Object GetObject()
         {
-            return (Object)ActualInstance;
+            return (Object)this.ActualInstance;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace ManticoreSearch.Model
         {
             var sb = new StringBuilder();
             sb.Append("class SqlResponse {\n");
-            sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -127,7 +127,7 @@ namespace ManticoreSearch.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(ActualInstance, SqlResponse.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, SqlResponse.SerializerSettings);
         }
 
         /// <summary>
@@ -143,12 +143,22 @@ namespace ManticoreSearch.Model
             {
                 return newSqlResponse;
             }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
 
             try
             {
-                newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<List<Object>>(jsonString, SqlResponse.SerializerSettings));
-                // deserialization is considered successful at this point if no exception has been thrown.
-                return newSqlResponse;
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(List<Object>).GetProperty("AdditionalProperties") == null)
+                {
+                    newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<List<Object>>(jsonString, SqlResponse.SerializerSettings));
+                }
+                else
+                {
+                    newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<List<Object>>(jsonString, SqlResponse.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("List<Object>");
+                match++;
             }
             catch (Exception exception)
             {
@@ -158,9 +168,17 @@ namespace ManticoreSearch.Model
 
             try
             {
-                newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<Object>(jsonString, SqlResponse.SerializerSettings));
-                // deserialization is considered successful at this point if no exception has been thrown.
-                return newSqlResponse;
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(Object).GetProperty("AdditionalProperties") == null)
+                {
+                    newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<Object>(jsonString, SqlResponse.SerializerSettings));
+                }
+                else
+                {
+                    newSqlResponse = new SqlResponse(JsonConvert.DeserializeObject<Object>(jsonString, SqlResponse.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("Object");
+                match++;
             }
             catch (Exception exception)
             {
@@ -168,9 +186,19 @@ namespace ManticoreSearch.Model
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Object: {1}", jsonString, exception.ToString()));
             }
 
-            // no match found, throw an exception
-            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newSqlResponse;
         }
+
 
         /// <summary>
         /// To validate all properties of the instance

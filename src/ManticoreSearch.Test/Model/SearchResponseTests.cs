@@ -101,6 +101,15 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Scroll'
+        /// </summary>
+        [Fact]
+        public void ScrollTest()
+        {
+            // TODO unit test for the property 'Scroll'
+        }
+
+        /// <summary>
         /// Test the property 'Warning'
         /// </summary>
         [Fact]

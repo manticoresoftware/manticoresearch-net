@@ -102,7 +102,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        UpdateResponse PartialReplace(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest);
+        UpdateResponse PartialReplace(string index, long id, ReplaceDocumentRequest replaceDocumentRequest);
 
         /// <summary>
         /// Partially replaces a document in an index
@@ -115,7 +115,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest);
+        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, long id, ReplaceDocumentRequest replaceDocumentRequest);
         /// <summary>
         /// Replace new document in an index
         /// </summary>
@@ -248,7 +248,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
         /// Partially replaces a document in an index
@@ -262,7 +262,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
         /// Replace new document in an index
         /// </summary>
@@ -881,7 +881,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        public UpdateResponse PartialReplace(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest)
+        public UpdateResponse PartialReplace(string index, long id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = PartialReplaceWithHttpInfo(index, id, replaceDocumentRequest);
             return localVarResponse.Data;
@@ -895,7 +895,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest)
+        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, long id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             // verify the required parameter 'index' is set
             if (index == null)
@@ -948,7 +948,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await PartialReplaceWithHttpInfoAsync(index, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -963,7 +963,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
             // verify the required parameter 'index' is set
             if (index == null)

@@ -262,7 +262,7 @@ namespace ManticoreSearch.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string index = null;
-            //decimal id = null;
+            //long id = null;
             //ReplaceDocumentRequest replaceDocumentRequest = null;
             //var response = instance.PartialReplace(index, id, replaceDocumentRequest);
 			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );

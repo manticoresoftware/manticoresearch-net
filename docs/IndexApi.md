@@ -301,7 +301,7 @@ No authorization required
 
 <a id="partialreplace"></a>
 # **PartialReplace**
-> UpdateResponse PartialReplace (string index, decimal id, ReplaceDocumentRequest replaceDocumentRequest)
+> UpdateResponse PartialReplace (string index, long id, ReplaceDocumentRequest replaceDocumentRequest)
 
 Partially replaces a document in an index
 
@@ -329,7 +329,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var index = "index_example";  // string | Name of the percolate index
-            var id = 8.14D;  // decimal | Id of the document to replace
+            var id = 789L;  // long | Id of the document to replace
             var replaceDocumentRequest = new ReplaceDocumentRequest(); // ReplaceDocumentRequest | 
 
             try
@@ -374,7 +374,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **index** | **string** | Name of the percolate index |  |
-| **id** | **decimal** | Id of the document to replace |  |
+| **id** | **long** | Id of the document to replace |  |
 | **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  |  |
 
 ### Return type

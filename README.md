@@ -18,12 +18,17 @@
 
 The DLLs included in the package may not be the latest version. We recommend using [NuGet](https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
 
-| Manticore Search  | manticoresearch-net     |
-| ----------------- | ----------------------- |
-| dev               | dev                     |
-| >= 6.3.6          | >= 5.0.0                |
-| >= 6.2.0          | >= 3.3.1                |
-| >= 2.5.1          | >= 1.0.x                |
+| **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
+| ------------------------| ----------------------------------- | ------------------------|
+| `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
+| 6.0.0 or newer          | 7.0.0 or newer                      | ✅ Fully Compatible     |
+| 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
+| 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
+| 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
+| 3.3.1 to 5.0.0          | 6.2.0 to 6.3.6                      | ✅ Fully Compatible     |
+| 1.0.0 to 3.3.1          | 6.2.0 or newer                      | ⚠️ Partially Compatible |
+| 1.0.0 to 3.3.1          | 2.5.1 to 6.2.0                      | ✅ Fully Compatible     |
+
 
 ```
 Install-Package Newtonsoft.Json

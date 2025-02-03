@@ -41,7 +41,7 @@ paths:
              - _score: the score of the matched document.
              - _source: the source data of the matched document.
 
-        In addition, if profiling is enabled, the response will include an additional array with profiling information attached.
+        In addition, if profiling is enabled, the response will include an additional array with profiling information attached. Also, if pagination is enabled, the response will include an additional 'scroll' property with a scroll token to use for pagination
         Here is an example search response:
 
           ```
@@ -226,22 +226,51 @@ paths:
       x-is_insert: true
   /pq/{index}/search:
     post:
-      description: "Performs a percolate search. \nThis method must be used only on\
-        \ percolate indexes.\n\nExpects two parameters: the index name and an object\
-        \ with array of documents to be tested.\nAn example of the documents object:\n\
-        \n  ```\n  {\n    \"query\":\n    {\n      \"percolate\":\n      {\n     \
-        \   \"document\":\n        {\n          \"content\":\"sample content\"\n \
-        \       }\n      }\n    }\n  }\n  ```\n\nResponds with an object with matched\
-        \ stored queries: \n\n  ```\n  {\n    'timed_out':false,\n    'hits':\n  \
-        \  {\n      'total':2,\n      'max_score':1,\n      'hits':\n      [\n   \
-        \     {\n          '_index':'idx_pq_1',\n          '_type':'doc',\n      \
-        \    '_id':'2',\n          '_score':'1',\n          '_source':\n         \
-        \ {\n            'query':\n            {\n              'match':{'title':'some'}\n\
-        \            }\n          }\n        },\n        {\n          '_index':'idx_pq_1',\n\
-        \          '_type':'doc',\n          '_id':'5',\n          '_score':'1',\n\
-        \          '_source':\n          {\n            'query':\n            {\n\
-        \              'ql':'some | none'\n            }\n          }\n        }\n\
-        \      ]\n    }\n  }\n  ```\n"
+      description: |
+        Performs a percolate search. <br><br>
+        This method must be used only on percolate indexes. <br>
+        Expects two parameters: the index name and an object with array of documents to be tested. <br> <br> An example of the documents object: <br>
+          { <br>
+          &nbsp;&nbsp;"query" {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;"percolate": {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"document": { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":"sample content" <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;} <br>
+          } <br>
+        <br> Responds with an object with matched stored queries:  <br>
+          { <br>
+          &nbsp;&nbsp;'timed_out':false, <br>
+          &nbsp;&nbsp;'hits': { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;'total':2, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;'max_score':1, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;'hits': [ <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_index':'idx_pq_1', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_type':'doc', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_id':'2', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_score':'1', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_source': { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'query': { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'match':{'title':'some'} <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }, <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_index':'idx_pq_1', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_type':'doc', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_id':'5', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_score':'1', <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_source': { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'query': { <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'ql':'some | none' <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+          &nbsp;&nbsp;&nbsp;&nbsp; ] <br>
+          &nbsp;&nbsp; } <br>
+          } <br>
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
       operationId: percolate
@@ -442,7 +471,8 @@ paths:
         name: id
         required: true
         schema:
-          type: number
+          format: int64
+          type: integer
         style: simple
       requestBody:
         content:
@@ -1092,6 +1122,7 @@ components:
               gid: 20
         took: 0
         profile: "{}"
+        scroll: scroll
         warning: "{}"
         timed_out: true
         aggregations: "{}"
@@ -1112,6 +1143,9 @@ components:
           description: "Profile information about the search execution, if profiling\
             \ is enabled"
           type: object
+        scroll:
+          description: Scroll token to be used fo pagination
+          type: string
         warning:
           additionalProperties: false
           description: Warnings encountered during the search operation
@@ -1161,13 +1195,13 @@ components:
     sqlObjResponse:
       type: object
     sqlResponse:
-      anyOf:
-      - $ref: '#/components/schemas/sqlRawResponse'
-      - $ref: '#/components/schemas/sqlObjResponse'
       description: List of responses from executed SQL queries
       example:
       - total: 0
         error: null
+      oneOf:
+      - $ref: '#/components/schemas/sqlRawResponse'
+      - $ref: '#/components/schemas/sqlObjResponse'
     updateDocumentRequest:
       description: Payload for updating a document or multiple documents in an index
       properties:
