@@ -1,10 +1,10 @@
 name: Publishing
 
-on:
-  push:
-    branches-ignore: [ master ]
+on: [push]
 
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
   publish:
     name: Publish the client to the public registry
     runs-on: ubuntu-latest
