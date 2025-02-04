@@ -1,10 +1,11 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/6.0.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
     For more information, please visit [https://manticoresearch.com/contact-us/](https://manticoresearch.com/contact-us/)
+
+❗ WARNING: the current version has breaking changes compared to the previous release https://github.com/manticoresoftware/manticoresearch-net/tree/4.0.0
 
 <a id="frameworks-supported"></a>
 ## Frameworks supported
@@ -20,17 +21,6 @@
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 
 The DLLs included in the package may not be the latest version. We recommend using [NuGet](https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
-
-| **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
-| ------------------------| ----------------------------------- | ------------------------|
-| `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
-| 6.0.0 or newer          | 7.0.0 or newer                      | ✅ Fully Compatible     |
-| 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
-| 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
-| 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
-| 3.3.1 to 5.0.0          | 6.2.0 to 6.3.6                      | ✅ Fully Compatible     |
-| 1.0.0 to 3.3.1          | 6.2.0 or newer                      | ⚠️ Partially Compatible |
-| 1.0.0 to 3.3.1          | 2.5.1 to 6.2.0                      | ✅ Fully Compatible     |
 
 
 ```

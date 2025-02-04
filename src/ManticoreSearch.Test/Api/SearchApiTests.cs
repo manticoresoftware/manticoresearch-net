@@ -170,6 +170,7 @@ namespace ManticoreSearch.Test.Api
                                 var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
                                 var indexApi = new IndexApi(httpClient, config, httpClientHandler);
                                 
+                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
                                 utilsApi.Sql("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
                                 
                                 string body = "{\"insert\": {\"index\" : \"products\", \"id\" : 3, \"doc\" : {\"title\" : \"Crossbody Bag with Tassel\", \"price\" : 19.85}}}" +"\n"+
