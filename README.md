@@ -2,6 +2,8 @@
 
 ❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/6.0.0
 
+❗ WARNING: the current version has breaking changes compared to the previous release https://github.com/manticoresoftware/manticoresearch-net/tree/4.0.0
+
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
     For more information, please visit [https://manticoresearch.com/contact-us/](https://manticoresearch.com/contact-us/)
