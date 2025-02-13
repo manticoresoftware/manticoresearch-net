@@ -1,8 +1,6 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/6.0.0
-
-❗ WARNING: the current version has breaking changes compared to the previous release https://github.com/manticoresoftware/manticoresearch-net/tree/4.0.0
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/7.0.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
@@ -165,14 +163,15 @@ All URIs are relative to *http://127.0.0.1:9308*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*IndexApi* | [**Bulk**](docs/IndexApi.md#bulk) | **POST** /bulk | Bulk index operations
-*IndexApi* | [**Delete**](docs/IndexApi.md#delete) | **POST** /delete | Delete a document in an index
-*IndexApi* | [**Insert**](docs/IndexApi.md#insert) | **POST** /insert | Create a new document in an index
-*IndexApi* | [**PartialReplace**](docs/IndexApi.md#partialreplace) | **POST** /{index}/_update/{id} | Partially replaces a document in an index
-*IndexApi* | [**Replace**](docs/IndexApi.md#replace) | **POST** /replace | Replace new document in an index
-*IndexApi* | [**Update**](docs/IndexApi.md#update) | **POST** /update | Update a document in an index
-*SearchApi* | [**Percolate**](docs/SearchApi.md#percolate) | **POST** /pq/{index}/search | Perform reverse search on a percolate index
-*SearchApi* | [**Search**](docs/SearchApi.md#search) | **POST** /search | Performs a search on an index
+*IndexApi* | [**Bulk**](docs/IndexApi.md#bulk) | **POST** /bulk | Bulk table operations
+*IndexApi* | [**Delete**](docs/IndexApi.md#delete) | **POST** /delete | Delete a document in a table
+*IndexApi* | [**Insert**](docs/IndexApi.md#insert) | **POST** /insert | Create a new document in a table
+*IndexApi* | [**PartialReplace**](docs/IndexApi.md#partialreplace) | **POST** /{table}/_update/{id} | Partially replaces a document in a table
+*IndexApi* | [**Replace**](docs/IndexApi.md#replace) | **POST** /replace | Replace new document in a table
+*IndexApi* | [**Update**](docs/IndexApi.md#update) | **POST** /update | Update a document in a table
+*SearchApi* | [**Autocomplete**](docs/SearchApi.md#autocomplete) | **POST** /autocomplete | Performs an autocomplete search on a table
+*SearchApi* | [**Percolate**](docs/SearchApi.md#percolate) | **POST** /pq/{table}/search | Perform reverse search on a percolate table
+*SearchApi* | [**Search**](docs/SearchApi.md#search) | **POST** /search | Performs a search on a table
 *UtilsApi* | [**Sql**](docs/UtilsApi.md#sql) | **POST** /sql | Perform SQL requests
 
 
@@ -184,6 +183,7 @@ Class | Method | HTTP request | Description
  - [Model.AggCompositeTerm](docs/AggCompositeTerm.md)
  - [Model.AggTerms](docs/AggTerms.md)
  - [Model.Aggregation](docs/Aggregation.md)
+ - [Model.AutocompleteRequest](docs/AutocompleteRequest.md)
  - [Model.BoolFilter](docs/BoolFilter.md)
  - [Model.BulkResponse](docs/BulkResponse.md)
  - [Model.DeleteDocumentRequest](docs/DeleteDocumentRequest.md)

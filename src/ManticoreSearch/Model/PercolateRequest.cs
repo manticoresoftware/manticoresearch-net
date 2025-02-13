@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Object containing the query for percolating documents against stored queries in a percolate index
+    /// Object containing the query for percolating documents against stored queries in a percolate table
     /// </summary>
     [DataContract(Name = "percolateRequest")]
     public partial class PercolateRequest : IValidatableObject

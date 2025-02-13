@@ -1,11 +1,11 @@
 # ManticoreSearch.Model.InsertDocumentRequest
-Object containing data for inserting a new document into the index 
+Object containing data for inserting a new document into the table 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** | Name of the index to insert the document into | 
+**Table** | **string** | Name of the table to insert the document into | 
 **Cluster** | **string** | Name of the cluster to insert the document into | [optional] 
 **Id** | **long** | Document ID. If not provided, an ID will be auto-generated  | [optional] 
 **Doc** | **Object** | Object containing document data  | 

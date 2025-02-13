@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Payload for updating a document or multiple documents in an index
+    /// Payload for updating a document or multiple documents in a table
     /// </summary>
     [DataContract(Name = "updateDocumentRequest")]
     public partial class UpdateDocumentRequest : IValidatableObject
@@ -41,19 +41,19 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateDocumentRequest" /> class.
         /// </summary>
-        /// <param name="Index">Name of the document index (required).</param>
+        /// <param name="Table">Name of the document table (required).</param>
         /// <param name="Cluster">Name of the document cluster.</param>
         /// <param name="Doc">Object containing the document fields to update (required).</param>
         /// <param name="Id">Document ID.</param>
         /// <param name="Query">Query.</param>
-        public UpdateDocumentRequest(string Index = default(string), string Cluster = default(string), Object Doc = default(Object), long Id = default(long), QueryFilter Query = default(QueryFilter))
+        public UpdateDocumentRequest(string Table = default(string), string Cluster = default(string), Object Doc = default(Object), long Id = default(long), QueryFilter Query = default(QueryFilter))
         {
-            // to ensure "Index" is required (not null)
-            if (Index == null)
+            // to ensure "Table" is required (not null)
+            if (Table == null)
             {
-                throw new ArgumentNullException("Index is a required property for UpdateDocumentRequest and cannot be null");
+                throw new ArgumentNullException("Table is a required property for UpdateDocumentRequest and cannot be null");
             }
-            this.Index = Index;
+            this.Table = Table;
             // to ensure "Doc" is required (not null)
             if (Doc == null)
             {
@@ -66,11 +66,11 @@ namespace ManticoreSearch.Model
         }
 
         /// <summary>
-        /// Name of the document index
+        /// Name of the document table
         /// </summary>
-        /// <value>Name of the document index</value>
-        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
-        public string Index { get; set; }
+        /// <value>Name of the document table</value>
+        [DataMember(Name = "table", IsRequired = true, EmitDefaultValue = true)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Name of the document cluster
@@ -108,7 +108,7 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateDocumentRequest {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Cluster: ").Append(Cluster).Append("\n");
             sb.Append("  Doc: ").Append(Doc).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");

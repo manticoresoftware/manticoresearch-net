@@ -9,6 +9,7 @@ docs/AggCompositeSource.md
 docs/AggCompositeTerm.md
 docs/AggTerms.md
 docs/Aggregation.md
+docs/AutocompleteRequest.md
 docs/BoolFilter.md
 docs/BulkResponse.md
 docs/DeleteDocumentRequest.md
@@ -55,6 +56,7 @@ src/ManticoreSearch.Test/Model/AggCompositeTermTests.cs
 src/ManticoreSearch.Test/Model/AggCompositeTests.cs
 src/ManticoreSearch.Test/Model/AggTermsTests.cs
 src/ManticoreSearch.Test/Model/AggregationTests.cs
+src/ManticoreSearch.Test/Model/AutocompleteRequestTests.cs
 src/ManticoreSearch.Test/Model/BoolFilterTests.cs
 src/ManticoreSearch.Test/Model/BulkResponseTests.cs
 src/ManticoreSearch.Test/Model/DeleteDocumentRequestTests.cs
@@ -115,6 +117,7 @@ src/ManticoreSearch/Model/AggCompositeSource.cs
 src/ManticoreSearch/Model/AggCompositeTerm.cs
 src/ManticoreSearch/Model/AggTerms.cs
 src/ManticoreSearch/Model/Aggregation.cs
+src/ManticoreSearch/Model/AutocompleteRequest.cs
 src/ManticoreSearch/Model/BoolFilter.cs
 src/ManticoreSearch/Model/BulkResponse.cs
 src/ManticoreSearch/Model/DeleteDocumentRequest.cs

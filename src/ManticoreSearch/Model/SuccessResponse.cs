@@ -36,16 +36,14 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessResponse" /> class.
         /// </summary>
-        /// <param name="Index">Name of the document index.</param>
-        /// <param name="Table">Name of the document table (alias of index).</param>
+        /// <param name="Table">Name of the document table.</param>
         /// <param name="Id">ID of the document affected by the request operation.</param>
         /// <param name="Created">Indicates whether the document was created as a result of the operation.</param>
         /// <param name="Result">Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39;.</param>
-        /// <param name="Found">Indicates whether the document was found in the index.</param>
+        /// <param name="Found">Indicates whether the document was found in the table.</param>
         /// <param name="Status">HTTP status code representing the result of the operation.</param>
-        public SuccessResponse(string Index = default(string), string Table = default(string), long Id = default(long), bool Created = default(bool), string Result = default(string), bool Found = default(bool), int Status = default(int))
+        public SuccessResponse(string Table = default(string), long Id = default(long), bool Created = default(bool), string Result = default(string), bool Found = default(bool), int Status = default(int))
         {
-            this.Index = Index;
             this.Table = Table;
             this.Id = Id;
             this.Created = Created;
@@ -55,16 +53,9 @@ namespace ManticoreSearch.Model
         }
 
         /// <summary>
-        /// Name of the document index
+        /// Name of the document table
         /// </summary>
-        /// <value>Name of the document index</value>
-        [DataMember(Name = "_index", EmitDefaultValue = false)]
-        public string Index { get; set; }
-
-        /// <summary>
-        /// Name of the document table (alias of index)
-        /// </summary>
-        /// <value>Name of the document table (alias of index)</value>
+        /// <value>Name of the document table</value>
         [DataMember(Name = "table", EmitDefaultValue = false)]
         public string Table { get; set; }
 
@@ -90,9 +81,9 @@ namespace ManticoreSearch.Model
         public string Result { get; set; }
 
         /// <summary>
-        /// Indicates whether the document was found in the index
+        /// Indicates whether the document was found in the table
         /// </summary>
-        /// <value>Indicates whether the document was found in the index</value>
+        /// <value>Indicates whether the document was found in the table</value>
         [DataMember(Name = "found", EmitDefaultValue = true)]
         public bool Found { get; set; }
 
@@ -111,7 +102,6 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SuccessResponse {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
             sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");

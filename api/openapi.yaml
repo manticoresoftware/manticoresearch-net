@@ -20,7 +20,7 @@ servers:
 tags:
 - description: "Operations regarding adding, updating or deleting documents"
   name: Index
-- description: Operations about performing searches over indexes
+- description: Operations about performing searches over tables
   name: Search
 - description: Various operations
   name: Utils
@@ -30,7 +30,7 @@ paths:
       description: |2
 
         The method expects an object with the following mandatory properties:
-        * the name of the index to search
+        * the name of the table to search
         * the match query object
         For details, see the documentation on [**SearchRequest**](SearchRequest.md)
         The method returns an object with the following properties:
@@ -68,7 +68,7 @@ paths:
         content:
           application/json:
             example:
-            - "'request=SearchRequest(index=\"test\",query=Query(query_string=\"abc\"\
+            - "'request=SearchRequest(table=\"test\",query=Query(query_string=\"abc\"\
               ))'"
             schema:
               $ref: '#/components/schemas/searchRequest'
@@ -86,26 +86,67 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Performs a search on an index
+      summary: Performs a search on a table
       tags:
       - Search
       x-is_search: true
+  /autocomplete:
+    post:
+      description: "\nThe method expects an object with the following mandatory properties:\n\
+        * the name of the table to search\n* the query string to autocomplete\nFor\
+        \ details, see the documentation on [**Autocomplete**](Autocomplete.md)\n\
+        An example: ``` {\n  \"table\":\"table_name\",\n  \"query\":\"query_beginning\"\
+        \n}         ```\nAn example of the method's response:\n\n ```\n [\n   {\n\
+        \     \"total\": 3,\n     \"error\": \"\",\n     \"warning\": \"\",\n    \
+        \ \"columns\": [\n       {\n         \"query\": {\n           \"type\": \"\
+        string\"\n         }\n       }\n     ],\n     \"data\": [\n       {\n    \
+        \     \"query\": \"hello\"\n       },\n       {\n         \"query\": \"helio\"\
+        \n       },\n       {\n         \"query\": \"hell\"\n       }\n     ]\n  \
+        \ }\n ] \n ```\n\nFor more detailed information about the autocomplete queries,\
+        \ please refer to the documentation [here](https://manual.manticoresearch.com/Searching/Autocomplete).\n"
+      externalDocs:
+        url: https://manual.manticoresearch.com/dev/Searching/Autocomplete?client=JSON
+      operationId: autocomplete
+      requestBody:
+        content:
+          application/json:
+            example:
+            - "'request=AutocompleteRequest(table=\"test\",query=\"abc\")'"
+            schema:
+              $ref: '#/components/schemas/autocompleteRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sqlRawResponse'
+          description: Ok
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+          description: error
+      summary: Performs an autocomplete search on a table
+      tags:
+      - Search
   /bulk:
     post:
       description: "Sends multiple operatons like inserts, updates, replaces or deletes.\
         \ \nFor each operation it's object must have same format as in their dedicated\
         \ method. \nThe method expects a raw string as the batch in NDJSON.\n Each\
         \ operation object needs to be serialized to \n JSON and separated by endline\
-        \ (\\n). \n \n  An example of raw input:\n  \n  ```\n  {\"insert\": {\"index\"\
+        \ (\\n). \n \n  An example of raw input:\n  \n  ```\n  {\"insert\": {\"table\"\
         : \"movies\", \"doc\": {\"plot\": \"A secret team goes to North Pole\", \"\
         rating\": 9.5, \"language\": [2, 3], \"title\": \"This is an older movie\"\
         , \"lon\": 51.99, \"meta\": {\"keywords\":[\"travel\",\"ice\"],\"genre\":[\"\
         adventure\"]}, \"year\": 1950, \"lat\": 60.4, \"advise\": \"PG-13\"}}}\n \
-        \ \\n\n  {\"delete\": {\"index\": \"movies\",\"id\":700}}\n  ```\n  \n  Responds\
+        \ \\n\n  {\"delete\": {\"table\": \"movies\",\"id\":700}}\n  ```\n  \n  Responds\
         \ with an object telling whenever any errors occured and an array with status\
         \ for each operation:\n  \n  ```\n  {\n    'items':\n    [\n      {\n    \
-        \    'update':{'_index':'products','_id':1,'result':'updated'}\n      },\n\
-        \      {\n        'update':{'_index':'products','_id':2,'result':'updated'}\n\
+        \    'update':{'table':'products','_id':1,'result':'updated'}\n      },\n\
+        \      {\n        'update':{'table':'products','_id':2,'result':'updated'}\n\
         \      }\n    ],\n    'errors':false\n  }\n  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
@@ -129,7 +170,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Bulk index operations
+      summary: Bulk table operations
       tags:
       - Index
   /delete:
@@ -137,12 +178,12 @@ paths:
       description: "Delete one or several documents.\nThe method has 2 ways of deleting:\
         \ either by id, in case only one document is deleted or by using a  match\
         \ query, in which case multiple documents can be delete .\nExample of input\
-        \ to delete by id:\n\n  ```\n  {'index':'movies','id':100}\n  ```\n\nExample\
-        \ of input to delete using a query:\n\n  ```\n  {\n    'index':'movies',\n\
+        \ to delete by id:\n\n  ```\n  {'table':'movies','id':100}\n  ```\n\nExample\
+        \ of input to delete using a query:\n\n  ```\n  {\n    'table':'movies',\n\
         \    'query':\n    {\n      'bool':\n      {\n        'must':\n        [\n\
         \          {'query_string':'new movie'}\n        ]\n      }\n    }\n  }\n\
         \  ```\n\nThe match query has same syntax as in for searching.\nResponds with\
-        \ an object telling how many documents got deleted: \n\n  ```\n  {'_index':'products','updated':1}\n\
+        \ an object telling how many documents got deleted: \n\n  ```\n  {'table':'products','updated':1}\n\
         \  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
@@ -151,7 +192,7 @@ paths:
         content:
           application/json:
             example:
-              index: test
+              table: test
               query:
                 match:
                   title: apple
@@ -171,34 +212,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Delete a document in an index
+      summary: Delete a document in a table
       tags:
       - Index
   /insert:
     post:
       description: "Insert a document. \nExpects an object like:\n \n  ```\n  {\n\
-        \    'index':'movies',\n    'id':701,\n    'doc':\n    {\n      'title':'This\
+        \    'table':'movies',\n    'id':701,\n    'doc':\n    {\n      'title':'This\
         \ is an old movie',\n      'plot':'A secret team goes to North Pole',\n  \
         \    'year':1950,\n      'rating':9.5,\n      'lat':60.4,\n      'lon':51.99,\n\
         \      'advise':'PG-13',\n      'meta':'{\"keywords\":{\"travel\",\"ice\"\
         },\"genre\":{\"adventure\"}}',\n      'language':[2,3]\n    }\n  }\n  ```\n\
         \ \nThe document id can also be missing, in which case an autogenerated one\
-        \ will be used:\n         \n  ```\n  {\n    'index':'movies',\n    'doc':\n\
+        \ will be used:\n         \n  ```\n  {\n    'table':'movies',\n    'doc':\n\
         \    {\n      'title':'This is a new movie',\n      'plot':'A secret team\
         \ goes to North Pole',\n      'year':2020,\n      'rating':9.5,\n      'lat':60.4,\n\
         \      'lon':51.99,\n      'advise':'PG-13',\n      'meta':'{\"keywords\"\
         :{\"travel\",\"ice\"},\"genre\":{\"adventure\"}}',\n      'language':[2,3]\n\
         \    }\n  }\n  ```\n \nIt responds with an object in format:\n  \n  ```\n\
-        \  {'_index':'products','_id':701,'created':true,'result':'created','status':201}\n\
+        \  {'table':'products','_id':701,'created':true,'result':'created','status':201}\n\
         \  ```\n"
       externalDocs:
-        url: https://manual.manticoresearch.com/Adding_documents_to_an_index/Adding_documents_to_a_real-time_index#Adding-documents-to-a-real-time-index
+        url: https://manual.manticoresearch.com/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table#Adding-documents-to-a-real-time-table
       operationId: insert
       requestBody:
         content:
           application/json:
             example:
-              index: test
+              table: test
               id: 1
               doc:
                 title: sample title
@@ -219,66 +260,69 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Create a new document in an index
+      summary: Create a new document in a table
       tags:
       - Index
       x-is_indexapi: true
       x-is_insert: true
-  /pq/{index}/search:
+  /pq/{table}/search:
     post:
       description: |
-        Performs a percolate search. <br><br>
-        This method must be used only on percolate indexes. <br>
-        Expects two parameters: the index name and an object with array of documents to be tested. <br> <br> An example of the documents object: <br>
-          { <br>
-          &nbsp;&nbsp;"query" {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;"percolate": {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"document": { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"content":"sample content" <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;} <br>
-          &nbsp;&nbsp;} <br>
-          } <br>
-        <br> Responds with an object with matched stored queries:  <br>
-          { <br>
-          &nbsp;&nbsp;'timed_out':false, <br>
-          &nbsp;&nbsp;'hits': { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'total':2, <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'max_score':1, <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;'hits': [ <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_index':'idx_pq_1', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_type':'doc', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_id':'2', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_score':'1', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_source': { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'query': { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'match':{'title':'some'} <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }, <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_index':'idx_pq_1', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_type':'doc', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_id':'5', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_score':'1', <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '_source': { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'query': { <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'ql':'some | none' <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
-          &nbsp;&nbsp;&nbsp;&nbsp; ] <br>
-          &nbsp;&nbsp; } <br>
-          } <br>
+        Performs a percolate search.
+        This method must be used only on percolate tables.
+        Expects two parameters: the table name and an object with array of documents to be tested.
+        An example of the documents object: ```
+          {
+            "query" {
+              "percolate": {
+                "document": {
+                  "content":"sample content"
+                }
+              }
+            }
+          }
+        ```
+        Responds with an object with matched stored queries:  ```
+          {
+            'timed_out':false,
+            'hits': {
+              'total':2,
+              'max_score':1,
+              'hits': [
+                {
+                  'table':'idx_pq_1',
+                  '_type':'doc',
+                  '_id':'2',
+                  '_score':'1',
+                  '_source': {
+                    'query': {
+                      'match':{'title':'some'}
+                    }
+                  }
+                },
+                {
+                  'table':'idx_pq_1',
+                  '_type':'doc',
+                  '_id':'5',
+                  '_score':'1',
+                  '_source': {
+                    'query': {
+                      'ql':'some | none'
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ```
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
       operationId: percolate
       parameters:
-      - description: Name of the percolate index
+      - description: Name of the percolate table
         explode: false
         in: path
-        name: index
+        name: table
         required: true
         schema:
           type: string
@@ -307,26 +351,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Perform reverse search on a percolate index
+      summary: Perform reverse search on a percolate table
       tags:
       - Search
   /replace:
     post:
       description: |
-        Replace an existing document. Input has same format as `insert` operation. <br/>
-        Responds with an object in format: <br/>
+        Replace an existing document. Input has same format as `insert` operation.
+        Responds with an object in format:
 
           ```
-          {'_index':'products','_id':1,'created':false,'result':'updated','status':200}
+          {'table':'products','_id':1,'created':false,'result':'updated','status':200}
           ```
       externalDocs:
-        url: https://manual.manticoresearch.com/Adding_documents_to_an_index/Adding_documents_to_a_real-time_index#Adding-documents-to-a-real-time-index
+        url: https://manual.manticoresearch.com/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table#Adding-documents-to-a-real-time-table
       operationId: replace
       requestBody:
         content:
           application/json:
             example:
-              index: test
+              table: test
               id: 1
               doc:
                 title: updated title
@@ -347,7 +391,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Replace new document in an index
+      summary: Replace new document in a table
       tags:
       - Index
       x-is_indexapi: true
@@ -357,7 +401,7 @@ paths:
       description: |
         Run a query in SQL format.
         Expects a query string passed through `body` parameter and optional `raw_response` parameter that defines a format of response.
-        `raw_response` can be set to `False` for Select queries only, e.g., `SELECT * FROM myindex`
+        `raw_response` can be set to `False` for Select queries only, e.g., `SELECT * FROM mytable`
         The query string must stay as it is, no URL encoding is needed.
         The response object depends on the query executed. In select mode the response has same format as `/search` operation.
       externalDocs:
@@ -406,13 +450,13 @@ paths:
     post:
       description: "Update one or several documents.\nThe update can be made by passing\
         \ the id or by using a match query in case multiple documents can be updated.\
-        \  For example update a document using document id:\n\n  ```\n  {'index':'movies','doc':{'rating':9.49},'id':100}\n\
-        \  ```\n\nAnd update by using a match query:\n\n  ```\n  {\n    'index':'movies',\n\
+        \  For example update a document using document id:\n\n  ```\n  {'table':'movies','doc':{'rating':9.49},'id':100}\n\
+        \  ```\n\nAnd update by using a match query:\n\n  ```\n  {\n    'table':'movies',\n\
         \    'doc':{'rating':9.49},\n    'query':\n    {\n      'bool':\n      {\n\
         \        'must':\n        [\n          {'query_string':'new movie'}\n    \
         \    ]\n      }\n    }\n  }\n  ``` \n\nThe match query has same syntax as\
         \ for searching.\nResponds with an object that tells how many documents where\
-        \ updated in format: \n\n  ```\n  {'_index':'products','updated':1}\n  ```\n"
+        \ updated in format: \n\n  ```\n  {'table':'products','updated':1}\n  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/UPDATE
       operationId: update
@@ -420,7 +464,7 @@ paths:
         content:
           application/json:
             example:
-              index: test
+              table: test
               doc:
                 gid: 20
               query:
@@ -442,25 +486,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Update a document in an index
+      summary: Update a document in a table
       tags:
       - Index
       x-is_indexapi: true
       x-is_update: true
       x-is_modify: true
-  /{index}/_update/{id}:
+  /{table}/_update/{id}:
     post:
-      description: "Partially replaces a document with given id in an index\nResponds\
-        \ with an object of the following format: \n\n  ```\n  {'_index':'products','updated':1}\n\
+      description: "Partially replaces a document with given id in a table\nResponds\
+        \ with an object of the following format: \n\n  ```\n  {'table':'products','updated':1}\n\
         \  ```\n"
       externalDocs:
         url: https://manual.manticoresearch.com/Updating_documents/REPLACE#JSON-REPLACE
       operationId: partial_replace
       parameters:
-      - description: Name of the percolate index
+      - description: Name of the percolate table
         explode: false
         in: path
-        name: index
+        name: table
         required: true
         schema:
           type: string
@@ -496,7 +540,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/errorResponse'
           description: error
-      summary: Partially replaces a document in an index
+      summary: Partially replaces a document in a table
       tags:
       - Index
 components:
@@ -615,12 +659,12 @@ components:
     searchRequest:
       description: Request object for search operation
       example:
-        index: your_index
+        tabke: your_table
         query:
           query_string: your_query
       properties:
-        index:
-          description: The index to perform the search on
+        table:
+          description: The table to perform the search on
           type: string
         query:
           $ref: '#/components/schemas/searchQuery'
@@ -672,11 +716,39 @@ components:
           description: Enable or disable result weight calculation used for sorting
           type: boolean
       required:
-      - index
+      - table
     queryFilterAlias1:
       $ref: '#/components/schemas/queryFilter'
     queryFilterAlias2:
       $ref: '#/components/schemas/queryFilter'
+    autocompleteRequest:
+      description: Object containing the data for performing an autocomplete search.
+      example:
+        table: test
+        query: Start
+        options:
+          layouts: "us,uk"
+          fuzziness: 0
+      properties:
+        table:
+          description: The table to perform the search on
+          type: string
+        query:
+          description: The beginning of the string to autocomplete
+          type: string
+        options:
+          additionalProperties: false
+          description: |
+            Autocomplete options
+              - layouts: A comma-separated string of keyboard layout codes to validate and check for spell correction. Available options - us, ru, ua, se, pt, no, it, gr, uk, fr, es, dk, de, ch, br, bg, be. By default, all are enabled.
+              - fuzziness: (0,1 or 2) Maximum Levenshtein distance for finding typos. Set to 0 to disable fuzzy matching. Default is 2
+              - prepend: true/false If true, adds an asterisk before the last word for prefix expansion (e.g., *word )
+              - append:  true/false If true, adds an asterisk after the last word for prefix expansion (e.g., word* )
+              - expansion_len: Number of characters to expand in the last word. Default is 10.
+          type: object
+      required:
+      - query
+      - table
     boolFilter:
       additionalProperties: false
       properties:
@@ -729,11 +801,11 @@ components:
         Documents can be deleted either one by one by specifying the document id or by providing a query object.
         For more information see  [Delete API](https://manual.manticoresearch.com/Deleting_documents)
       example:
-        index: test
+        table: test
         id: 1
       properties:
-        index:
-          description: Index name
+        table:
+          description: Table name
           type: string
         cluster:
           description: Cluster name
@@ -746,15 +818,15 @@ components:
           description: Defines the criteria to match documents for deletion
           type: object
       required:
-      - index
+      - table
     deleteResponse:
       description: Response object for successful delete request
       example:
-        _index: test
+        table: test
         deleted: 29
       properties:
-        _index:
-          description: The name of the index from which the document was deleted
+        table:
+          description: The name of the table from which the document was deleted
           type: string
         deleted:
           description: Number of documents deleted
@@ -878,15 +950,15 @@ components:
           type: integer
     insertDocumentRequest:
       description: |
-        Object containing data for inserting a new document into the index
+        Object containing data for inserting a new document into the table
       example:
-        index: test
+        table: test
         doc:
           title: This is some title
           gid: 100
       properties:
-        index:
-          description: Name of the index to insert the document into
+        table:
+          description: Name of the table to insert the document into
           type: string
         cluster:
           description: Name of the cluster to insert the document into
@@ -903,7 +975,7 @@ components:
           type: object
       required:
       - doc
-      - index
+      - table
     joinOn:
       allOf:
       - additionalProperties: false
@@ -1028,7 +1100,7 @@ components:
         \ or attribute filtering, to a search query"
     replaceDocumentRequest:
       description: Object containing the document data for replacing an existing document
-        in an index.
+        in a table.
       example:
         doc:
           title: This is some title
@@ -1068,17 +1140,14 @@ components:
       description: "Response object indicating the success of an operation, such as\
         \ inserting or updating a document"
       example:
-        _index: test
+        table: test
         _id: 1
         result: created
         created: true
         status: 201
       properties:
-        _index:
-          description: Name of the document index
-          type: string
         table:
-          description: Name of the document table (alias of index)
+          description: Name of the document table
           type: string
         _id:
           description: ID of the document affected by the request operation
@@ -1093,14 +1162,14 @@ components:
             \ 'deleted'"
           type: string
         found:
-          description: Indicates whether the document was found in the index
+          description: Indicates whether the document was found in the table
           type: boolean
         status:
           description: HTTP status code representing the result of the operation
           type: integer
     percolateRequest:
       description: Object containing the query for percolating documents against stored
-        queries in a percolate index
+        queries in a percolate table
       properties:
         query:
           $ref: '#/components/schemas/percolateRequest_query'
@@ -1164,8 +1233,8 @@ components:
           description: Detailed explanation of why the error occurred
           nullable: true
           type: string
-        index:
-          description: "The index related to the error, if applicable"
+        table:
+          description: "The table related to the error, if applicable"
           nullable: true
           type: string
       required:
@@ -1203,10 +1272,10 @@ components:
       - total: 0
         error: null
     updateDocumentRequest:
-      description: Payload for updating a document or multiple documents in an index
+      description: Payload for updating a document or multiple documents in a table
       properties:
-        index:
-          description: Name of the document index
+        table:
+          description: Name of the document table
           type: string
         cluster:
           description: Name of the document cluster
@@ -1225,15 +1294,15 @@ components:
           $ref: '#/components/schemas/queryFilter'
       required:
       - doc
-      - index
+      - table
     updateResponse:
       description: Success response returned after updating one or more documents
       example:
-        _index: test
+        table: test
         updated: 29
       properties:
-        _index:
-          description: Name of the document index
+        table:
+          description: Name of the document table
           type: string
         updated:
           description: Number of documents updated

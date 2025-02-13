@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Object containing data for inserting a new document into the index 
+    /// Object containing data for inserting a new document into the table 
     /// </summary>
     [DataContract(Name = "insertDocumentRequest")]
     public partial class InsertDocumentRequest : IValidatableObject
@@ -41,18 +41,18 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertDocumentRequest" /> class.
         /// </summary>
-        /// <param name="Index">Name of the index to insert the document into (required).</param>
+        /// <param name="Table">Name of the table to insert the document into (required).</param>
         /// <param name="Cluster">Name of the cluster to insert the document into.</param>
         /// <param name="Id">Document ID. If not provided, an ID will be auto-generated .</param>
         /// <param name="Doc">Object containing document data  (required).</param>
-        public InsertDocumentRequest(string Index = default(string), string Cluster = default(string), long Id = default(long), Object Doc = default(Object))
+        public InsertDocumentRequest(string Table = default(string), string Cluster = default(string), long Id = default(long), Object Doc = default(Object))
         {
-            // to ensure "Index" is required (not null)
-            if (Index == null)
+            // to ensure "Table" is required (not null)
+            if (Table == null)
             {
-                throw new ArgumentNullException("Index is a required property for InsertDocumentRequest and cannot be null");
+                throw new ArgumentNullException("Table is a required property for InsertDocumentRequest and cannot be null");
             }
-            this.Index = Index;
+            this.Table = Table;
             // to ensure "Doc" is required (not null)
             if (Doc == null)
             {
@@ -64,11 +64,11 @@ namespace ManticoreSearch.Model
         }
 
         /// <summary>
-        /// Name of the index to insert the document into
+        /// Name of the table to insert the document into
         /// </summary>
-        /// <value>Name of the index to insert the document into</value>
-        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
-        public string Index { get; set; }
+        /// <value>Name of the table to insert the document into</value>
+        [DataMember(Name = "table", IsRequired = true, EmitDefaultValue = true)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Name of the cluster to insert the document into
@@ -99,7 +99,7 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InsertDocumentRequest {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Cluster: ").Append(Cluster).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Doc: ").Append(Doc).Append("\n");

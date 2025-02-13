@@ -36,24 +36,24 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateResponse" /> class.
         /// </summary>
-        /// <param name="Index">Name of the document index.</param>
+        /// <param name="Table">Name of the document table.</param>
         /// <param name="Updated">Number of documents updated.</param>
         /// <param name="Id">Document ID.</param>
         /// <param name="Result">Result of the update operation, typically &#39;updated&#39;.</param>
-        public UpdateResponse(string Index = default(string), int Updated = default(int), long Id = default(long), string Result = default(string))
+        public UpdateResponse(string Table = default(string), int Updated = default(int), long Id = default(long), string Result = default(string))
         {
-            this.Index = Index;
+            this.Table = Table;
             this.Updated = Updated;
             this.Id = Id;
             this.Result = Result;
         }
 
         /// <summary>
-        /// Name of the document index
+        /// Name of the document table
         /// </summary>
-        /// <value>Name of the document index</value>
-        [DataMember(Name = "_index", EmitDefaultValue = false)]
-        public string Index { get; set; }
+        /// <value>Name of the document table</value>
+        [DataMember(Name = "table", EmitDefaultValue = false)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Number of documents updated
@@ -84,7 +84,7 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateResponse {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Result: ").Append(Result).Append("\n");

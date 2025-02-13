@@ -1,5 +1,5 @@
 # ManticoreSearch.Model.PercolateRequest
-Object containing the query for percolating documents against stored queries in a percolate index
+Object containing the query for percolating documents against stored queries in a percolate table
 
 ## Properties
 

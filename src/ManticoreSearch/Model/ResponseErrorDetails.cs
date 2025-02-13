@@ -43,8 +43,8 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <param name="Type">Type or category of the error (required).</param>
         /// <param name="Reason">Detailed explanation of why the error occurred.</param>
-        /// <param name="Index">The index related to the error, if applicable.</param>
-        public ResponseErrorDetails(string Type = default(string), string Reason = default(string), string Index = default(string))
+        /// <param name="Table">The table related to the error, if applicable.</param>
+        public ResponseErrorDetails(string Type = default(string), string Reason = default(string), string Table = default(string))
         {
             // to ensure "Type" is required (not null)
             if (Type == null)
@@ -53,7 +53,7 @@ namespace ManticoreSearch.Model
             }
             this.Type = Type;
             this.Reason = Reason;
-            this.Index = Index;
+            this.Table = Table;
         }
 
         /// <summary>
@@ -71,11 +71,11 @@ namespace ManticoreSearch.Model
         public string Reason { get; set; }
 
         /// <summary>
-        /// The index related to the error, if applicable
+        /// The table related to the error, if applicable
         /// </summary>
-        /// <value>The index related to the error, if applicable</value>
-        [DataMember(Name = "index", EmitDefaultValue = true)]
-        public string Index { get; set; }
+        /// <value>The table related to the error, if applicable</value>
+        [DataMember(Name = "table", EmitDefaultValue = true)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -87,7 +87,7 @@ namespace ManticoreSearch.Model
             sb.Append("class ResponseErrorDetails {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

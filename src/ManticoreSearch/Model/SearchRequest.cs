@@ -41,7 +41,7 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchRequest" /> class.
         /// </summary>
-        /// <param name="Index">The index to perform the search on (required).</param>
+        /// <param name="Table">The table to perform the search on (required).</param>
         /// <param name="Query">Query.</param>
         /// <param name="Join">Join clause to combine search data from multiple tables.</param>
         /// <param name="Highlight">Highlight.</param>
@@ -56,14 +56,14 @@ namespace ManticoreSearch.Model
         /// <param name="Sort">Sort.</param>
         /// <param name="Source">Source.</param>
         /// <param name="TrackScores">Enable or disable result weight calculation used for sorting.</param>
-        public SearchRequest(string Index = default(string), SearchQuery Query = default(SearchQuery), List<Join> Join = default(List<Join>), Highlight Highlight = default(Highlight), int Limit = default(int), KnnQuery Knn = default(KnnQuery), Dictionary<string, Aggregation> Aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> Expressions = default(Dictionary<string, string>), int MaxMatches = default(int), int Offset = default(int), Object Options = default(Object), bool Profile = default(bool), Object Sort = default(Object), Object Source = default(Object), bool TrackScores = default(bool))
+        public SearchRequest(string Table = default(string), SearchQuery Query = default(SearchQuery), List<Join> Join = default(List<Join>), Highlight Highlight = default(Highlight), int Limit = default(int), KnnQuery Knn = default(KnnQuery), Dictionary<string, Aggregation> Aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> Expressions = default(Dictionary<string, string>), int MaxMatches = default(int), int Offset = default(int), Object Options = default(Object), bool Profile = default(bool), Object Sort = default(Object), Object Source = default(Object), bool TrackScores = default(bool))
         {
-            // to ensure "Index" is required (not null)
-            if (Index == null)
+            // to ensure "Table" is required (not null)
+            if (Table == null)
             {
-                throw new ArgumentNullException("Index is a required property for SearchRequest and cannot be null");
+                throw new ArgumentNullException("Table is a required property for SearchRequest and cannot be null");
             }
-            this.Index = Index;
+            this.Table = Table;
             this.Query = Query;
             this.Join = Join;
             this.Highlight = Highlight;
@@ -81,11 +81,11 @@ namespace ManticoreSearch.Model
         }
 
         /// <summary>
-        /// The index to perform the search on
+        /// The table to perform the search on
         /// </summary>
-        /// <value>The index to perform the search on</value>
-        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
-        public string Index { get; set; }
+        /// <value>The table to perform the search on</value>
+        [DataMember(Name = "table", IsRequired = true, EmitDefaultValue = true)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Gets or Sets Query
@@ -190,7 +190,7 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SearchRequest {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Join: ").Append(Join).Append("\n");
             sb.Append("  Highlight: ").Append(Highlight).Append("\n");

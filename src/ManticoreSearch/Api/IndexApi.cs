@@ -29,10 +29,10 @@ namespace ManticoreSearch.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Bulk index operations
+        /// Bulk table operations
         /// </summary>
         /// <remarks>
-        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -40,20 +40,20 @@ namespace ManticoreSearch.Api
         BulkResponse Bulk(string body);
 
         /// <summary>
-        /// Bulk index operations
+        /// Bulk table operations
         /// </summary>
         /// <remarks>
-        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of BulkResponse</returns>
         ApiResponse<BulkResponse> BulkWithHttpInfo(string body);
         /// <summary>
-        /// Delete a document in an index
+        /// Delete a document in a table
         /// </summary>
         /// <remarks>
-        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -61,20 +61,20 @@ namespace ManticoreSearch.Api
         DeleteResponse Delete(DeleteDocumentRequest deleteDocumentRequest);
 
         /// <summary>
-        /// Delete a document in an index
+        /// Delete a document in a table
         /// </summary>
         /// <remarks>
-        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
         /// <returns>ApiResponse of DeleteResponse</returns>
         ApiResponse<DeleteResponse> DeleteWithHttpInfo(DeleteDocumentRequest deleteDocumentRequest);
         /// <summary>
-        /// Create a new document in an index
+        /// Create a new document in a table
         /// </summary>
         /// <remarks>
-        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -82,45 +82,45 @@ namespace ManticoreSearch.Api
         SuccessResponse Insert(InsertDocumentRequest insertDocumentRequest);
 
         /// <summary>
-        /// Create a new document in an index
+        /// Create a new document in a table
         /// </summary>
         /// <remarks>
-        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> InsertWithHttpInfo(InsertDocumentRequest insertDocumentRequest);
         /// <summary>
-        /// Partially replaces a document in an index
+        /// Partially replaces a document in a table
         /// </summary>
         /// <remarks>
-        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        UpdateResponse PartialReplace(string index, long id, ReplaceDocumentRequest replaceDocumentRequest);
+        UpdateResponse PartialReplace(string table, long id, ReplaceDocumentRequest replaceDocumentRequest);
 
         /// <summary>
-        /// Partially replaces a document in an index
+        /// Partially replaces a document in a table
         /// </summary>
         /// <remarks>
-        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, long id, ReplaceDocumentRequest replaceDocumentRequest);
+        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, long id, ReplaceDocumentRequest replaceDocumentRequest);
         /// <summary>
-        /// Replace new document in an index
+        /// Replace new document in a table
         /// </summary>
         /// <remarks>
-        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -128,20 +128,20 @@ namespace ManticoreSearch.Api
         SuccessResponse Replace(InsertDocumentRequest insertDocumentRequest);
 
         /// <summary>
-        /// Replace new document in an index
+        /// Replace new document in a table
         /// </summary>
         /// <remarks>
-        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> ReplaceWithHttpInfo(InsertDocumentRequest insertDocumentRequest);
         /// <summary>
-        /// Update a document in an index
+        /// Update a document in a table
         /// </summary>
         /// <remarks>
-        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -149,10 +149,10 @@ namespace ManticoreSearch.Api
         UpdateResponse Update(UpdateDocumentRequest updateDocumentRequest);
 
         /// <summary>
-        /// Update a document in an index
+        /// Update a document in a table
         /// </summary>
         /// <remarks>
-        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -168,10 +168,10 @@ namespace ManticoreSearch.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Bulk index operations
+        /// Bulk table operations
         /// </summary>
         /// <remarks>
-        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -180,10 +180,10 @@ namespace ManticoreSearch.Api
         System.Threading.Tasks.Task<BulkResponse> BulkAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Bulk index operations
+        /// Bulk table operations
         /// </summary>
         /// <remarks>
-        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -191,10 +191,10 @@ namespace ManticoreSearch.Api
         /// <returns>Task of ApiResponse (BulkResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<BulkResponse>> BulkWithHttpInfoAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Delete a document in an index
+        /// Delete a document in a table
         /// </summary>
         /// <remarks>
-        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -203,10 +203,10 @@ namespace ManticoreSearch.Api
         System.Threading.Tasks.Task<DeleteResponse> DeleteAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Delete a document in an index
+        /// Delete a document in a table
         /// </summary>
         /// <remarks>
-        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -214,10 +214,10 @@ namespace ManticoreSearch.Api
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> DeleteWithHttpInfoAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Create a new document in an index
+        /// Create a new document in a table
         /// </summary>
         /// <remarks>
-        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -226,10 +226,10 @@ namespace ManticoreSearch.Api
         System.Threading.Tasks.Task<SuccessResponse> InsertAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Create a new document in an index
+        /// Create a new document in a table
         /// </summary>
         /// <remarks>
-        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -237,37 +237,37 @@ namespace ManticoreSearch.Api
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> InsertWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Partially replaces a document in an index
+        /// Partially replaces a document in a table
         /// </summary>
         /// <remarks>
-        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Partially replaces a document in an index
+        /// Partially replaces a document in a table
         /// </summary>
         /// <remarks>
-        /// Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Replace new document in an index
+        /// Replace new document in a table
         /// </summary>
         /// <remarks>
-        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -276,10 +276,10 @@ namespace ManticoreSearch.Api
         System.Threading.Tasks.Task<SuccessResponse> ReplaceAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Replace new document in an index
+        /// Replace new document in a table
         /// </summary>
         /// <remarks>
-        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -287,10 +287,10 @@ namespace ManticoreSearch.Api
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> ReplaceWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
         /// <summary>
-        /// Update a document in an index
+        /// Update a document in a table
         /// </summary>
         /// <remarks>
-        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -299,10 +299,10 @@ namespace ManticoreSearch.Api
         System.Threading.Tasks.Task<UpdateResponse> UpdateAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
 
         /// <summary>
-        /// Update a document in an index
+        /// Update a document in a table
         /// </summary>
         /// <remarks>
-        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -523,7 +523,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Bulk index operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Bulk table operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -535,7 +535,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Bulk index operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Bulk table operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -579,7 +579,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Bulk index operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Bulk table operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -592,7 +592,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Bulk index operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;index\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
+        /// Bulk table operations Sends multiple operatons like inserts, updates, replaces or deletes.  For each operation it&#39;s object must have same format as in their dedicated method.  The method expects a raw string as the batch in NDJSON.  Each operation object needs to be serialized to   JSON and separated by endline (\\n).      An example of raw input:      &#x60;&#x60;&#x60;   {\&quot;insert\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;, \&quot;doc\&quot;: {\&quot;plot\&quot;: \&quot;A secret team goes to North Pole\&quot;, \&quot;rating\&quot;: 9.5, \&quot;language\&quot;: [2, 3], \&quot;title\&quot;: \&quot;This is an older movie\&quot;, \&quot;lon\&quot;: 51.99, \&quot;meta\&quot;: {\&quot;keywords\&quot;:[\&quot;travel\&quot;,\&quot;ice\&quot;],\&quot;genre\&quot;:[\&quot;adventure\&quot;]}, \&quot;year\&quot;: 1950, \&quot;lat\&quot;: 60.4, \&quot;advise\&quot;: \&quot;PG-13\&quot;}}}   \\n   {\&quot;delete\&quot;: {\&quot;table\&quot;: \&quot;movies\&quot;,\&quot;id\&quot;:700}}   &#x60;&#x60;&#x60;      Responds with an object telling whenever any errors occured and an array with status for each operation:      &#x60;&#x60;&#x60;   {     &#39;items&#39;:     [       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;result&#39;:&#39;updated&#39;}       },       {         &#39;update&#39;:{&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:2,&#39;result&#39;:&#39;updated&#39;}       }     ],     &#39;errors&#39;:false   }   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
@@ -640,7 +640,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Delete a document in an index Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete a document in a table Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -652,7 +652,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Delete a document in an index Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete a document in a table Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -696,7 +696,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Delete a document in an index Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete a document in a table Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -709,7 +709,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Delete a document in an index Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Delete a document in a table Delete one or several documents. The method has 2 ways of deleting: either by id, in case only one document is deleted or by using a  match query, in which case multiple documents can be delete . Example of input to delete by id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;id&#39;:100}   &#x60;&#x60;&#x60;  Example of input to delete using a query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;  The match query has same syntax as in for searching. Responds with an object telling how many documents got deleted:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteDocumentRequest"></param>
@@ -757,7 +757,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Create a new document in an index Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Create a new document in a table Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -769,7 +769,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Create a new document in an index Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Create a new document in a table Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -813,7 +813,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Create a new document in an index Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Create a new document in a table Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -826,7 +826,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Create a new document in an index Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
+        /// Create a new document in a table Insert a document.  Expects an object like:     &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;id&#39;:701,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is an old movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:1950,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   The document id can also be missing, in which case an autogenerated one will be used:             &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:     {       &#39;title&#39;:&#39;This is a new movie&#39;,       &#39;plot&#39;:&#39;A secret team goes to North Pole&#39;,       &#39;year&#39;:2020,       &#39;rating&#39;:9.5,       &#39;lat&#39;:60.4,       &#39;lon&#39;:51.99,       &#39;advise&#39;:&#39;PG-13&#39;,       &#39;meta&#39;:&#39;{\&quot;keywords\&quot;:{\&quot;travel\&quot;,\&quot;ice\&quot;},\&quot;genre\&quot;:{\&quot;adventure\&quot;}}&#39;,       &#39;language&#39;:[2,3]     }   }   &#x60;&#x60;&#x60;   It responds with an object in format:      &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:701,&#39;created&#39;:true,&#39;result&#39;:&#39;created&#39;,&#39;status&#39;:201}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -874,32 +874,32 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document in a table Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        public UpdateResponse PartialReplace(string index, long id, ReplaceDocumentRequest replaceDocumentRequest)
+        public UpdateResponse PartialReplace(string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
         {
-            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = PartialReplaceWithHttpInfo(index, id, replaceDocumentRequest);
+            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = PartialReplaceWithHttpInfo(table, id, replaceDocumentRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document in a table Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string index, long id, ReplaceDocumentRequest replaceDocumentRequest)
+        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
         {
-            // verify the required parameter 'index' is set
-            if (index == null)
-                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'index' when calling IndexApi->PartialReplace");
+            // verify the required parameter 'table' is set
+            if (table == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'table' when calling IndexApi->PartialReplace");
 
             // verify the required parameter 'replaceDocumentRequest' is set
             if (replaceDocumentRequest == null)
@@ -922,13 +922,13 @@ namespace ManticoreSearch.Api
             var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("index", ManticoreSearch.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.PathParameters.Add("table", ManticoreSearch.Client.ClientUtils.ParameterToString(table)); // path parameter
             localVarRequestOptions.PathParameters.Add("id", ManticoreSearch.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = replaceDocumentRequest;
 
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UpdateResponse>("/{index}/_update/{id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<UpdateResponse>("/{table}/_update/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -940,34 +940,34 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document in a table Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await PartialReplaceWithHttpInfoAsync(index, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
+            ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await PartialReplaceWithHttpInfoAsync(table, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Partially replaces a document in an index Partially replaces a document with given id in an index Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Partially replaces a document in a table Partially replaces a document with given id in a table Responds with an object of the following format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="index">Name of the percolate index</param>
+        /// <param name="table">Name of the percolate table</param>
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string index, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
         {
-            // verify the required parameter 'index' is set
-            if (index == null)
-                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'index' when calling IndexApi->PartialReplace");
+            // verify the required parameter 'table' is set
+            if (table == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'table' when calling IndexApi->PartialReplace");
 
             // verify the required parameter 'replaceDocumentRequest' is set
             if (replaceDocumentRequest == null)
@@ -992,14 +992,14 @@ namespace ManticoreSearch.Api
             var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("index", ManticoreSearch.Client.ClientUtils.ParameterToString(index)); // path parameter
+            localVarRequestOptions.PathParameters.Add("table", ManticoreSearch.Client.ClientUtils.ParameterToString(table)); // path parameter
             localVarRequestOptions.PathParameters.Add("id", ManticoreSearch.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.Data = replaceDocumentRequest;
 
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateResponse>("/{index}/_update/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateResponse>("/{table}/_update/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1011,7 +1011,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Replace new document in an index Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace new document in a table Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -1023,7 +1023,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Replace new document in an index Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace new document in a table Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -1067,7 +1067,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Replace new document in an index Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace new document in a table Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -1080,7 +1080,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Replace new document in an index Replace an existing document. Input has same format as &#x60;insert&#x60; operation. &lt;br/&gt; Responds with an object in format: &lt;br/&gt;    &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
+        /// Replace new document in a table Replace an existing document. Input has same format as &#x60;insert&#x60; operation. Responds with an object in format:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;_id&#39;:1,&#39;created&#39;:false,&#39;result&#39;:&#39;updated&#39;,&#39;status&#39;:200}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="insertDocumentRequest"></param>
@@ -1128,7 +1128,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Update a document in an index Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update a document in a table Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -1140,7 +1140,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Update a document in an index Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update a document in a table Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -1184,7 +1184,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Update a document in an index Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update a document in a table Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>
@@ -1197,7 +1197,7 @@ namespace ManticoreSearch.Api
         }
 
         /// <summary>
-        /// Update a document in an index Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;index&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;index&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;_index&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
+        /// Update a document in a table Update one or several documents. The update can be made by passing the id or by using a match query in case multiple documents can be updated.  For example update a document using document id:    &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;movies&#39;,&#39;doc&#39;:{&#39;rating&#39;:9.49},&#39;id&#39;:100}   &#x60;&#x60;&#x60;  And update by using a match query:    &#x60;&#x60;&#x60;   {     &#39;table&#39;:&#39;movies&#39;,     &#39;doc&#39;:{&#39;rating&#39;:9.49},     &#39;query&#39;:     {       &#39;bool&#39;:       {         &#39;must&#39;:         [           {&#39;query_string&#39;:&#39;new movie&#39;}         ]       }     }   }   &#x60;&#x60;&#x60;   The match query has same syntax as for searching. Responds with an object that tells how many documents where updated in format:     &#x60;&#x60;&#x60;   {&#39;table&#39;:&#39;products&#39;,&#39;updated&#39;:1}   &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateDocumentRequest"></param>

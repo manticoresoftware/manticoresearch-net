@@ -5,7 +5,7 @@ Request object for search operation
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** | The index to perform the search on | 
+**Table** | **string** | The table to perform the search on | 
 **Query** | [**SearchQuery**](SearchQuery.md) |  | [optional] 
 **Join** | [**List&lt;Join&gt;**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | [**Highlight**](Highlight.md) |  | [optional] 

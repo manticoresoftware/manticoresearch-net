@@ -41,29 +41,29 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteDocumentRequest" /> class.
         /// </summary>
-        /// <param name="Index">Index name (required).</param>
+        /// <param name="Table">Table name (required).</param>
         /// <param name="Cluster">Cluster name.</param>
         /// <param name="Id">The ID of document for deletion.</param>
         /// <param name="Query">Defines the criteria to match documents for deletion.</param>
-        public DeleteDocumentRequest(string Index = default(string), string Cluster = default(string), long Id = default(long), Object Query = default(Object))
+        public DeleteDocumentRequest(string Table = default(string), string Cluster = default(string), long Id = default(long), Object Query = default(Object))
         {
-            // to ensure "Index" is required (not null)
-            if (Index == null)
+            // to ensure "Table" is required (not null)
+            if (Table == null)
             {
-                throw new ArgumentNullException("Index is a required property for DeleteDocumentRequest and cannot be null");
+                throw new ArgumentNullException("Table is a required property for DeleteDocumentRequest and cannot be null");
             }
-            this.Index = Index;
+            this.Table = Table;
             this.Cluster = Cluster;
             this.Id = Id;
             this.Query = Query;
         }
 
         /// <summary>
-        /// Index name
+        /// Table name
         /// </summary>
-        /// <value>Index name</value>
-        [DataMember(Name = "index", IsRequired = true, EmitDefaultValue = true)]
-        public string Index { get; set; }
+        /// <value>Table name</value>
+        [DataMember(Name = "table", IsRequired = true, EmitDefaultValue = true)]
+        public string Table { get; set; }
 
         /// <summary>
         /// Cluster name
@@ -94,7 +94,7 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class DeleteDocumentRequest {\n");
-            sb.Append("  Index: ").Append(Index).Append("\n");
+            sb.Append("  Table: ").Append(Table).Append("\n");
             sb.Append("  Cluster: ").Append(Cluster).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");

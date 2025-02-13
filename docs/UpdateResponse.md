@@ -5,7 +5,7 @@ Success response returned after updating one or more documents
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Index** | **string** | Name of the document index | [optional] 
+**Table** | **string** | Name of the document table | [optional] 
 **Updated** | **int** | Number of documents updated | [optional] 
 **Id** | **long** | Document ID | [optional] 
 **Result** | **string** | Result of the update operation, typically &#39;updated&#39; | [optional] 

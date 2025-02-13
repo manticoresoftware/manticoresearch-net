@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Object containing the document data for replacing an existing document in an index.
+    /// Object containing the document data for replacing an existing document in a table.
     /// </summary>
     [DataContract(Name = "replaceDocumentRequest")]
     public partial class ReplaceDocumentRequest : IValidatableObject
