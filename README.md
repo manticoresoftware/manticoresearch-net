@@ -24,7 +24,9 @@ The DLLs included in the package may not be the latest version. We recommend usi
 | **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
 | ------------------------| ----------------------------------- | ------------------------|
 | `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
-| 6.0.0 or newer          | 7.0.0 or newer                      | ✅ Fully Compatible     |
+| 8.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
+| 6.0.0 to 8.0.0          | 9.2.14 or newer                     | ⚠️ Partially Compatible |
+| 6.0.0 to 8.0.0          | 7.0.0 to 9.2.14                     | ✅ Fully Compatible     |
 | 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
 | 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
 | 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
