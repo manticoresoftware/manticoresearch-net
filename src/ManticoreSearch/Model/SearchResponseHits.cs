@@ -40,7 +40,7 @@ namespace ManticoreSearch.Model
         /// <param name="Total">Total number of matched documents.</param>
         /// <param name="TotalRelation">Indicates whether the total number of hits is accurate or an estimate.</param>
         /// <param name="Hits">Array of hit objects, each representing a matched document.</param>
-        public SearchResponseHits(int MaxScore = default(int), int Total = default(int), string TotalRelation = default(string), List<Object> Hits = default(List<Object>))
+        public SearchResponseHits(int MaxScore = default(int), int Total = default(int), string TotalRelation = default(string), List<HitsHits> Hits = default(List<HitsHits>))
         {
             this.MaxScore = MaxScore;
             this.Total = Total;
@@ -74,7 +74,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Array of hit objects, each representing a matched document</value>
         [DataMember(Name = "hits", EmitDefaultValue = false)]
-        public List<Object> Hits { get; set; }
+        public List<HitsHits> Hits { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -6,7 +6,7 @@
     <AssemblyName>ManticoreSearch</AssemblyName>
     <PackageId>ManticoreSearch-dev</PackageId>
     <RootNamespace>ManticoreSearch-dev</RootNamespace>
-    <Version>7.0.0-dev</Version>
+    <Version>8.0.0-dev</Version>
     <OutputType>Library</OutputType>
     <Authors>OpenAPI</Authors>
     <Company>OpenAPI</Company>

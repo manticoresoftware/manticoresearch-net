@@ -20,6 +20,7 @@ docs/GeoDistance.md
 docs/GeoDistanceLocationAnchor.md
 docs/Highlight.md
 docs/HighlightFieldOption.md
+docs/HitsHits.md
 docs/IndexApi.md
 docs/InsertDocumentRequest.md
 docs/Join.md
@@ -41,6 +42,7 @@ docs/SearchRequest.md
 docs/SearchResponse.md
 docs/SearchResponseHits.md
 docs/SourceRules.md
+docs/SqlObjResponse.md
 docs/SqlResponse.md
 docs/SuccessResponse.md
 docs/UpdateDocumentRequest.md
@@ -67,6 +69,7 @@ src/ManticoreSearch.Test/Model/GeoDistanceLocationAnchorTests.cs
 src/ManticoreSearch.Test/Model/GeoDistanceTests.cs
 src/ManticoreSearch.Test/Model/HighlightFieldOptionTests.cs
 src/ManticoreSearch.Test/Model/HighlightTests.cs
+src/ManticoreSearch.Test/Model/HitsHitsTests.cs
 src/ManticoreSearch.Test/Model/InsertDocumentRequestTests.cs
 src/ManticoreSearch.Test/Model/JoinCondTests.cs
 src/ManticoreSearch.Test/Model/JoinOnTests.cs
@@ -86,6 +89,7 @@ src/ManticoreSearch.Test/Model/SearchRequestTests.cs
 src/ManticoreSearch.Test/Model/SearchResponseHitsTests.cs
 src/ManticoreSearch.Test/Model/SearchResponseTests.cs
 src/ManticoreSearch.Test/Model/SourceRulesTests.cs
+src/ManticoreSearch.Test/Model/SqlObjResponseTests.cs
 src/ManticoreSearch.Test/Model/SqlResponseTests.cs
 src/ManticoreSearch.Test/Model/SuccessResponseTests.cs
 src/ManticoreSearch.Test/Model/UpdateDocumentRequestTests.cs
@@ -128,6 +132,7 @@ src/ManticoreSearch/Model/GeoDistance.cs
 src/ManticoreSearch/Model/GeoDistanceLocationAnchor.cs
 src/ManticoreSearch/Model/Highlight.cs
 src/ManticoreSearch/Model/HighlightFieldOption.cs
+src/ManticoreSearch/Model/HitsHits.cs
 src/ManticoreSearch/Model/InsertDocumentRequest.cs
 src/ManticoreSearch/Model/Join.cs
 src/ManticoreSearch/Model/JoinCond.cs
@@ -147,6 +152,7 @@ src/ManticoreSearch/Model/SearchRequest.cs
 src/ManticoreSearch/Model/SearchResponse.cs
 src/ManticoreSearch/Model/SearchResponseHits.cs
 src/ManticoreSearch/Model/SourceRules.cs
+src/ManticoreSearch/Model/SqlObjResponse.cs
 src/ManticoreSearch/Model/SqlResponse.cs
 src/ManticoreSearch/Model/SuccessResponse.cs
 src/ManticoreSearch/Model/UpdateDocumentRequest.cs

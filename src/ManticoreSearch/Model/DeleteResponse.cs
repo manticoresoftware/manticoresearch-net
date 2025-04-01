@@ -68,7 +68,7 @@ namespace ManticoreSearch.Model
         /// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
         /// </summary>
         /// <value>The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned</value>
-        [DataMember(Name = "_id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public long Id { get; set; }
 
         /// <summary>

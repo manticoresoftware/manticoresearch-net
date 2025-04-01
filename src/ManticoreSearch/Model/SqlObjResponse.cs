@@ -28,53 +28,51 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Success response returned after updating one or more documents
+    /// SqlObjResponse
     /// </summary>
-    [DataContract(Name = "updateResponse")]
-    public partial class UpdateResponse : IValidatableObject
+    [DataContract(Name = "sqlObjResponse")]
+    public partial class SqlObjResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateResponse" /> class.
+        /// Initializes a new instance of the <see cref="SqlObjResponse" /> class.
         /// </summary>
-        /// <param name="Table">Name of the document table.</param>
-        /// <param name="Updated">Number of documents updated.</param>
-        /// <param name="Id">Document ID.</param>
-        /// <param name="Result">Result of the update operation, typically &#39;updated&#39;.</param>
-        public UpdateResponse(string Table = default(string), int Updated = default(int), long Id = default(long), string Result = default(string))
+        [JsonConstructorAttribute]
+        protected SqlObjResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlObjResponse" /> class.
+        /// </summary>
+        /// <param name="Hits">Hits (required).</param>
+        /// <param name="Took">Took.</param>
+        /// <param name="TimedOut">TimedOut.</param>
+        public SqlObjResponse(Object Hits = default(Object), decimal Took = default(decimal), bool TimedOut = default(bool))
         {
-            this.Table = Table;
-            this.Updated = Updated;
-            this.Id = Id;
-            this.Result = Result;
+            // to ensure "Hits" is required (not null)
+            if (Hits == null)
+            {
+                throw new ArgumentNullException("Hits is a required property for SqlObjResponse and cannot be null");
+            }
+            this.Hits = Hits;
+            this.Took = Took;
+            this.TimedOut = TimedOut;
         }
 
         /// <summary>
-        /// Name of the document table
+        /// Gets or Sets Hits
         /// </summary>
-        /// <value>Name of the document table</value>
-        [DataMember(Name = "table", EmitDefaultValue = false)]
-        public string Table { get; set; }
+        [DataMember(Name = "hits", IsRequired = true, EmitDefaultValue = true)]
+        public Object Hits { get; set; }
 
         /// <summary>
-        /// Number of documents updated
+        /// Gets or Sets Took
         /// </summary>
-        /// <value>Number of documents updated</value>
-        [DataMember(Name = "updated", EmitDefaultValue = false)]
-        public int Updated { get; set; }
+        [DataMember(Name = "took", EmitDefaultValue = false)]
+        public decimal Took { get; set; }
 
         /// <summary>
-        /// Document ID
+        /// Gets or Sets TimedOut
         /// </summary>
-        /// <value>Document ID</value>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public long Id { get; set; }
-
-        /// <summary>
-        /// Result of the update operation, typically &#39;updated&#39;
-        /// </summary>
-        /// <value>Result of the update operation, typically &#39;updated&#39;</value>
-        [DataMember(Name = "result", EmitDefaultValue = false)]
-        public string Result { get; set; }
+        [DataMember(Name = "timed_out", EmitDefaultValue = true)]
+        public bool TimedOut { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -83,11 +81,10 @@ namespace ManticoreSearch.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateResponse {\n");
-            sb.Append("  Table: ").Append(Table).Append("\n");
-            sb.Append("  Updated: ").Append(Updated).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Result: ").Append(Result).Append("\n");
+            sb.Append("class SqlObjResponse {\n");
+            sb.Append("  Hits: ").Append(Hits).Append("\n");
+            sb.Append("  Took: ").Append(Took).Append("\n");
+            sb.Append("  TimedOut: ").Append(TimedOut).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
