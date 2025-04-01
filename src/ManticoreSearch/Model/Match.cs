@@ -30,7 +30,7 @@ namespace ManticoreSearch.Model
     /// <summary>
     /// Filter helper object defining a match keyword and match options
     /// </summary>
-    [DataContract(Name = "match")]
+    [DataContract(Name = "_match")]
     public partial class Match : IValidatableObject
     {
         /// <summary>

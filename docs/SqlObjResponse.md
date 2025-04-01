@@ -1,5 +1,4 @@
-# ManticoreSearch.Model.SqlResponse
-List of responses from executed SQL queries
+# ManticoreSearch.Model.SqlObjResponse
 
 ## Properties
 

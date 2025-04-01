@@ -66,7 +66,7 @@ namespace ManticoreSearch.Model
         /// Document ID
         /// </summary>
         /// <value>Document ID</value>
-        [DataMember(Name = "_id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = false)]
         public long Id { get; set; }
 
         /// <summary>

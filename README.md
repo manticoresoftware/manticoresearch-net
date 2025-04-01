@@ -1,6 +1,5 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/7.0.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
@@ -20,19 +19,6 @@
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 
 The DLLs included in the package may not be the latest version. We recommend using [NuGet](https://docs.nuget.org/consume/installing-nuget) to obtain the latest version of the packages:
-
-| **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
-| ------------------------| ----------------------------------- | ------------------------|
-| `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
-| 8.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
-| 6.0.0 to 8.0.0          | 9.2.14 or newer                     | ⚠️ Partially Compatible |
-| 6.0.0 to 8.0.0          | 7.0.0 to 9.2.14                     | ✅ Fully Compatible     |
-| 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
-| 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
-| 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
-| 3.3.1 to 5.0.0          | 6.2.0 to 6.3.6                      | ✅ Fully Compatible     |
-| 1.0.0 to 3.3.1          | 6.2.0 or newer                      | ⚠️ Partially Compatible |
-| 1.0.0 to 3.3.1          | 2.5.1 to 6.2.0                      | ✅ Fully Compatible     |
 
 
 ```
@@ -196,6 +182,7 @@ Class | Method | HTTP request | Description
  - [Model.GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
  - [Model.Highlight](docs/Highlight.md)
  - [Model.HighlightFieldOption](docs/HighlightFieldOption.md)
+ - [Model.HitsHits](docs/HitsHits.md)
  - [Model.InsertDocumentRequest](docs/InsertDocumentRequest.md)
  - [Model.Join](docs/Join.md)
  - [Model.JoinCond](docs/JoinCond.md)
@@ -215,6 +202,7 @@ Class | Method | HTTP request | Description
  - [Model.SearchResponse](docs/SearchResponse.md)
  - [Model.SearchResponseHits](docs/SearchResponseHits.md)
  - [Model.SourceRules](docs/SourceRules.md)
+ - [Model.SqlObjResponse](docs/SqlObjResponse.md)
  - [Model.SqlResponse](docs/SqlResponse.md)
  - [Model.SuccessResponse](docs/SuccessResponse.md)
  - [Model.UpdateDocumentRequest](docs/UpdateDocumentRequest.md)
