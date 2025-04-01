@@ -1296,6 +1296,10 @@ components:
       properties:
         hits:
           type: object
+        took:
+          type: number
+        timed_out:
+          type: boolean
       required:
       - hits
     sqlResponse:

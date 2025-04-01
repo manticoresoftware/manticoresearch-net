@@ -42,7 +42,9 @@ namespace ManticoreSearch.Model
         /// Initializes a new instance of the <see cref="SqlObjResponse" /> class.
         /// </summary>
         /// <param name="Hits">Hits (required).</param>
-        public SqlObjResponse(Object Hits = default(Object))
+        /// <param name="Took">Took.</param>
+        /// <param name="TimedOut">TimedOut.</param>
+        public SqlObjResponse(Object Hits = default(Object), decimal Took = default(decimal), bool TimedOut = default(bool))
         {
             // to ensure "Hits" is required (not null)
             if (Hits == null)
@@ -50,6 +52,8 @@ namespace ManticoreSearch.Model
                 throw new ArgumentNullException("Hits is a required property for SqlObjResponse and cannot be null");
             }
             this.Hits = Hits;
+            this.Took = Took;
+            this.TimedOut = TimedOut;
         }
 
         /// <summary>
@@ -57,6 +61,18 @@ namespace ManticoreSearch.Model
         /// </summary>
         [DataMember(Name = "hits", IsRequired = true, EmitDefaultValue = true)]
         public Object Hits { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Took
+        /// </summary>
+        [DataMember(Name = "took", EmitDefaultValue = false)]
+        public decimal Took { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TimedOut
+        /// </summary>
+        [DataMember(Name = "timed_out", EmitDefaultValue = true)]
+        public bool TimedOut { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,6 +83,8 @@ namespace ManticoreSearch.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SqlObjResponse {\n");
             sb.Append("  Hits: ").Append(Hits).Append("\n");
+            sb.Append("  Took: ").Append(Took).Append("\n");
+            sb.Append("  TimedOut: ").Append(TimedOut).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
