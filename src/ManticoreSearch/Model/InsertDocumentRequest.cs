@@ -45,7 +45,7 @@ namespace ManticoreSearch.Model
         /// <param name="cluster">Name of the cluster to insert the document into.</param>
         /// <param name="id">Document ID. If not provided, an ID will be auto-generated .</param>
         /// <param name="doc">Object containing document data  (required).</param>
-        public InsertDocumentRequest(string table = default, string cluster = default, int id = default, Object doc = default)
+        public InsertDocumentRequest(string table = default, string cluster = default, UInt64 id = default, Object doc = default)
         {
             // to ensure "table" is required (not null)
             if (table == null)
@@ -82,7 +82,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Document ID. If not provided, an ID will be auto-generated </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public int Id { get; set; }
+        public UInt64 Id { get; set; }
 
         /// <summary>
         /// Object containing document data 
