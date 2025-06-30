@@ -36,18 +36,18 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteResponse" /> class.
         /// </summary>
-        /// <param name="Table">The name of the table from which the document was deleted.</param>
-        /// <param name="Deleted">Number of documents deleted.</param>
-        /// <param name="Id">The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned.</param>
-        /// <param name="Found">Indicates whether any documents to be deleted were found.</param>
-        /// <param name="Result">Result of the delete operation, typically &#39;deleted&#39;.</param>
-        public DeleteResponse(string Table = default(string), int Deleted = default(int), long Id = default(long), bool Found = default(bool), string Result = default(string))
+        /// <param name="table">The name of the table from which the document was deleted.</param>
+        /// <param name="deleted">Number of documents deleted.</param>
+        /// <param name="id">The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned.</param>
+        /// <param name="found">Indicates whether any documents to be deleted were found.</param>
+        /// <param name="result">Result of the delete operation, typically &#39;deleted&#39;.</param>
+        public DeleteResponse(string table = default, int deleted = default, int id = default, bool found = default, string result = default)
         {
-            this.Table = Table;
-            this.Deleted = Deleted;
-            this.Id = Id;
-            this.Found = Found;
-            this.Result = Result;
+            this.Table = table;
+            this.Deleted = deleted;
+            this.Id = id;
+            this.Found = found;
+            this.Result = result;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Indicates whether any documents to be deleted were found

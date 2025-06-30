@@ -34,7 +34,7 @@ namespace ManticoreSearch.Model
     public partial class JoinOn : IValidatableObject
     {
         /// <summary>
-        /// Defines VarOperator
+        /// Defines Operator
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OperatorEnum
@@ -48,21 +48,21 @@ namespace ManticoreSearch.Model
 
 
         /// <summary>
-        /// Gets or Sets VarOperator
+        /// Gets or Sets Operator
         /// </summary>
         [DataMember(Name = "operator", EmitDefaultValue = false)]
-        public OperatorEnum? VarOperator { get; set; }
+        public OperatorEnum? Operator { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JoinOn" /> class.
         /// </summary>
-        /// <param name="Right">Right.</param>
-        /// <param name="Left">Left.</param>
-        /// <param name="VarOperator">VarOperator.</param>
-        public JoinOn(JoinCond Right = default(JoinCond), JoinCond Left = default(JoinCond), OperatorEnum? VarOperator = default(OperatorEnum?))
+        /// <param name="right">right.</param>
+        /// <param name="left">left.</param>
+        /// <param name="varOperator">varOperator.</param>
+        public JoinOn(JoinCond right = default, JoinCond left = default, OperatorEnum? varOperator = default)
         {
-            this.Right = Right;
-            this.Left = Left;
-            this.VarOperator = VarOperator;
+            this.Right = right;
+            this.Left = left;
+            this.Operator = varOperator;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace ManticoreSearch.Model
             sb.Append("class JoinOn {\n");
             sb.Append("  Right: ").Append(Right).Append("\n");
             sb.Append("  Left: ").Append(Left).Append("\n");
-            sb.Append("  VarOperator: ").Append(VarOperator).Append("\n");
+            sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

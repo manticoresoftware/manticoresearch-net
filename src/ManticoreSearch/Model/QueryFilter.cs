@@ -36,61 +36,61 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryFilter" /> class.
         /// </summary>
-        /// <param name="QueryString">Filter object defining a query string.</param>
-        /// <param name="Match">Filter object defining a match keyword passed as a string or in a Match object.</param>
-        /// <param name="MatchPhrase">Filter object defining a match phrase.</param>
-        /// <param name="MatchAll">Filter object to select all documents.</param>
-        /// <param name="VarBool">VarBool.</param>
-        /// <param name="PropertyEquals">PropertyEquals.</param>
-        /// <param name="VarIn">Filter to match a given set of attribute values..</param>
-        /// <param name="Range">Filter to match a given range of attribute values passed in Range objects.</param>
-        /// <param name="GeoDistance">GeoDistance.</param>
-        public QueryFilter(Object QueryString = default(Object), Object Match = default(Object), Object MatchPhrase = default(Object), Object MatchAll = default(Object), BoolFilter VarBool = default(BoolFilter), Object PropertyEquals = default(Object), Object VarIn = default(Object), Object Range = default(Object), GeoDistance GeoDistance = default(GeoDistance))
+        /// <param name="queryString">Filter object defining a query string.</param>
+        /// <param name="match">Filter object defining a match keyword passed as a string or in a Match object.</param>
+        /// <param name="matchPhrase">Filter object defining a match phrase.</param>
+        /// <param name="matchAll">Filter object to select all documents.</param>
+        /// <param name="varBool">varBool.</param>
+        /// <param name="propertyEquals">propertyEquals.</param>
+        /// <param name="varIn">Filter to match a given set of attribute values..</param>
+        /// <param name="range">Filter to match a given range of attribute values passed in Range objects.</param>
+        /// <param name="geoDistance">geoDistance.</param>
+        public QueryFilter(string queryString = default, Object match = default, Object matchPhrase = default, Object matchAll = default, BoolFilter varBool = default, Object propertyEquals = default, Object varIn = default, Object range = default, GeoDistance geoDistance = default)
         {
-            this.QueryString = QueryString;
-            this.Match = Match;
-            this.MatchPhrase = MatchPhrase;
-            this.MatchAll = MatchAll;
-            this.VarBool = VarBool;
-            this.PropertyEquals = PropertyEquals;
-            this.VarIn = VarIn;
-            this.Range = Range;
-            this.GeoDistance = GeoDistance;
+            this.QueryString = queryString;
+            this.Match = match;
+            this.MatchPhrase = matchPhrase;
+            this.MatchAll = matchAll;
+            this.Bool = varBool;
+            this.PropertyEquals = propertyEquals;
+            this.In = varIn;
+            this.Range = range;
+            this.GeoDistance = geoDistance;
         }
 
         /// <summary>
         /// Filter object defining a query string
         /// </summary>
         /// <value>Filter object defining a query string</value>
-        [DataMember(Name = "query_string", EmitDefaultValue = true)]
-        public Object QueryString { get; set; }
+        [DataMember(Name = "query_string", EmitDefaultValue = false)]
+        public string QueryString { get; set; }
 
         /// <summary>
         /// Filter object defining a match keyword passed as a string or in a Match object
         /// </summary>
         /// <value>Filter object defining a match keyword passed as a string or in a Match object</value>
-        [DataMember(Name = "match", EmitDefaultValue = true)]
+        [DataMember(Name = "match", EmitDefaultValue = false)]
         public Object Match { get; set; }
 
         /// <summary>
         /// Filter object defining a match phrase
         /// </summary>
         /// <value>Filter object defining a match phrase</value>
-        [DataMember(Name = "match_phrase", EmitDefaultValue = true)]
+        [DataMember(Name = "match_phrase", EmitDefaultValue = false)]
         public Object MatchPhrase { get; set; }
 
         /// <summary>
         /// Filter object to select all documents
         /// </summary>
         /// <value>Filter object to select all documents</value>
-        [DataMember(Name = "match_all", EmitDefaultValue = true)]
+        [DataMember(Name = "match_all", EmitDefaultValue = false)]
         public Object MatchAll { get; set; }
 
         /// <summary>
-        /// Gets or Sets VarBool
+        /// Gets or Sets Bool
         /// </summary>
         [DataMember(Name = "bool", EmitDefaultValue = false)]
-        public BoolFilter VarBool { get; set; }
+        public BoolFilter Bool { get; set; }
 
         /// <summary>
         /// Gets or Sets PropertyEquals
@@ -103,7 +103,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Filter to match a given set of attribute values.</value>
         [DataMember(Name = "in", EmitDefaultValue = false)]
-        public Object VarIn { get; set; }
+        public Object In { get; set; }
 
         /// <summary>
         /// Filter to match a given range of attribute values passed in Range objects
@@ -130,9 +130,9 @@ namespace ManticoreSearch.Model
             sb.Append("  Match: ").Append(Match).Append("\n");
             sb.Append("  MatchPhrase: ").Append(MatchPhrase).Append("\n");
             sb.Append("  MatchAll: ").Append(MatchAll).Append("\n");
-            sb.Append("  VarBool: ").Append(VarBool).Append("\n");
+            sb.Append("  Bool: ").Append(Bool).Append("\n");
             sb.Append("  PropertyEquals: ").Append(PropertyEquals).Append("\n");
-            sb.Append("  VarIn: ").Append(VarIn).Append("\n");
+            sb.Append("  In: ").Append(In).Append("\n");
             sb.Append("  Range: ").Append(Range).Append("\n");
             sb.Append("  GeoDistance: ").Append(GeoDistance).Append("\n");
             sb.Append("}\n");

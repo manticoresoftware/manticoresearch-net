@@ -41,43 +41,43 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchRequest" /> class.
         /// </summary>
-        /// <param name="Table">The table to perform the search on (required).</param>
-        /// <param name="Query">Query.</param>
-        /// <param name="Join">Join clause to combine search data from multiple tables.</param>
-        /// <param name="Highlight">Highlight.</param>
-        /// <param name="Limit">Maximum number of results to return.</param>
-        /// <param name="Knn">Knn.</param>
-        /// <param name="Aggs">Defines aggregation settings for grouping results.</param>
-        /// <param name="Expressions">Expressions to calculate additional values for the result.</param>
-        /// <param name="MaxMatches">Maximum number of matches allowed in the result.</param>
-        /// <param name="Offset">Starting point for pagination of the result.</param>
-        /// <param name="Options">Additional search options.</param>
-        /// <param name="Profile">Enable or disable profiling of the search request.</param>
-        /// <param name="Sort">Sort.</param>
-        /// <param name="Source">Source.</param>
-        /// <param name="TrackScores">Enable or disable result weight calculation used for sorting.</param>
-        public SearchRequest(string Table = default(string), SearchQuery Query = default(SearchQuery), List<Join> Join = default(List<Join>), Highlight Highlight = default(Highlight), int Limit = default(int), KnnQuery Knn = default(KnnQuery), Dictionary<string, Aggregation> Aggs = default(Dictionary<string, Aggregation>), Dictionary<string, string> Expressions = default(Dictionary<string, string>), int MaxMatches = default(int), int Offset = default(int), Object Options = default(Object), bool Profile = default(bool), Object Sort = default(Object), Object Source = default(Object), bool TrackScores = default(bool))
+        /// <param name="table">The table to perform the search on (required).</param>
+        /// <param name="query">query.</param>
+        /// <param name="join">Join clause to combine search data from multiple tables.</param>
+        /// <param name="highlight">highlight.</param>
+        /// <param name="limit">Maximum number of results to return.</param>
+        /// <param name="knn">knn.</param>
+        /// <param name="aggs">Defines aggregation settings for grouping results.</param>
+        /// <param name="expressions">Expressions to calculate additional values for the result.</param>
+        /// <param name="maxMatches">Maximum number of matches allowed in the result.</param>
+        /// <param name="offset">Starting point for pagination of the result.</param>
+        /// <param name="options">Additional search options.</param>
+        /// <param name="profile">Enable or disable profiling of the search request.</param>
+        /// <param name="sort">sort.</param>
+        /// <param name="source">source.</param>
+        /// <param name="trackScores">Enable or disable result weight calculation used for sorting.</param>
+        public SearchRequest(string table = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, KnnQuery knn = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
         {
-            // to ensure "Table" is required (not null)
-            if (Table == null)
+            // to ensure "table" is required (not null)
+            if (table == null)
             {
-                throw new ArgumentNullException("Table is a required property for SearchRequest and cannot be null");
+                throw new ArgumentNullException("table is a required property for SearchRequest and cannot be null");
             }
-            this.Table = Table;
-            this.Query = Query;
-            this.Join = Join;
-            this.Highlight = Highlight;
-            this.Limit = Limit;
-            this.Knn = Knn;
-            this.Aggs = Aggs;
-            this.Expressions = Expressions;
-            this.MaxMatches = MaxMatches;
-            this.Offset = Offset;
-            this.Options = Options;
-            this.Profile = Profile;
-            this.Sort = Sort;
-            this.Source = Source;
-            this.TrackScores = TrackScores;
+            this.Table = table;
+            this.Query = query;
+            this.Join = join;
+            this.Highlight = highlight;
+            this.Limit = limit;
+            this.Knn = knn;
+            this.Aggs = aggs;
+            this.Expressions = expressions;
+            this.MaxMatches = maxMatches;
+            this.Offset = offset;
+            this.Options = options;
+            this.Profile = profile;
+            this.Sort = sort;
+            this.Source = source;
+            this.TrackScores = trackScores;
         }
 
         /// <summary>
@@ -123,16 +123,20 @@ namespace ManticoreSearch.Model
         /// Defines aggregation settings for grouping results
         /// </summary>
         /// <value>Defines aggregation settings for grouping results</value>
-        /// <example>{agg1&#x3D;{terms&#x3D;{field&#x3D;field1, size&#x3D;1000, sort&#x3D;[{field1&#x3D;null, order&#x3D;asc}]}}}</example>
-        [DataMember(Name = "aggs", EmitDefaultValue = true)]
+        /*
+        <example>{agg1&#x3D;{terms&#x3D;{field&#x3D;field1, size&#x3D;1000, sort&#x3D;[{field1&#x3D;null, order&#x3D;asc}]}}}</example>
+        */
+        [DataMember(Name = "aggs", EmitDefaultValue = false)]
         public Dictionary<string, Aggregation> Aggs { get; set; }
 
         /// <summary>
         /// Expressions to calculate additional values for the result
         /// </summary>
         /// <value>Expressions to calculate additional values for the result</value>
-        /// <example>{title_len&#x3D;crc32(title)}</example>
-        [DataMember(Name = "expressions", EmitDefaultValue = true)]
+        /*
+        <example>{title_len&#x3D;crc32(title)}</example>
+        */
+        [DataMember(Name = "expressions", EmitDefaultValue = false)]
         public Dictionary<string, string> Expressions { get; set; }
 
         /// <summary>

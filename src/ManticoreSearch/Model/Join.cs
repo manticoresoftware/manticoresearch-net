@@ -68,26 +68,26 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Join" /> class.
         /// </summary>
-        /// <param name="Type">Type of the join operation (required).</param>
-        /// <param name="On">List of objects defining joined tables (required).</param>
-        /// <param name="Query">Query.</param>
-        /// <param name="Table">Basic table of the join operation (required).</param>
-        public Join(TypeEnum Type = default(TypeEnum), List<JoinOn> On = default(List<JoinOn>), FulltextFilter Query = default(FulltextFilter), string Table = default(string))
+        /// <param name="type">Type of the join operation (required).</param>
+        /// <param name="on">List of objects defining joined tables (required).</param>
+        /// <param name="query">query.</param>
+        /// <param name="table">Basic table of the join operation (required).</param>
+        public Join(TypeEnum type = default, List<JoinOn> on = default, FulltextFilter query = default, string table = default)
         {
-            this.Type = Type;
-            // to ensure "On" is required (not null)
-            if (On == null)
+            this.Type = type;
+            // to ensure "on" is required (not null)
+            if (on == null)
             {
-                throw new ArgumentNullException("On is a required property for Join and cannot be null");
+                throw new ArgumentNullException("on is a required property for Join and cannot be null");
             }
-            this.On = On;
-            // to ensure "Table" is required (not null)
-            if (Table == null)
+            this.On = on;
+            // to ensure "table" is required (not null)
+            if (table == null)
             {
-                throw new ArgumentNullException("Table is a required property for Join and cannot be null");
+                throw new ArgumentNullException("table is a required property for Join and cannot be null");
             }
-            this.Table = Table;
-            this.Query = Query;
+            this.Table = table;
+            this.Query = query;
         }
 
         /// <summary>

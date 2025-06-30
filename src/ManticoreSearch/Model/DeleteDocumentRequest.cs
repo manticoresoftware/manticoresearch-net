@@ -41,21 +41,21 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteDocumentRequest" /> class.
         /// </summary>
-        /// <param name="Table">Table name (required).</param>
-        /// <param name="Cluster">Cluster name.</param>
-        /// <param name="Id">The ID of document for deletion.</param>
-        /// <param name="Query">Defines the criteria to match documents for deletion.</param>
-        public DeleteDocumentRequest(string Table = default(string), string Cluster = default(string), long Id = default(long), Object Query = default(Object))
+        /// <param name="table">Table name (required).</param>
+        /// <param name="cluster">Cluster name.</param>
+        /// <param name="id">The ID of document for deletion.</param>
+        /// <param name="query">Defines the criteria to match documents for deletion.</param>
+        public DeleteDocumentRequest(string table = default, string cluster = default, int id = default, Object query = default)
         {
-            // to ensure "Table" is required (not null)
-            if (Table == null)
+            // to ensure "table" is required (not null)
+            if (table == null)
             {
-                throw new ArgumentNullException("Table is a required property for DeleteDocumentRequest and cannot be null");
+                throw new ArgumentNullException("table is a required property for DeleteDocumentRequest and cannot be null");
             }
-            this.Table = Table;
-            this.Cluster = Cluster;
-            this.Id = Id;
-            this.Query = Query;
+            this.Table = table;
+            this.Cluster = cluster;
+            this.Id = id;
+            this.Query = query;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The ID of document for deletion</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Defines the criteria to match documents for deletion

@@ -102,7 +102,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        UpdateResponse PartialReplace(string table, long id, ReplaceDocumentRequest replaceDocumentRequest);
+        UpdateResponse PartialReplace(string table, int id, ReplaceDocumentRequest replaceDocumentRequest);
 
         /// <summary>
         /// Partially replaces a document in a table
@@ -115,7 +115,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, long id, ReplaceDocumentRequest replaceDocumentRequest);
+        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, int id, ReplaceDocumentRequest replaceDocumentRequest);
         /// <summary>
         /// Replace new document in a table
         /// </summary>
@@ -177,7 +177,7 @@ namespace ManticoreSearch.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkResponse</returns>
-        System.Threading.Tasks.Task<BulkResponse> BulkAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<BulkResponse> BulkAsync(string body, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk table operations
@@ -189,7 +189,7 @@ namespace ManticoreSearch.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BulkResponse>> BulkWithHttpInfoAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<BulkResponse>> BulkWithHttpInfoAsync(string body, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a document in a table
         /// </summary>
@@ -200,7 +200,7 @@ namespace ManticoreSearch.Api
         /// <param name="deleteDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteResponse</returns>
-        System.Threading.Tasks.Task<DeleteResponse> DeleteAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DeleteResponse> DeleteAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a document in a table
@@ -212,7 +212,7 @@ namespace ManticoreSearch.Api
         /// <param name="deleteDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> DeleteWithHttpInfoAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DeleteResponse>> DeleteWithHttpInfoAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a new document in a table
         /// </summary>
@@ -223,7 +223,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
-        System.Threading.Tasks.Task<SuccessResponse> InsertAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuccessResponse> InsertAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new document in a table
@@ -235,7 +235,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> InsertWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> InsertWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Partially replaces a document in a table
         /// </summary>
@@ -248,7 +248,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Partially replaces a document in a table
@@ -262,7 +262,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace new document in a table
         /// </summary>
@@ -273,7 +273,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
-        System.Threading.Tasks.Task<SuccessResponse> ReplaceAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SuccessResponse> ReplaceAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Replace new document in a table
@@ -285,7 +285,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> ReplaceWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> ReplaceWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a document in a table
         /// </summary>
@@ -296,7 +296,7 @@ namespace ManticoreSearch.Api
         /// <param name="updateDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        System.Threading.Tasks.Task<UpdateResponse> UpdateAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UpdateResponse> UpdateAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a document in a table
@@ -308,7 +308,7 @@ namespace ManticoreSearch.Api
         /// <param name="updateDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> UpdateWithHttpInfoAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> UpdateWithHttpInfoAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -585,7 +585,7 @@ namespace ManticoreSearch.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkResponse</returns>
-        public async System.Threading.Tasks.Task<BulkResponse> BulkAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<BulkResponse> BulkAsync(string body, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<BulkResponse> localVarResponse = await BulkWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -598,7 +598,7 @@ namespace ManticoreSearch.Api
         /// <param name="body"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<BulkResponse>> BulkWithHttpInfoAsync(string body, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<BulkResponse>> BulkWithHttpInfoAsync(string body, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -702,7 +702,7 @@ namespace ManticoreSearch.Api
         /// <param name="deleteDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteResponse</returns>
-        public async System.Threading.Tasks.Task<DeleteResponse> DeleteAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DeleteResponse> DeleteAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<DeleteResponse> localVarResponse = await DeleteWithHttpInfoAsync(deleteDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -715,7 +715,7 @@ namespace ManticoreSearch.Api
         /// <param name="deleteDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<DeleteResponse>> DeleteWithHttpInfoAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<DeleteResponse>> DeleteWithHttpInfoAsync(DeleteDocumentRequest deleteDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'deleteDocumentRequest' is set
             if (deleteDocumentRequest == null)
@@ -819,7 +819,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessResponse> InsertAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuccessResponse> InsertAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<SuccessResponse> localVarResponse = await InsertWithHttpInfoAsync(insertDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -832,7 +832,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SuccessResponse>> InsertWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SuccessResponse>> InsertWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'insertDocumentRequest' is set
             if (insertDocumentRequest == null)
@@ -881,7 +881,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        public UpdateResponse PartialReplace(string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
+        public UpdateResponse PartialReplace(string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = PartialReplaceWithHttpInfo(table, id, replaceDocumentRequest);
             return localVarResponse.Data;
@@ -895,7 +895,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
+        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             // verify the required parameter 'table' is set
             if (table == null)
@@ -948,7 +948,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await PartialReplaceWithHttpInfoAsync(table, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -963,7 +963,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, long id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'table' is set
             if (table == null)
@@ -1073,7 +1073,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
-        public async System.Threading.Tasks.Task<SuccessResponse> ReplaceAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SuccessResponse> ReplaceAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<SuccessResponse> localVarResponse = await ReplaceWithHttpInfoAsync(insertDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1086,7 +1086,7 @@ namespace ManticoreSearch.Api
         /// <param name="insertDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SuccessResponse>> ReplaceWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SuccessResponse>> ReplaceWithHttpInfoAsync(InsertDocumentRequest insertDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'insertDocumentRequest' is set
             if (insertDocumentRequest == null)
@@ -1190,7 +1190,7 @@ namespace ManticoreSearch.Api
         /// <param name="updateDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        public async System.Threading.Tasks.Task<UpdateResponse> UpdateAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UpdateResponse> UpdateAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await UpdateWithHttpInfoAsync(updateDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1203,7 +1203,7 @@ namespace ManticoreSearch.Api
         /// <param name="updateDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> UpdateWithHttpInfoAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> UpdateWithHttpInfoAsync(UpdateDocumentRequest updateDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'updateDocumentRequest' is set
             if (updateDocumentRequest == null)

@@ -41,22 +41,24 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AggCompositeTerm" /> class.
         /// </summary>
-        /// <param name="Field">Name of field to operate with (required).</param>
-        public AggCompositeTerm(string Field = default(string))
+        /// <param name="field">Name of field to operate with (required).</param>
+        public AggCompositeTerm(string field = default)
         {
-            // to ensure "Field" is required (not null)
-            if (Field == null)
+            // to ensure "field" is required (not null)
+            if (field == null)
             {
-                throw new ArgumentNullException("Field is a required property for AggCompositeTerm and cannot be null");
+                throw new ArgumentNullException("field is a required property for AggCompositeTerm and cannot be null");
             }
-            this.Field = Field;
+            this.Field = field;
         }
 
         /// <summary>
         /// Name of field to operate with
         /// </summary>
         /// <value>Name of field to operate with</value>
-        /// <example>field1</example>
+        /*
+        <example>field1</example>
+        */
         [DataMember(Name = "field", IsRequired = true, EmitDefaultValue = true)]
         public string Field { get; set; }
 

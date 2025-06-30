@@ -36,18 +36,18 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkResponse" /> class.
         /// </summary>
-        /// <param name="Items">List of results.</param>
-        /// <param name="Errors">Errors occurred during the bulk operation.</param>
-        /// <param name="Error">Error message describing an error if such occurred.</param>
-        /// <param name="CurrentLine">Number of the row returned in the response.</param>
-        /// <param name="SkippedLines">Number of rows skipped in the response.</param>
-        public BulkResponse(List<Object> Items = default(List<Object>), bool Errors = default(bool), string Error = default(string), int CurrentLine = default(int), int SkippedLines = default(int))
+        /// <param name="items">List of results.</param>
+        /// <param name="errors">Errors occurred during the bulk operation.</param>
+        /// <param name="error">Error message describing an error if such occurred.</param>
+        /// <param name="currentLine">Number of the row returned in the response.</param>
+        /// <param name="skippedLines">Number of rows skipped in the response.</param>
+        public BulkResponse(List<Object> items = default, bool errors = default, string error = default, int currentLine = default, int skippedLines = default)
         {
-            this.Items = Items;
-            this.Errors = Errors;
-            this.Error = Error;
-            this.CurrentLine = CurrentLine;
-            this.SkippedLines = SkippedLines;
+            this.Items = items;
+            this.Errors = errors;
+            this.Error = error;
+            this.CurrentLine = currentLine;
+            this.SkippedLines = skippedLines;
         }
 
         /// <summary>

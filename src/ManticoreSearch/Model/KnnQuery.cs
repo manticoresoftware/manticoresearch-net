@@ -41,25 +41,25 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="KnnQuery" /> class.
         /// </summary>
-        /// <param name="Field">Field to perform the k-nearest neighbor search on (required).</param>
-        /// <param name="K">The number of nearest neighbors to return (required).</param>
-        /// <param name="QueryVector">The vector used as input for the KNN search.</param>
-        /// <param name="DocId">The docuemnt ID used as input for the KNN search.</param>
-        /// <param name="Ef">Optional parameter controlling the accuracy of the search.</param>
-        /// <param name="Filter">Filter.</param>
-        public KnnQuery(string Field = default(string), int K = default(int), List<decimal> QueryVector = default(List<decimal>), long DocId = default(long), int Ef = default(int), QueryFilter Filter = default(QueryFilter))
+        /// <param name="field">Field to perform the k-nearest neighbor search on (required).</param>
+        /// <param name="k">The number of nearest neighbors to return (required).</param>
+        /// <param name="queryVector">The vector used as input for the KNN search.</param>
+        /// <param name="docId">The docuemnt ID used as input for the KNN search.</param>
+        /// <param name="ef">Optional parameter controlling the accuracy of the search.</param>
+        /// <param name="filter">filter.</param>
+        public KnnQuery(string field = default, int k = default, List<decimal> queryVector = default, int docId = default, int ef = default, QueryFilter filter = default)
         {
-            // to ensure "Field" is required (not null)
-            if (Field == null)
+            // to ensure "field" is required (not null)
+            if (field == null)
             {
-                throw new ArgumentNullException("Field is a required property for KnnQuery and cannot be null");
+                throw new ArgumentNullException("field is a required property for KnnQuery and cannot be null");
             }
-            this.Field = Field;
-            this.K = K;
-            this.QueryVector = QueryVector;
-            this.DocId = DocId;
-            this.Ef = Ef;
-            this.Filter = Filter;
+            this.Field = field;
+            this.K = k;
+            this.QueryVector = queryVector;
+            this.DocId = docId;
+            this.Ef = ef;
+            this.Filter = filter;
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The docuemnt ID used as input for the KNN search</value>
         [DataMember(Name = "doc_id", EmitDefaultValue = false)]
-        public long DocId { get; set; }
+        public int DocId { get; set; }
 
         /// <summary>
         /// Optional parameter controlling the accuracy of the search

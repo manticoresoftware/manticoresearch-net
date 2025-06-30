@@ -36,20 +36,20 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SuccessResponse" /> class.
         /// </summary>
-        /// <param name="Table">Name of the document table.</param>
-        /// <param name="Id">ID of the document affected by the request operation.</param>
-        /// <param name="Created">Indicates whether the document was created as a result of the operation.</param>
-        /// <param name="Result">Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39;.</param>
-        /// <param name="Found">Indicates whether the document was found in the table.</param>
-        /// <param name="Status">HTTP status code representing the result of the operation.</param>
-        public SuccessResponse(string Table = default(string), long Id = default(long), bool Created = default(bool), string Result = default(string), bool Found = default(bool), int Status = default(int))
+        /// <param name="table">Name of the document table.</param>
+        /// <param name="id">ID of the document affected by the request operation.</param>
+        /// <param name="created">Indicates whether the document was created as a result of the operation.</param>
+        /// <param name="result">Result of the operation, typically &#39;created&#39;, &#39;updated&#39;, or &#39;deleted&#39;.</param>
+        /// <param name="found">Indicates whether the document was found in the table.</param>
+        /// <param name="status">HTTP status code representing the result of the operation.</param>
+        public SuccessResponse(string table = default, int id = default, bool created = default, string result = default, bool found = default, int status = default)
         {
-            this.Table = Table;
-            this.Id = Id;
-            this.Created = Created;
-            this.Result = Result;
-            this.Found = Found;
-            this.Status = Status;
+            this.Table = table;
+            this.Id = id;
+            this.Created = created;
+            this.Result = result;
+            this.Found = found;
+            this.Status = status;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>ID of the document affected by the request operation</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Indicates whether the document was created as a result of the operation

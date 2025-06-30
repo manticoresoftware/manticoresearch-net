@@ -41,24 +41,26 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AggTerms" /> class.
         /// </summary>
-        /// <param name="Field">Name of attribute to aggregate by (required).</param>
-        /// <param name="Size">Maximum number of buckets in the result.</param>
-        public AggTerms(string Field = default(string), int Size = default(int))
+        /// <param name="field">Name of attribute to aggregate by (required).</param>
+        /// <param name="size">Maximum number of buckets in the result.</param>
+        public AggTerms(string field = default, int size = default)
         {
-            // to ensure "Field" is required (not null)
-            if (Field == null)
+            // to ensure "field" is required (not null)
+            if (field == null)
             {
-                throw new ArgumentNullException("Field is a required property for AggTerms and cannot be null");
+                throw new ArgumentNullException("field is a required property for AggTerms and cannot be null");
             }
-            this.Field = Field;
-            this.Size = Size;
+            this.Field = field;
+            this.Size = size;
         }
 
         /// <summary>
         /// Name of attribute to aggregate by
         /// </summary>
         /// <value>Name of attribute to aggregate by</value>
-        /// <example>field1</example>
+        /*
+        <example>field1</example>
+        */
         [DataMember(Name = "field", IsRequired = true, EmitDefaultValue = true)]
         public string Field { get; set; }
 
@@ -66,7 +68,9 @@ namespace ManticoreSearch.Model
         /// Maximum number of buckets in the result
         /// </summary>
         /// <value>Maximum number of buckets in the result</value>
-        /// <example>1000</example>
+        /*
+        <example>1000</example>
+        */
         [DataMember(Name = "size", EmitDefaultValue = false)]
         public int Size { get; set; }
 

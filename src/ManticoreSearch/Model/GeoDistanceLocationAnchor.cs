@@ -36,27 +36,27 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoDistanceLocationAnchor" /> class.
         /// </summary>
-        /// <param name="Lat">Latitude of the anchor point.</param>
-        /// <param name="Lon">Longitude of the anchor point.</param>
-        public GeoDistanceLocationAnchor(Object Lat = default(Object), Object Lon = default(Object))
+        /// <param name="lat">Latitude of the anchor point.</param>
+        /// <param name="lon">Longitude of the anchor point.</param>
+        public GeoDistanceLocationAnchor(decimal lat = default, decimal lon = default)
         {
-            this.Lat = Lat;
-            this.Lon = Lon;
+            this.Lat = lat;
+            this.Lon = lon;
         }
 
         /// <summary>
         /// Latitude of the anchor point
         /// </summary>
         /// <value>Latitude of the anchor point</value>
-        [DataMember(Name = "lat", EmitDefaultValue = true)]
-        public Object Lat { get; set; }
+        [DataMember(Name = "lat", EmitDefaultValue = false)]
+        public decimal Lat { get; set; }
 
         /// <summary>
         /// Longitude of the anchor point
         /// </summary>
         /// <value>Longitude of the anchor point</value>
-        [DataMember(Name = "lon", EmitDefaultValue = true)]
-        public Object Lon { get; set; }
+        [DataMember(Name = "lon", EmitDefaultValue = false)]
+        public decimal Lon { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

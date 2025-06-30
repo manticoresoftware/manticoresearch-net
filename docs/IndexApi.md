@@ -301,7 +301,7 @@ No authorization required
 
 <a id="partialreplace"></a>
 # **PartialReplace**
-> UpdateResponse PartialReplace (string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
+> UpdateResponse PartialReplace (string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
 
 Partially replaces a document in a table
 
@@ -329,7 +329,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var table = "table_example";  // string | Name of the percolate table
-            var id = 789L;  // long | Id of the document to replace
+            var id = 56;  // int | Id of the document to replace
             var replaceDocumentRequest = new ReplaceDocumentRequest(); // ReplaceDocumentRequest | 
 
             try
@@ -374,7 +374,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **table** | **string** | Name of the percolate table |  |
-| **id** | **long** | Id of the document to replace |  |
+| **id** | **int** | Id of the document to replace |  |
 | **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  |  |
 
 ### Return type

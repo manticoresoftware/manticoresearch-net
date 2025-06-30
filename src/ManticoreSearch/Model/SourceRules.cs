@@ -36,12 +36,12 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SourceRules" /> class.
         /// </summary>
-        /// <param name="Includes">List of fields to include in the response.</param>
-        /// <param name="Excludes">List of fields to exclude from the response.</param>
-        public SourceRules(Object Includes = default(Object), Object Excludes = default(Object))
+        /// <param name="includes">List of fields to include in the response.</param>
+        /// <param name="excludes">List of fields to exclude from the response.</param>
+        public SourceRules(List<string> includes = default, List<string> excludes = default)
         {
-            this.Includes = Includes;
-            this.Excludes = Excludes;
+            this.Includes = includes;
+            this.Excludes = excludes;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -49,15 +49,15 @@ namespace ManticoreSearch.Model
         /// List of fields to include in the response
         /// </summary>
         /// <value>List of fields to include in the response</value>
-        [DataMember(Name = "includes", EmitDefaultValue = true)]
-        public Object Includes { get; set; }
+        [DataMember(Name = "includes", EmitDefaultValue = false)]
+        public List<string> Includes { get; set; }
 
         /// <summary>
         /// List of fields to exclude from the response
         /// </summary>
         /// <value>List of fields to exclude from the response</value>
-        [DataMember(Name = "excludes", EmitDefaultValue = true)]
-        public Object Excludes { get; set; }
+        [DataMember(Name = "excludes", EmitDefaultValue = false)]
+        public List<string> Excludes { get; set; }
 
         /// <summary>
         /// Gets or Sets additional properties

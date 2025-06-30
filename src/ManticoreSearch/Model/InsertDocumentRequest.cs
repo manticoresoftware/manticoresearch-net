@@ -41,26 +41,26 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertDocumentRequest" /> class.
         /// </summary>
-        /// <param name="Table">Name of the table to insert the document into (required).</param>
-        /// <param name="Cluster">Name of the cluster to insert the document into.</param>
-        /// <param name="Id">Document ID. If not provided, an ID will be auto-generated .</param>
-        /// <param name="Doc">Object containing document data  (required).</param>
-        public InsertDocumentRequest(string Table = default(string), string Cluster = default(string), long Id = default(long), Object Doc = default(Object))
+        /// <param name="table">Name of the table to insert the document into (required).</param>
+        /// <param name="cluster">Name of the cluster to insert the document into.</param>
+        /// <param name="id">Document ID. If not provided, an ID will be auto-generated .</param>
+        /// <param name="doc">Object containing document data  (required).</param>
+        public InsertDocumentRequest(string table = default, string cluster = default, int id = default, Object doc = default)
         {
-            // to ensure "Table" is required (not null)
-            if (Table == null)
+            // to ensure "table" is required (not null)
+            if (table == null)
             {
-                throw new ArgumentNullException("Table is a required property for InsertDocumentRequest and cannot be null");
+                throw new ArgumentNullException("table is a required property for InsertDocumentRequest and cannot be null");
             }
-            this.Table = Table;
-            // to ensure "Doc" is required (not null)
-            if (Doc == null)
+            this.Table = table;
+            // to ensure "doc" is required (not null)
+            if (doc == null)
             {
-                throw new ArgumentNullException("Doc is a required property for InsertDocumentRequest and cannot be null");
+                throw new ArgumentNullException("doc is a required property for InsertDocumentRequest and cannot be null");
             }
-            this.Doc = Doc;
-            this.Cluster = Cluster;
-            this.Id = Id;
+            this.Doc = doc;
+            this.Cluster = cluster;
+            this.Id = id;
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Document ID. If not provided, an ID will be auto-generated </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Object containing document data 

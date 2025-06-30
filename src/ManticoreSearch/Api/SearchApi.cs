@@ -112,7 +112,7 @@ namespace ManticoreSearch.Api
         /// <param name="autocompleteRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Object&gt;</returns>
-        System.Threading.Tasks.Task<List<Object>> AutocompleteAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Object>> AutocompleteAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Performs an autocomplete search on a table
@@ -124,7 +124,7 @@ namespace ManticoreSearch.Api
         /// <param name="autocompleteRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Object&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Object>>> AutocompleteWithHttpInfoAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Object>>> AutocompleteWithHttpInfoAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Perform reverse search on a percolate table
         /// </summary>
@@ -136,7 +136,7 @@ namespace ManticoreSearch.Api
         /// <param name="percolateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchResponse</returns>
-        System.Threading.Tasks.Task<SearchResponse> PercolateAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SearchResponse> PercolateAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Perform reverse search on a percolate table
@@ -149,7 +149,7 @@ namespace ManticoreSearch.Api
         /// <param name="percolateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SearchResponse>> PercolateWithHttpInfoAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SearchResponse>> PercolateWithHttpInfoAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Performs a search on a table
         /// </summary>
@@ -160,7 +160,7 @@ namespace ManticoreSearch.Api
         /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchResponse</returns>
-        System.Threading.Tasks.Task<SearchResponse> SearchAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SearchResponse> SearchAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Performs a search on a table
@@ -172,7 +172,7 @@ namespace ManticoreSearch.Api
         /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SearchResponse>> SearchWithHttpInfoAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SearchResponse>> SearchWithHttpInfoAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -449,7 +449,7 @@ namespace ManticoreSearch.Api
         /// <param name="autocompleteRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Object&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Object>> AutocompleteAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Object>> AutocompleteAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<List<Object>> localVarResponse = await AutocompleteWithHttpInfoAsync(autocompleteRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -462,7 +462,7 @@ namespace ManticoreSearch.Api
         /// <param name="autocompleteRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Object&gt;)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<List<Object>>> AutocompleteWithHttpInfoAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<List<Object>>> AutocompleteWithHttpInfoAsync(AutocompleteRequest autocompleteRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'autocompleteRequest' is set
             if (autocompleteRequest == null)
@@ -574,7 +574,7 @@ namespace ManticoreSearch.Api
         /// <param name="percolateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchResponse</returns>
-        public async System.Threading.Tasks.Task<SearchResponse> PercolateAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SearchResponse> PercolateAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<SearchResponse> localVarResponse = await PercolateWithHttpInfoAsync(table, percolateRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -588,7 +588,7 @@ namespace ManticoreSearch.Api
         /// <param name="percolateRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SearchResponse>> PercolateWithHttpInfoAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SearchResponse>> PercolateWithHttpInfoAsync(string table, PercolateRequest percolateRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'table' is set
             if (table == null)
@@ -697,7 +697,7 @@ namespace ManticoreSearch.Api
         /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchResponse</returns>
-        public async System.Threading.Tasks.Task<SearchResponse> SearchAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SearchResponse> SearchAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<SearchResponse> localVarResponse = await SearchWithHttpInfoAsync(searchRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -710,7 +710,7 @@ namespace ManticoreSearch.Api
         /// <param name="searchRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SearchResponse>> SearchWithHttpInfoAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<SearchResponse>> SearchWithHttpInfoAsync(SearchRequest searchRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'searchRequest' is set
             if (searchRequest == null)

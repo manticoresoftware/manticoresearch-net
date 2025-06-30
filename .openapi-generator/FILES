@@ -7,6 +7,8 @@ appveyor.yml
 docs/AggComposite.md
 docs/AggCompositeSource.md
 docs/AggCompositeTerm.md
+docs/AggDateHistogram.md
+docs/AggHistogram.md
 docs/AggTerms.md
 docs/Aggregation.md
 docs/AutocompleteRequest.md
@@ -20,6 +22,7 @@ docs/GeoDistance.md
 docs/GeoDistanceLocationAnchor.md
 docs/Highlight.md
 docs/HighlightFieldOption.md
+docs/HighlightFields.md
 docs/HitsHits.md
 docs/IndexApi.md
 docs/InsertDocumentRequest.md
@@ -56,6 +59,8 @@ src/ManticoreSearch.Test/ManticoreSearch.Test.csproj
 src/ManticoreSearch.Test/Model/AggCompositeSourceTests.cs
 src/ManticoreSearch.Test/Model/AggCompositeTermTests.cs
 src/ManticoreSearch.Test/Model/AggCompositeTests.cs
+src/ManticoreSearch.Test/Model/AggDateHistogramTests.cs
+src/ManticoreSearch.Test/Model/AggHistogramTests.cs
 src/ManticoreSearch.Test/Model/AggTermsTests.cs
 src/ManticoreSearch.Test/Model/AggregationTests.cs
 src/ManticoreSearch.Test/Model/AutocompleteRequestTests.cs
@@ -68,6 +73,7 @@ src/ManticoreSearch.Test/Model/FulltextFilterTests.cs
 src/ManticoreSearch.Test/Model/GeoDistanceLocationAnchorTests.cs
 src/ManticoreSearch.Test/Model/GeoDistanceTests.cs
 src/ManticoreSearch.Test/Model/HighlightFieldOptionTests.cs
+src/ManticoreSearch.Test/Model/HighlightFieldsTests.cs
 src/ManticoreSearch.Test/Model/HighlightTests.cs
 src/ManticoreSearch.Test/Model/HitsHitsTests.cs
 src/ManticoreSearch.Test/Model/InsertDocumentRequestTests.cs
@@ -119,6 +125,8 @@ src/ManticoreSearch/Model/AbstractOpenAPISchema.cs
 src/ManticoreSearch/Model/AggComposite.cs
 src/ManticoreSearch/Model/AggCompositeSource.cs
 src/ManticoreSearch/Model/AggCompositeTerm.cs
+src/ManticoreSearch/Model/AggDateHistogram.cs
+src/ManticoreSearch/Model/AggHistogram.cs
 src/ManticoreSearch/Model/AggTerms.cs
 src/ManticoreSearch/Model/Aggregation.cs
 src/ManticoreSearch/Model/AutocompleteRequest.cs
@@ -132,6 +140,7 @@ src/ManticoreSearch/Model/GeoDistance.cs
 src/ManticoreSearch/Model/GeoDistanceLocationAnchor.cs
 src/ManticoreSearch/Model/Highlight.cs
 src/ManticoreSearch/Model/HighlightFieldOption.cs
+src/ManticoreSearch/Model/HighlightFields.cs
 src/ManticoreSearch/Model/HitsHits.cs
 src/ManticoreSearch/Model/InsertDocumentRequest.cs
 src/ManticoreSearch/Model/Join.cs

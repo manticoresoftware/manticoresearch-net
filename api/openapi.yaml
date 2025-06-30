@@ -71,20 +71,20 @@ paths:
             - "'request=SearchRequest(table=\"test\",query=Query(query_string=\"abc\"\
               ))'"
             schema:
-              $ref: '#/components/schemas/searchRequest'
+              $ref: "#/components/schemas/searchRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/searchResponse'
+                $ref: "#/components/schemas/searchResponse"
           description: Ok
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Performs a search on a table
       tags:
@@ -113,20 +113,20 @@ paths:
             example:
             - "'request=AutocompleteRequest(table=\"test\",query=\"abc\")'"
             schema:
-              $ref: '#/components/schemas/autocompleteRequest'
+              $ref: "#/components/schemas/autocompleteRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/sqlRawResponse'
+                $ref: "#/components/schemas/sqlRawResponse"
           description: Ok
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Performs an autocomplete search on a table
       tags:
@@ -162,13 +162,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/bulkResponse'
+                $ref: "#/components/schemas/bulkResponse"
           description: item updated
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Bulk table operations
       tags:
@@ -197,20 +197,20 @@ paths:
                 match:
                   title: apple
             schema:
-              $ref: '#/components/schemas/deleteDocumentRequest'
+              $ref: "#/components/schemas/deleteDocumentRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/deleteResponse'
+                $ref: "#/components/schemas/deleteResponse"
           description: item updated
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Delete a document in a table
       tags:
@@ -245,20 +245,20 @@ paths:
                 title: sample title
                 gid: 10
             schema:
-              $ref: '#/components/schemas/insertDocumentRequest'
+              $ref: "#/components/schemas/insertDocumentRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successResponse'
+                $ref: "#/components/schemas/successResponse"
           description: OK
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Create a new document in a table
       tags:
@@ -336,20 +336,20 @@ paths:
                   document:
                     title: some text to match
             schema:
-              $ref: '#/components/schemas/percolateRequest'
+              $ref: "#/components/schemas/percolateRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/searchResponse'
+                $ref: "#/components/schemas/searchResponse"
           description: items found
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Perform reverse search on a percolate table
       tags:
@@ -376,20 +376,20 @@ paths:
                 title: updated title
                 gid: 15
             schema:
-              $ref: '#/components/schemas/insertDocumentRequest'
+              $ref: "#/components/schemas/insertDocumentRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/successResponse'
+                $ref: "#/components/schemas/successResponse"
           description: OK
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Replace new document in a table
       tags:
@@ -432,7 +432,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/sqlResponse'
+                $ref: "#/components/schemas/sqlResponse"
           description: |
             In case of SELECT-only in mode none the response schema is the same as of `search`.
             In case of `mode=raw` or `raw_response=true` the response depends on the query executed.
@@ -440,7 +440,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Perform SQL requests
       tags:
@@ -471,20 +471,20 @@ paths:
                 equals:
                   cat_id: 2
             schema:
-              $ref: '#/components/schemas/updateDocumentRequest'
+              $ref: "#/components/schemas/updateDocumentRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/updateResponse'
+                $ref: "#/components/schemas/updateResponse"
           description: item updated
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Update a document in a table
       tags:
@@ -515,7 +515,7 @@ paths:
         name: id
         required: true
         schema:
-          format: int64
+          format: uint64
           type: integer
         style: simple
       requestBody:
@@ -525,20 +525,20 @@ paths:
               doc:
                 price: 20
             schema:
-              $ref: '#/components/schemas/replaceDocumentRequest'
+              $ref: "#/components/schemas/replaceDocumentRequest"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/updateResponse'
+                $ref: "#/components/schemas/updateResponse"
           description: item updated
         default:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/errorResponse'
+                $ref: "#/components/schemas/errorResponse"
           description: error
       summary: Partially replaces a document in a table
       tags:
@@ -564,9 +564,59 @@ components:
       description: Object containing terms used for composite aggregation.
       properties:
         terms:
-          $ref: '#/components/schemas/aggCompositeTerm'
+          $ref: "#/components/schemas/aggCompositeTerm"
       required:
       - terms
+    aggHistogram:
+      additionalProperties: false
+      description: "Object to use histograms in aggregation, i.e., grouping search\
+        \ results by histogram values"
+      properties:
+        field:
+          description: Field to group by
+          example: field
+          type: string
+        interval:
+          description: Interval of the histogram values
+          example: 10
+          type: integer
+        offset:
+          description: Offset of the histogram values. Default value is 0.
+          example: 1
+          type: integer
+        keyed:
+          description: Flag that defines if a search response will be a dictionary
+            with the bucket keys. Default value is false.
+          example: true
+          type: boolean
+      required:
+      - field
+      - interval
+    aggDateHistogram:
+      additionalProperties: false
+      description: "Object to use histograms in aggregation, i.e., grouping search\
+        \ results by histogram values"
+      properties:
+        field:
+          description: Field to group by
+          example: field
+          type: string
+        interval:
+          description: Interval of the histogram values
+          example: 10
+          type: integer
+        offset:
+          description: Offset of the histogram values. Default value is 0.
+          example: 1
+          type: integer
+        keyed:
+          description: Flag that defines if a search response will be a dictionary
+            with the bucket keys. Default value is false.
+          example: true
+          type: boolean
+      required:
+      - field
+      - interval
     aggComposite:
       additionalProperties: false
       description: "Object to perform composite aggregation, i.e., grouping search\
@@ -579,7 +629,7 @@ components:
         sources:
           items:
             additionalProperties:
-              $ref: '#/components/schemas/aggCompositeSource'
+              $ref: "#/components/schemas/aggCompositeSource"
             description: List of objects that contain terms used for composite aggregation.
           type: array
     aggTerms:
@@ -601,12 +651,14 @@ components:
       - description: Object used for grouping search results
         properties:
           terms:
-            $ref: '#/components/schemas/aggTerms'
+            $ref: "#/components/schemas/aggTerms"
           sort:
             items: {}
             type: array
           composite:
-            $ref: '#/components/schemas/aggComposite'
+            $ref: "#/components/schemas/aggComposite"
+          histogram:
+            $ref: "#/components/schemas/aggHistogram"
     knnQuery:
       description: Object representing a k-nearest neighbor search query
       properties:
@@ -623,13 +675,13 @@ components:
           type: array
         doc_id:
           description: The docuemnt ID used as input for the KNN search
-          format: int64
+          format: uint64
           type: integer
         ef:
           description: Optional parameter controlling the accuracy of the search
           type: integer
         filter:
-          $ref: '#/components/schemas/queryFilter'
+          $ref: "#/components/schemas/queryFilter"
       required:
       - field
       - k
@@ -638,7 +690,7 @@ components:
       description: Object to perform geo-distance based filtering on queries
       properties:
         location_anchor:
-          $ref: '#/components/schemas/geoDistance_location_anchor'
+          $ref: "#/components/schemas/geoDistance_location_anchor"
         location_source:
           description: Field name in the document that contains location data
         distance_type:
@@ -651,10 +703,10 @@ components:
           pattern: /^\.+(km|m|cm|mm|mi|yd|ft|in|NM|nmi|kilometers|meters|centimeters|millimeters|miles|yards|foots|inches|nauticalmiles|)$/
     searchQuery:
       allOf:
-      - $ref: '#/components/schemas/queryFilter'
+      - $ref: "#/components/schemas/queryFilter"
       - properties:
           highlight:
-            $ref: '#/components/schemas/highlight'
+            $ref: "#/components/schemas/highlight"
       description: Defines a query structure for performing search operations
     searchRequest:
       description: Request object for search operation
@@ -667,22 +719,22 @@ components:
           description: The table to perform the search on
           type: string
         query:
-          $ref: '#/components/schemas/searchQuery'
+          $ref: "#/components/schemas/searchQuery"
         join:
           description: Join clause to combine search data from multiple tables
           items:
-            $ref: '#/components/schemas/join'
+            $ref: "#/components/schemas/join"
           type: array
         highlight:
-          $ref: '#/components/schemas/highlight'
+          $ref: "#/components/schemas/highlight"
         limit:
           description: Maximum number of results to return
           type: integer
         knn:
-          $ref: '#/components/schemas/knnQuery'
+          $ref: "#/components/schemas/knnQuery"
         aggs:
           additionalProperties:
-            $ref: '#/components/schemas/aggregation'
+            $ref: "#/components/schemas/aggregation"
           description: Defines aggregation settings for grouping results
           example:
             agg1:
@@ -718,9 +770,9 @@ components:
       required:
       - table
     queryFilterAlias1:
-      $ref: '#/components/schemas/queryFilter'
+      $ref: "#/components/schemas/queryFilter"
     queryFilterAlias2:
-      $ref: '#/components/schemas/queryFilter'
+      $ref: "#/components/schemas/queryFilter"
     autocompleteRequest:
       description: Object containing the data for performing an autocomplete search.
       example:
@@ -755,17 +807,17 @@ components:
         must:
           description: Query clauses that must match for the document to be included
           items:
-            $ref: '#/components/schemas/queryFilter'
+            $ref: "#/components/schemas/queryFilter"
           type: array
         must_not:
           description: Query clauses that must not match for the document to be included
           items:
-            $ref: '#/components/schemas/queryFilterAlias1'
+            $ref: "#/components/schemas/queryFilterAlias1"
           type: array
         should:
           description: "Query clauses that should be matched, but are not required"
           items:
-            $ref: '#/components/schemas/queryFilterAlias2'
+            $ref: "#/components/schemas/queryFilterAlias2"
           type: array
     bulkResponse:
       description: Success response for bulk search requests
@@ -812,7 +864,7 @@ components:
           type: string
         id:
           description: The ID of document for deletion
-          format: int64
+          format: uint64
           type: integer
         query:
           description: Defines the criteria to match documents for deletion
@@ -834,7 +886,7 @@ components:
         id:
           description: "The ID of the deleted document. If multiple documents are\
             \ deleted, the ID of the first deleted document is returned"
-          format: int64
+          format: uint64
           type: integer
         found:
           description: Indicates whether any documents to be deleted were found
@@ -874,8 +926,7 @@ components:
             - html
             type: string
           fields:
-            nullable: true
-            type: object
+            $ref: "#/components/schemas/highlightFields"
           force_all_words:
             description: Ignores the length limit until the result includes all keywords
             type: boolean
@@ -884,7 +935,7 @@ components:
               the entire text
             type: boolean
           highlight_query:
-            $ref: '#/components/schemas/queryFilter'
+            $ref: "#/components/schemas/queryFilter"
           html_strip_mode:
             description: Defines the mode for handling HTML markup in the highlight
             enum:
@@ -926,7 +977,14 @@ components:
             description: Defines whether to additionally break snippets by phrase
               boundary characters
             type: boolean
-      - $ref: '#/components/schemas/highlightFieldOption'
+      - $ref: "#/components/schemas/highlightFieldOption"
+    highlightFields:
+      anyOf:
+      - items:
+          type: string
+        type: array
+      - type: object
+      description: List of fields available for highlighting
     highlightFieldOption:
       additionalProperties: false
       description: Options for controlling the behavior of highlighting on a per-field
@@ -954,7 +1012,7 @@ components:
       properties:
         _id:
           description: The ID of the matched document
-          format: int64
+          format: uuint64
           type: integer
         _score:
           description: The score of the matched document
@@ -997,7 +1055,7 @@ components:
         id:
           description: |
             Document ID. If not provided, an ID will be auto-generated
-          format: int64
+          format: uint64
           type: integer
         doc:
           additionalProperties: false
@@ -1012,11 +1070,11 @@ components:
       - additionalProperties: false
         properties:
           right:
-            $ref: '#/components/schemas/joinCond'
+            $ref: "#/components/schemas/joinCond"
       - additionalProperties: false
         properties:
           left:
-            $ref: '#/components/schemas/joinCond'
+            $ref: "#/components/schemas/joinCond"
       - additionalProperties: false
         description: Defines joined tables
         properties:
@@ -1038,10 +1096,10 @@ components:
           "on":
             description: List of objects defining joined tables
             items:
-              $ref: '#/components/schemas/joinOn'
+              $ref: "#/components/schemas/joinOn"
             type: array
           query:
-            $ref: '#/components/schemas/fulltextFilter'
+            $ref: "#/components/schemas/fulltextFilter"
           table:
             description: Basic table of the join operation
             type: string
@@ -1112,21 +1170,18 @@ components:
           type: object
     queryFilter:
       allOf:
-      - $ref: '#/components/schemas/fulltextFilter'
+      - $ref: "#/components/schemas/fulltextFilter"
       - additionalProperties: false
         properties:
           bool:
-            $ref: '#/components/schemas/boolFilter'
+            $ref: "#/components/schemas/boolFilter"
           equals: {}
           in:
-            description: Filter to match a given set of attribute values.
-            type: object
+            $ref: "#/components/schemas/queryFilter_allOf_in"
           range:
-            description: Filter to match a given range of attribute values passed
-              in Range objects
-            type: object
+            $ref: "#/components/schemas/queryFilter_allOf_range"
           geo_distance:
-            $ref: '#/components/schemas/geoDistance'
+            $ref: "#/components/schemas/geoDistance"
       description: "Object used to apply various conditions, such as full-text matching\
         \ or attribute filtering, to a search query"
     replaceDocumentRequest:
@@ -1182,7 +1237,7 @@ components:
           type: string
         id:
           description: ID of the document affected by the request operation
-          format: int64
+          format: uint64
           type: integer
         created:
           description: Indicates whether the document was created as a result of the
@@ -1203,7 +1258,7 @@ components:
         queries in a percolate table
       properties:
         query:
-          $ref: '#/components/schemas/percolateRequest_query'
+          $ref: "#/components/schemas/percolateRequest_query"
       required:
       - query
     searchResponse:
@@ -1238,7 +1293,7 @@ components:
           description: Aggregated search results grouped by the specified criteria
           type: object
         hits:
-          $ref: '#/components/schemas/searchResponse_hits'
+          $ref: "#/components/schemas/searchResponse_hits"
         profile:
           description: "Profile information about the search execution, if profiling\
             \ is enabled"
@@ -1252,8 +1307,8 @@ components:
           type: object
     responseError:
       oneOf:
-      - $ref: '#/components/schemas/responseErrorDetails'
-      - $ref: '#/components/schemas/responseErrorText'
+      - $ref: "#/components/schemas/responseErrorDetails"
+      - $ref: "#/components/schemas/responseErrorText"
     responseErrorDetails:
       description: Detailed error information returned in case of an error response
       properties:
@@ -1281,7 +1336,7 @@ components:
         error: an error occured
       properties:
         error:
-          $ref: '#/components/schemas/responseError'
+          $ref: "#/components/schemas/responseError"
         status:
           default: 500
           description: HTTP status code of the error response
@@ -1308,8 +1363,8 @@ components:
       - total: 0
         error: null
       oneOf:
-      - $ref: '#/components/schemas/sqlRawResponse'
-      - $ref: '#/components/schemas/sqlObjResponse'
+      - $ref: "#/components/schemas/sqlRawResponse"
+      - $ref: "#/components/schemas/sqlObjResponse"
     updateDocumentRequest:
       description: Payload for updating a document or multiple documents in a table
       properties:
@@ -1327,10 +1382,10 @@ components:
           type: object
         id:
           description: Document ID
-          format: int64
+          format: uint64
           type: integer
         query:
-          $ref: '#/components/schemas/queryFilter'
+          $ref: "#/components/schemas/queryFilter"
       required:
       - doc
       - table
@@ -1348,7 +1403,7 @@ components:
           type: integer
         id:
           description: Document ID
-          format: int64
+          format: uint64
           type: integer
         result:
           description: "Result of the update operation, typically 'updated'"
@@ -1361,6 +1416,13 @@ components:
           description: Latitude of the anchor point
         lon:
           description: Longitude of the anchor point
+    queryFilter_allOf_in:
+      description: Filter to match a given set of attribute values.
+      type: object
+    queryFilter_allOf_range:
+      description: Filter to match a given range of attribute values passed in Range
+        objects
+      type: object
     percolateRequest_query:
       additionalProperties: false
       example:
@@ -1401,6 +1463,6 @@ components:
         hits:
           description: "Array of hit objects, each representing a matched document"
           items:
-            $ref: '#/components/schemas/hitsHits'
+            $ref: "#/components/schemas/hitsHits"
           type: array
 

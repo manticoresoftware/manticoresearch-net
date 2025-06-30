@@ -36,14 +36,16 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Aggregation" /> class.
         /// </summary>
-        /// <param name="Terms">Terms.</param>
-        /// <param name="Sort">Sort.</param>
-        /// <param name="Composite">Composite.</param>
-        public Aggregation(AggTerms Terms = default(AggTerms), List<Object> Sort = default(List<Object>), AggComposite Composite = default(AggComposite))
+        /// <param name="terms">terms.</param>
+        /// <param name="sort">sort.</param>
+        /// <param name="composite">composite.</param>
+        /// <param name="histogram">histogram.</param>
+        public Aggregation(AggTerms terms = default, List<Object> sort = default, AggComposite composite = default, AggHistogram histogram = default)
         {
-            this.Terms = Terms;
-            this.Sort = Sort;
-            this.Composite = Composite;
+            this.Terms = terms;
+            this.Sort = sort;
+            this.Composite = composite;
+            this.Histogram = histogram;
         }
 
         /// <summary>
@@ -65,6 +67,12 @@ namespace ManticoreSearch.Model
         public AggComposite Composite { get; set; }
 
         /// <summary>
+        /// Gets or Sets Histogram
+        /// </summary>
+        [DataMember(Name = "histogram", EmitDefaultValue = false)]
+        public AggHistogram Histogram { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -75,6 +83,7 @@ namespace ManticoreSearch.Model
             sb.Append("  Terms: ").Append(Terms).Append("\n");
             sb.Append("  Sort: ").Append(Sort).Append("\n");
             sb.Append("  Composite: ").Append(Composite).Append("\n");
+            sb.Append("  Histogram: ").Append(Histogram).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

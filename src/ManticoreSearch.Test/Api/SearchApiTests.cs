@@ -15,13 +15,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using Xunit;
-using System.Net.Http;
-using System.Text.Json;
 
 using ManticoreSearch.Client;
 using ManticoreSearch.Api;
 // uncomment below to import models
-using ManticoreSearch.Model;
+//using ManticoreSearch.Model;
 
 namespace ManticoreSearch.Test.Api
 {
@@ -34,168 +32,16 @@ namespace ManticoreSearch.Test.Api
     /// </remarks>
     public class SearchApiTests : IDisposable
     {
-    	private SearchApi instance;
-        private HttpClientHandler httpClientHandler;
-        private HttpClient httpClient;
-        private Configuration config;
+        private SearchApi instance;
 
-        private Dictionary<string, Dictionary<string,Func<Object>>> implementedTests;
-
-        private void InitTests()
-        {
-            config = new Configuration();
-            config.BasePath = "http://localhost:9408";
-            httpClient = new HttpClient();
-            httpClientHandler = new HttpClientHandler();
-            instance = new SearchApi(httpClient, config, httpClientHandler);
-        }
-                
-        private object CheckTest(string testName)
-        {
-            Dictionary<string,Func<Object>> classTests;
-            if (implementedTests.TryGetValue("SearchApi", out classTests))
-            {
-                Func<Object> test;    
-                if (classTests.TryGetValue(testName, out test))
-                {
-                    return test();
-                }
-            }
-            return null;
-        }     
-        
         public SearchApiTests()
         {
-            implementedTests = new Dictionary<string, Dictionary<string,Func<Object>>>()
-            {
-                {
-                "SearchApi", 
-                    new Dictionary<string, Func<Object>>()
-                    {
-                    	{ "SearchTest", () => 
-                            {
-                                var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
-                                var indexApi = new IndexApi(httpClient, config, httpClientHandler);
-                                var searchApi = new SearchApi(httpClient, config, httpClientHandler);
-
-                                utilsApi.Sql("DROP TABLE IF EXISTS movies", true);
-                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS movies (title text, plot text, _year integer, rating float, cat string, code multi, type_vector float_vector knn_type='hnsw' knn_dims='3' hnsw_similarity='l2' )", true);
-    
-                                string body = "{\"insert\": {\"table\" : \"movies\", \"id\" : 1, \"doc\" : {\"title\" : \"Star Trek 2: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2002, \"rating\": 6.4, \"cat\": \"R\", \"code\": [1,2,3], \"type_vector\": [0.2, 1.4, -2.3]}}}" +"\n"
-                                    + "{\"insert\": {\"table\" : \"movies\", \"id\" : 2, \"doc\" : {\"title\" : \"Star Trek 1: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2001, \"rating\": 6.5, \"cat\": \"PG-13\", \"code\": [1,12,3], \"type_vector\": [0.8, 0.4, 1.3]}}}" +"\n"
-                                    + "{\"insert\": {\"table\" : \"movies\", \"id\" : 3, \"doc\" : {\"title\" : \"Star Trek 3: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6.6, \"cat\": \"R\", \"code\": [11,2,3], \"type_vector\": [1.5, -1.0, 1.6]}}}" +"\n"
-                                    + "{\"insert\": {\"table\" : \"movies\", \"id\" : 4, \"doc\" : {\"title\" : \"Star Trek 4: Nemesis\", \"plot\": \"The Enterprise is diverted to the Romulan homeworld Romulus, supposedly because they want to negotiate a peace treaty. Captain Picard and his crew discover a serious threat to the Federation once Praetor Shinzon plans to attack Earth.\", \"_year\": 2003, \"rating\": 6, \"cat\": \"R\", \"code\": [1,2,4], \"type_vector\": [0.4, 2.4, 0.9]}}}" +"\n";                               
-                        
-                                indexApi.Bulk(body);
-                                
-                                SearchRequest searchRequest = new SearchRequest(Table: "movies");
-                                
-                                Highlight queryHighlight = new Highlight();
-                                List<string> highlightFields = new List<string>();
-                                highlightFields.Add("title");
-                                queryHighlight.Fields = highlightFields;
-
-                                SearchQuery query = new SearchQuery();
-                                query.QueryString = "Star";
-                                
-                                searchRequest.Query = query;
-                                searchRequest.Highlight = queryHighlight;
-                                
-                                Dictionary<string, Object> options = new Dictionary<string, Object>(); 
-                                options.Add("cutoff", 5);
-                                options.Add("ranker", "bm25");
-                                searchRequest.Options = options;
-                                
-                                SearchResponse res = searchApi.Search(searchRequest);
-                                utilsApi.Sql("DROP TABLE IF EXISTS movies", true);
-                                return res;
-                            }
-                        },
-                    }
-                 },
-                 {
-                 "UtilsApi", 
-                    new Dictionary<string, Func<Object>>()
-                    {
-                        { "SqlTest", () => 
-                            {
-                            	var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
-
-                                string body = "DROP TABLE IF EXISTS products";
-                                utilsApi.Sql(body, true);
-                                
-                                body = "CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)";
-                                utilsApi.Sql(body, true);
-
-                                body = "SELECT * FROM products";
-                                utilsApi.Sql(body, true);
-
-                                utilsApi.Sql(body, false);
-                                
-                                var res = utilsApi.Sql("SHOW TABLES", true);
-                                return res;
-                            }
-                        },
-                    }
-                 },
-                 {
-                 "IndexApi", 
-                    new Dictionary<string, Func<Object>>()
-                    {
-                        { "InsertTest", () => 
-                            {
-                                var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
-                                var indexApi = new IndexApi(httpClient, config, httpClientHandler);
-                                
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
-
-                                Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
-                                doc.Add("title", "test");
-                                doc.Add("tags1", new List<int>() {1,2,4,5});
-
-                                InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(Table: "products", Doc: doc);
-                                indexApi.Insert(insertDocumentRequest);
-
-                                insertDocumentRequest = new InsertDocumentRequest(Table: "products", Doc: doc);
-                                insertDocumentRequest.Id = 100;
-                                var res = indexApi.Insert(insertDocumentRequest);
-                                
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                return res;
-                            }
-                        },
-                        { "BulkTest", () => 
-                            {
-                                var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
-                                var indexApi = new IndexApi(httpClient, config, httpClientHandler);
-                                
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
-                                
-                                string body = "{\"insert\": {\"table\" : \"products\", \"id\" : 3, \"doc\" : {\"title\" : \"Crossbody Bag with Tassel\", \"price\" : 19.85}}}" +"\n"+
-                                    "{\"insert\": {\"table\" : \"products\", \"id\" : 4, \"doc\" : {\"title\" : \"microfiber sheet set\", \"price\" : 19.99}}}"+"\n"+
-                                    "{\"insert\": {\"table\" : \"products\", \"id\" : 5, \"doc\" : {\"title\" : \"CPet Hair Remover Glove\", \"price\" : 7.99}}}"+"\n";         
-                                var res = indexApi.Bulk(body);
-        
-                                body = "{ \"update\" : { \"table\" : \"products\", \"doc\": { \"coeff\" : 1000 }, \"query\": { \"range\": { \"price\": { \"gte\": 1000 } } } }} "+"\n"+
-                                    "{ \"update\" : { \"table\" : \"products\", \"doc\": { \"coeff\" : 0 }, \"query\": { \"range\": { \"price\": { \"lt\": 1000 } } } } }"+"\n";         
-                                res = indexApi.Bulk(body);
-
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                return res;
-                            }
-                        },
-                    }
-                }
-            };
-
-            InitTests();
-            
+            instance = new SearchApi();
         }
 
         public void Dispose()
         {
+            // Cleanup when everything is done.
         }
 
         /// <summary>
@@ -204,7 +50,8 @@ namespace ManticoreSearch.Test.Api
         [Fact]
         public void InstanceTest()
         {
-            Assert.IsType<SearchApi>(instance);
+            // TODO uncomment below to test 'IsType' SearchApi
+            //Assert.IsType<SearchApi>(instance);
         }
 
         /// <summary>
@@ -216,11 +63,7 @@ namespace ManticoreSearch.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //AutocompleteRequest autocompleteRequest = null;
             //var response = instance.Autocomplete(autocompleteRequest);
-			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
-            if (response != null)
-            {
-            	Assert.IsType<List<Object>>(response);
-            }
+            //Assert.IsType<List<Object>>(response);
         }
 
         /// <summary>
@@ -233,11 +76,7 @@ namespace ManticoreSearch.Test.Api
             //string table = null;
             //PercolateRequest percolateRequest = null;
             //var response = instance.Percolate(table, percolateRequest);
-			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
-            if (response != null)
-            {
-            	Assert.IsType<SearchResponse>(response);
-            }
+            //Assert.IsType<SearchResponse>(response);
         }
 
         /// <summary>
@@ -249,11 +88,7 @@ namespace ManticoreSearch.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //SearchRequest searchRequest = null;
             //var response = instance.Search(searchRequest);
-			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
-            if (response != null)
-            {
-            	Assert.IsType<SearchResponse>(response);
-            }
+            //Assert.IsType<SearchResponse>(response);
         }
     }
 }

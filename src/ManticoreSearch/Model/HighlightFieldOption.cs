@@ -36,18 +36,18 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="HighlightFieldOption" /> class.
         /// </summary>
-        /// <param name="FragmentSize">Maximum size of the text fragments in highlighted snippets per field.</param>
-        /// <param name="Limit">Maximum size of snippets per field.</param>
-        /// <param name="LimitSnippets">Maximum number of snippets per field.</param>
-        /// <param name="LimitWords">Maximum number of words per field.</param>
-        /// <param name="NumberOfFragments">Total number of highlighted fragments per field.</param>
-        public HighlightFieldOption(int FragmentSize = default(int), int Limit = default(int), int LimitSnippets = default(int), int LimitWords = default(int), int NumberOfFragments = default(int))
+        /// <param name="fragmentSize">Maximum size of the text fragments in highlighted snippets per field.</param>
+        /// <param name="limit">Maximum size of snippets per field.</param>
+        /// <param name="limitSnippets">Maximum number of snippets per field.</param>
+        /// <param name="limitWords">Maximum number of words per field.</param>
+        /// <param name="numberOfFragments">Total number of highlighted fragments per field.</param>
+        public HighlightFieldOption(int fragmentSize = default, int limit = default, int limitSnippets = default, int limitWords = default, int numberOfFragments = default)
         {
-            this.FragmentSize = FragmentSize;
-            this.Limit = Limit;
-            this.LimitSnippets = LimitSnippets;
-            this.LimitWords = LimitWords;
-            this.NumberOfFragments = NumberOfFragments;
+            this.FragmentSize = fragmentSize;
+            this.Limit = limit;
+            this.LimitSnippets = limitSnippets;
+            this.LimitWords = limitWords;
+            this.NumberOfFragments = numberOfFragments;
         }
 
         /// <summary>

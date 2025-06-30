@@ -34,7 +34,7 @@ namespace ManticoreSearch.Model
     public partial class Match : IValidatableObject
     {
         /// <summary>
-        /// Defines VarOperator
+        /// Defines Operator
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OperatorEnum
@@ -54,10 +54,10 @@ namespace ManticoreSearch.Model
 
 
         /// <summary>
-        /// Gets or Sets VarOperator
+        /// Gets or Sets Operator
         /// </summary>
         [DataMember(Name = "operator", EmitDefaultValue = false)]
-        public OperatorEnum? VarOperator { get; set; }
+        public OperatorEnum? Operator { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Match" /> class.
         /// </summary>
@@ -66,19 +66,19 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Match" /> class.
         /// </summary>
-        /// <param name="Query">Query (required).</param>
-        /// <param name="VarOperator">VarOperator.</param>
-        /// <param name="Boost">Boost.</param>
-        public Match(string Query = default(string), OperatorEnum? VarOperator = default(OperatorEnum?), decimal Boost = default(decimal))
+        /// <param name="query">query (required).</param>
+        /// <param name="varOperator">varOperator.</param>
+        /// <param name="boost">boost.</param>
+        public Match(string query = default, OperatorEnum? varOperator = default, decimal boost = default)
         {
-            // to ensure "Query" is required (not null)
-            if (Query == null)
+            // to ensure "query" is required (not null)
+            if (query == null)
             {
-                throw new ArgumentNullException("Query is a required property for Match and cannot be null");
+                throw new ArgumentNullException("query is a required property for Match and cannot be null");
             }
-            this.Query = Query;
-            this.VarOperator = VarOperator;
-            this.Boost = Boost;
+            this.Query = query;
+            this.Operator = varOperator;
+            this.Boost = boost;
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ManticoreSearch.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Match {\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
-            sb.Append("  VarOperator: ").Append(VarOperator).Append("\n");
+            sb.Append("  Operator: ").Append(Operator).Append("\n");
             sb.Append("  Boost: ").Append(Boost).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

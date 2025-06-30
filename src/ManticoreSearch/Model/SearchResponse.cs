@@ -36,22 +36,22 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchResponse" /> class.
         /// </summary>
-        /// <param name="Took">Time taken to execute the search.</param>
-        /// <param name="TimedOut">Indicates whether the search operation timed out.</param>
-        /// <param name="Aggregations">Aggregated search results grouped by the specified criteria.</param>
-        /// <param name="Hits">Hits.</param>
-        /// <param name="Profile">Profile information about the search execution, if profiling is enabled.</param>
-        /// <param name="Scroll">Scroll token to be used fo pagination.</param>
-        /// <param name="Warning">Warnings encountered during the search operation.</param>
-        public SearchResponse(int Took = default(int), bool TimedOut = default(bool), Object Aggregations = default(Object), SearchResponseHits Hits = default(SearchResponseHits), Object Profile = default(Object), string Scroll = default(string), Object Warning = default(Object))
+        /// <param name="took">Time taken to execute the search.</param>
+        /// <param name="timedOut">Indicates whether the search operation timed out.</param>
+        /// <param name="aggregations">Aggregated search results grouped by the specified criteria.</param>
+        /// <param name="hits">hits.</param>
+        /// <param name="profile">Profile information about the search execution, if profiling is enabled.</param>
+        /// <param name="scroll">Scroll token to be used fo pagination.</param>
+        /// <param name="warning">Warnings encountered during the search operation.</param>
+        public SearchResponse(int took = default, bool timedOut = default, Object aggregations = default, SearchResponseHits hits = default, Object profile = default, string scroll = default, Object warning = default)
         {
-            this.Took = Took;
-            this.TimedOut = TimedOut;
-            this.Aggregations = Aggregations;
-            this.Hits = Hits;
-            this.Profile = Profile;
-            this.Scroll = Scroll;
-            this.Warning = Warning;
+            this.Took = took;
+            this.TimedOut = timedOut;
+            this.Aggregations = aggregations;
+            this.Hits = hits;
+            this.Profile = profile;
+            this.Scroll = scroll;
+            this.Warning = warning;
         }
 
         /// <summary>

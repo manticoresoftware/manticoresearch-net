@@ -36,16 +36,16 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FulltextFilter" /> class.
         /// </summary>
-        /// <param name="QueryString">Filter object defining a query string.</param>
-        /// <param name="Match">Filter object defining a match keyword passed as a string or in a Match object.</param>
-        /// <param name="MatchPhrase">Filter object defining a match phrase.</param>
-        /// <param name="MatchAll">Filter object to select all documents.</param>
-        public FulltextFilter(string QueryString = default(string), Object Match = default(Object), Object MatchPhrase = default(Object), Object MatchAll = default(Object))
+        /// <param name="queryString">Filter object defining a query string.</param>
+        /// <param name="match">Filter object defining a match keyword passed as a string or in a Match object.</param>
+        /// <param name="matchPhrase">Filter object defining a match phrase.</param>
+        /// <param name="matchAll">Filter object to select all documents.</param>
+        public FulltextFilter(string queryString = default, Object match = default, Object matchPhrase = default, Object matchAll = default)
         {
-            this.QueryString = QueryString;
-            this.Match = Match;
-            this.MatchPhrase = MatchPhrase;
-            this.MatchAll = MatchAll;
+            this.QueryString = queryString;
+            this.Match = match;
+            this.MatchPhrase = matchPhrase;
+            this.MatchAll = matchAll;
         }
 
         /// <summary>

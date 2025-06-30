@@ -92,12 +92,12 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'VarBool'
+        /// Test the property 'Bool'
         /// </summary>
         [Fact]
-        public void VarBoolTest()
+        public void BoolTest()
         {
-            // TODO unit test for the property 'VarBool'
+            // TODO unit test for the property 'Bool'
         }
 
         /// <summary>
@@ -110,12 +110,12 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'VarIn'
+        /// Test the property 'In'
         /// </summary>
         [Fact]
-        public void VarInTest()
+        public void InTest()
         {
-            // TODO unit test for the property 'VarIn'
+            // TODO unit test for the property 'In'
         }
 
         /// <summary>

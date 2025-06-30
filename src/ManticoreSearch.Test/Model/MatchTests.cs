@@ -65,12 +65,12 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'VarOperator'
+        /// Test the property 'Operator'
         /// </summary>
         [Fact]
-        public void VarOperatorTest()
+        public void OperatorTest()
         {
-            // TODO unit test for the property 'VarOperator'
+            // TODO unit test for the property 'Operator'
         }
 
         /// <summary>

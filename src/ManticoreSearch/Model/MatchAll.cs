@@ -60,8 +60,8 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="MatchAll" /> class.
         /// </summary>
-        /// <param name="All">All (required).</param>
-        public MatchAll(AllEnum All = default(AllEnum))
+        /// <param name="all">all (required).</param>
+        public MatchAll(AllEnum all = default)
         {
             this.All = "{}";
         }

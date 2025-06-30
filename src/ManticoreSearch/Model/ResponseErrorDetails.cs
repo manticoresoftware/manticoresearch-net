@@ -41,19 +41,19 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseErrorDetails" /> class.
         /// </summary>
-        /// <param name="Type">Type or category of the error (required).</param>
-        /// <param name="Reason">Detailed explanation of why the error occurred.</param>
-        /// <param name="Table">The table related to the error, if applicable.</param>
-        public ResponseErrorDetails(string Type = default(string), string Reason = default(string), string Table = default(string))
+        /// <param name="type">Type or category of the error (required).</param>
+        /// <param name="reason">Detailed explanation of why the error occurred.</param>
+        /// <param name="table">The table related to the error, if applicable.</param>
+        public ResponseErrorDetails(string type = default, string reason = default, string table = default)
         {
-            // to ensure "Type" is required (not null)
-            if (Type == null)
+            // to ensure "type" is required (not null)
+            if (type == null)
             {
-                throw new ArgumentNullException("Type is a required property for ResponseErrorDetails and cannot be null");
+                throw new ArgumentNullException("type is a required property for ResponseErrorDetails and cannot be null");
             }
-            this.Type = Type;
-            this.Reason = Reason;
-            this.Table = Table;
+            this.Type = type;
+            this.Reason = reason;
+            this.Table = table;
         }
 
         /// <summary>

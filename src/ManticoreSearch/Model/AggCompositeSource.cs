@@ -41,15 +41,15 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AggCompositeSource" /> class.
         /// </summary>
-        /// <param name="Terms">Terms (required).</param>
-        public AggCompositeSource(AggCompositeTerm Terms = default(AggCompositeTerm))
+        /// <param name="terms">terms (required).</param>
+        public AggCompositeSource(AggCompositeTerm terms = default)
         {
-            // to ensure "Terms" is required (not null)
-            if (Terms == null)
+            // to ensure "terms" is required (not null)
+            if (terms == null)
             {
-                throw new ArgumentNullException("Terms is a required property for AggCompositeSource and cannot be null");
+                throw new ArgumentNullException("terms is a required property for AggCompositeSource and cannot be null");
             }
-            this.Terms = Terms;
+            this.Terms = terms;
         }
 
         /// <summary>
