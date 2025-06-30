@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-       NUPKG_FILEPATH=`dotnet pack | grep -o "/.*nupkg"`
+       NUPKG_FILEPATH=`dotnet pack -v | grep -o "/.*nupkg"`
        echo "Publish $NUPKG_FILEPATH"
 
