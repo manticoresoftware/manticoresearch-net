@@ -9,11 +9,18 @@ jobs:
     name: Publish the client to the public registry
     needs: test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '9.0.x' ]
     env:
       APIKEY: ${{ secrets.APIKEY }}
 
     steps:
     - uses: actions/checkout@v4
+    - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
     - run: |
        dotnet pack -v diag
 
