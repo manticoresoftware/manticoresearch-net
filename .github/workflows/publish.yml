@@ -22,5 +22,7 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
     - run: |
-       dotnet pack -v diag
+       NUPKG_FILEPATH=`dotnet pack | grep -o "/.*nupkg"`
+       echo "Publish $NUPKG_FILEPATH"
+       dotnet nuget push $NUPKG_FILEPATH --api-key $APIKEY --source https://api.nuget.org/v3/index.json
 
