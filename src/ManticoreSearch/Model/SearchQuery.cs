@@ -97,6 +97,7 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Gets or Sets PropertyEquals
         /// </summary>
+        [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
         [DataMember(Name = "equals", EmitDefaultValue = true)]
         public Object PropertyEquals { get; set; }
 

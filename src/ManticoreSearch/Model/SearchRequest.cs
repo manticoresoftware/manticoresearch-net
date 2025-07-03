@@ -170,12 +170,14 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Gets or Sets Sort
         /// </summary>
+        [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
         [DataMember(Name = "sort", EmitDefaultValue = true)]
         public Object Sort { get; set; }
 
         /// <summary>
         /// Gets or Sets Source
         /// </summary>
+        [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
         [DataMember(Name = "_source", EmitDefaultValue = true)]
         public Object Source { get; set; }
 

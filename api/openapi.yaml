@@ -1012,7 +1012,7 @@ components:
       properties:
         _id:
           description: The ID of the matched document
-          format: uuint64
+          format: uint64
           type: integer
         _score:
           description: The score of the matched document
