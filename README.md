@@ -117,7 +117,8 @@ namespace Example
 	            SearchRequest searchRequest = new SearchRequest(Index: "products");
                                 
                 Highlight queryHighlight = new Highlight();
-                HighlightFields highlightFields = new HighlightFields(new List<string>() { "title" });
+                List<string> highlightFields = new List<string>();
+                highlightFields.Add("title");
                 queryHighlight.Fields = highlightFields;
 
                 SearchQuery query = new SearchQuery();

@@ -47,7 +47,7 @@ namespace ManticoreSearch.Model
         /// <param name="docId">The docuemnt ID used as input for the KNN search.</param>
         /// <param name="ef">Optional parameter controlling the accuracy of the search.</param>
         /// <param name="filter">filter.</param>
-        public KnnQuery(string field = default, int k = default, List<decimal> queryVector = default, int docId = default, int ef = default, QueryFilter filter = default)
+        public KnnQuery(string field = default, int k = default, List<decimal> queryVector = default, UInt64 docId = default, int ef = default, QueryFilter filter = default)
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -88,7 +88,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The docuemnt ID used as input for the KNN search</value>
         [DataMember(Name = "doc_id", EmitDefaultValue = false)]
-        public int DocId { get; set; }
+        public UInt64 DocId { get; set; }
 
         /// <summary>
         /// Optional parameter controlling the accuracy of the search

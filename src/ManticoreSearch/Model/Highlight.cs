@@ -306,7 +306,6 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Gets or Sets HighlightQuery
         /// </summary>
-        [JsonProperty(NullValueHandling=NullValueHandling.Ignore)]
         [DataMember(Name = "highlight_query", EmitDefaultValue = true)]
         public QueryFilter HighlightQuery { get; set; }
 

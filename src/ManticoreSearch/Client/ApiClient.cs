@@ -43,8 +43,6 @@ namespace ManticoreSearch.Client
         private readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
         {
             // OpenAPI generated types generally hide default constructors.
-            NullValueHandling = NullValueHandling.Ignore,
-            MissingMemberHandling = MissingMemberHandling.Ignore,
             ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
             ContractResolver = new DefaultContractResolver
             {
@@ -407,21 +405,8 @@ namespace ManticoreSearch.Client
                     else
                     {
                         var serializer = new CustomJsonCodec(SerializerSettings, configuration);
-                        string data = "";
-                        if (options.Data.GetType().ToString() == "System.String")
-                        {
-                            data = options.Data.ToString();
-                        }
-                        else
-                        {
-                            data = serializer.Serialize(options.Data);
-                        }
-                        if (contentType != "application/x-ndjson") 
-                        {
-                            contentType = "application/json";
-                        } 
-                        request.Content = new StringContent(data, new UTF8Encoding(), contentType);
-
+                        request.Content = new StringContent(serializer.Serialize(options.Data), new UTF8Encoding(),
+                            "application/json");
                     }
                 }
             }
@@ -560,7 +545,7 @@ namespace ManticoreSearch.Client
                 // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
                 if (typeof(ManticoreSearch.Model.AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
                 {
-                    responseData = (T) typeof(T).GetMethod("FromJson").Invoke(null, new object[] { await response.Content.ReadAsStringAsync().ConfigureAwait(false) });
+                    responseData = (T) typeof(T).GetMethod("FromJson").Invoke(null, new object[] { response.Content });
                 }
                 else if (typeof(T).Name == "Stream") // for binary response
                 {
