@@ -414,10 +414,10 @@ namespace ManticoreSearch.Client
                         {
                             data = serializer.Serialize(options.Data);
                         }
-                        if (contentType != "application/x-ndjson") 
+                        if (contentType != "application/x-ndjson")
                         {
                             contentType = "application/json";
-                        } 
+                        }
                         request.Content = new StringContent(data, new UTF8Encoding(), contentType);
                     }
                 }
