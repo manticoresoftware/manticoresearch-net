@@ -53,8 +53,8 @@ namespace ManticoreSearch.Model
         /// <param name="offset">Starting point for pagination of the result.</param>
         /// <param name="options">Additional search options.</param>
         /// <param name="profile">Enable or disable profiling of the search request.</param>
-        /// <param name="sort">sort.</param>
-        /// <param name="source">source.</param>
+        /// <param name="sort">Sorting criteria for the search results.</param>
+        /// <param name="source">Specify which fields to include or exclude in the response.</param>
         /// <param name="trackScores">Enable or disable result weight calculation used for sorting.</param>
         public SearchRequest(string table = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, KnnQuery knn = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
         {
@@ -168,15 +168,17 @@ namespace ManticoreSearch.Model
         public bool Profile { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sort
+        /// Sorting criteria for the search results
         /// </summary>
-        [DataMember(Name = "sort", EmitDefaultValue = true)]
+        /// <value>Sorting criteria for the search results</value>
+        [DataMember(Name = "sort", EmitDefaultValue = false)]
         public Object Sort { get; set; }
 
         /// <summary>
-        /// Gets or Sets Source
+        /// Specify which fields to include or exclude in the response
         /// </summary>
-        [DataMember(Name = "_source", EmitDefaultValue = true)]
+        /// <value>Specify which fields to include or exclude in the response</value>
+        [DataMember(Name = "_source", EmitDefaultValue = false)]
         public Object Source { get; set; }
 
         /// <summary>

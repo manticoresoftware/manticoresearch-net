@@ -17,8 +17,8 @@ Name | Type | Description | Notes
 **Offset** | **int** | Starting point for pagination of the result | [optional] 
 **Options** | **Object** | Additional search options | [optional] 
 **Profile** | **bool** | Enable or disable profiling of the search request | [optional] 
-**Sort** | **Object** |  | [optional] 
-**Source** | **Object** |  | [optional] 
+**Sort** | **Object** | Sorting criteria for the search results | [optional] 
+**Source** | **Object** | Specify which fields to include or exclude in the response | [optional] 
 **TrackScores** | **bool** | Enable or disable result weight calculation used for sorting | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

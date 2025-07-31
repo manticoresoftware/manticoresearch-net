@@ -74,6 +74,15 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Query'
+        /// </summary>
+        [Fact]
+        public void QueryTest()
+        {
+            // TODO unit test for the property 'Query'
+        }
+
+        /// <summary>
         /// Test the property 'Type'
         /// </summary>
         [Fact]

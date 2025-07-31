@@ -4,15 +4,15 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
     <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>ManticoreSearch</AssemblyName>
-    <PackageId>ManticoreSearch</PackageId>
+    <PackageId>ManticoreSearch-dev</PackageId>
+    <RootNamespace>ManticoreSearch-dev</RootNamespace>
+    <Version>9.1.0-dev</Version>
     <OutputType>Library</OutputType>
     <Authors>OpenAPI</Authors>
     <Company>OpenAPI</Company>
     <AssemblyTitle>OpenAPI Library</AssemblyTitle>
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>No Copyright</Copyright>
-    <RootNamespace>ManticoreSearch</RootNamespace>
-    <Version>9.0.1-dev</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ManticoreSearch.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/manticoresoftware/manticoresearch-csharp.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

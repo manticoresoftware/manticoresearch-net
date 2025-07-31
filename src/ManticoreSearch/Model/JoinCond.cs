@@ -43,8 +43,9 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <param name="field">Field to join on (required).</param>
         /// <param name="table">Joined table (required).</param>
+        /// <param name="query">query.</param>
         /// <param name="type">type.</param>
-        public JoinCond(string field = default, string table = default, Object type = default)
+        public JoinCond(string field = default, string table = default, FulltextFilter query = default, Object type = default)
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -58,6 +59,7 @@ namespace ManticoreSearch.Model
                 throw new ArgumentNullException("table is a required property for JoinCond and cannot be null");
             }
             this.Table = table;
+            this.Query = query;
             this.Type = type;
         }
 
@@ -76,6 +78,12 @@ namespace ManticoreSearch.Model
         public string Table { get; set; }
 
         /// <summary>
+        /// Gets or Sets Query
+        /// </summary>
+        [DataMember(Name = "query", EmitDefaultValue = false)]
+        public FulltextFilter Query { get; set; }
+
+        /// <summary>
         /// Gets or Sets Type
         /// </summary>
         [DataMember(Name = "type", EmitDefaultValue = true)]
@@ -91,6 +99,7 @@ namespace ManticoreSearch.Model
             sb.Append("class JoinCond {\n");
             sb.Append("  Field: ").Append(Field).Append("\n");
             sb.Append("  Table: ").Append(Table).Append("\n");
+            sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **MatchPhrase** | **Object** | Filter object defining a match phrase | [optional] 
 **MatchAll** | **Object** | Filter object to select all documents | [optional] 
 **Bool** | [**BoolFilter**](BoolFilter.md) |  | [optional] 
-**PropertyEquals** | **Object** |  | [optional] 
+**PropertyEquals** | **Object** | Filter to match exact attribute values. | [optional] 
 **In** | **Object** | Filter to match a given set of attribute values. | [optional] 
 **Range** | **Object** | Filter to match a given range of attribute values passed in Range objects | [optional] 
 **GeoDistance** | [**GeoDistance**](GeoDistance.md) |  | [optional] 

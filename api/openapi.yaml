@@ -711,7 +711,7 @@ components:
     searchRequest:
       description: Request object for search operation
       example:
-        tabke: your_table
+        table: your_table
         query:
           query_string: your_query
       properties:
@@ -762,8 +762,12 @@ components:
         profile:
           description: Enable or disable profiling of the search request
           type: boolean
-        sort: {}
-        _source: {}
+        sort:
+          description: Sorting criteria for the search results
+          type: object
+        _source:
+          description: Specify which fields to include or exclude in the response
+          type: object
         track_scores:
           description: Enable or disable result weight calculation used for sorting
           type: boolean
@@ -979,12 +983,12 @@ components:
             type: boolean
       - $ref: "#/components/schemas/highlightFieldOption"
     highlightFields:
-      anyOf:
+      description: List of fields available for highlighting
+      oneOf:
       - items:
           type: string
         type: array
       - type: object
-      description: List of fields available for highlighting
     highlightFieldOption:
       additionalProperties: false
       description: Options for controlling the behavior of highlighting on a per-field
@@ -1012,7 +1016,7 @@ components:
       properties:
         _id:
           description: The ID of the matched document
-          format: uuint64
+          format: uint64
           type: integer
         _score:
           description: The score of the matched document
@@ -1117,6 +1121,8 @@ components:
         table:
           description: Joined table
           type: string
+        query:
+          $ref: "#/components/schemas/fulltextFilter"
         type: {}
       required:
       - field
@@ -1175,7 +1181,8 @@ components:
         properties:
           bool:
             $ref: "#/components/schemas/boolFilter"
-          equals: {}
+          equals:
+            $ref: "#/components/schemas/queryFilter_allOf_equals"
           in:
             $ref: "#/components/schemas/queryFilter_allOf_in"
           range:
@@ -1416,6 +1423,9 @@ components:
           description: Latitude of the anchor point
         lon:
           description: Longitude of the anchor point
+    queryFilter_allOf_equals:
+      description: Filter to match exact attribute values.
+      type: object
     queryFilter_allOf_in:
       description: Filter to match a given set of attribute values.
       type: object

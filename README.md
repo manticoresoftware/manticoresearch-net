@@ -1,6 +1,6 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/9.0.1
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/9.1.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
@@ -24,10 +24,11 @@ The DLLs included in the package may not be the latest version. We recommend usi
 | **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
 | ------------------------| ----------------------------------- | ------------------------|
 | `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
+| 9.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
 | 8.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
 | 6.0.0 to 8.0.0          | 9.2.14 or newer                     | ⚠️ Partially Compatible |
 | 6.0.0 to 8.0.0          | 7.0.0 to 9.2.14                     | ✅ Fully Compatible     |
-| 5.0.0 to 6.0.0          | 7.0.0 to newer                      | ⚠️ Partially Compatible |
+| 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
 | 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
 | 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
 | 3.3.1 to 5.0.0          | 6.2.0 to 6.3.6                      | ✅ Fully Compatible     |
@@ -121,17 +122,18 @@ namespace Example
             {
             	string tableName = "products";
 	
-                Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
-                doc.Add("title", "Crossbody Bag with Tassel");
-                doc.Add("price", 19.85);
+				Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
+				doc.Add("title", "Crossbody Bag with Tassel");
+				doc.Add("price", 19.85);
 
                 InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(Index: "products", Doc: doc);
                 indexApi.Insert(insertDocumentRequest);
 
-                SearchRequest searchRequest = new SearchRequest(Index: "products");
+	            SearchRequest searchRequest = new SearchRequest(Index: "products");
                                 
                 Highlight queryHighlight = new Highlight();
-                HighlightFields highlightFields = new HighlightFields(new List<string>() { "title" });
+                List<string> highlightFields = new List<string>();
+                highlightFields.Add("title");
                 queryHighlight.Fields = highlightFields;
 
                 SearchQuery query = new SearchQuery();
@@ -182,6 +184,8 @@ Class | Method | HTTP request | Description
  - [Model.AggComposite](docs/AggComposite.md)
  - [Model.AggCompositeSource](docs/AggCompositeSource.md)
  - [Model.AggCompositeTerm](docs/AggCompositeTerm.md)
+ - [Model.AggDateHistogram](docs/AggDateHistogram.md)
+ - [Model.AggHistogram](docs/AggHistogram.md)
  - [Model.AggTerms](docs/AggTerms.md)
  - [Model.Aggregation](docs/Aggregation.md)
  - [Model.AutocompleteRequest](docs/AutocompleteRequest.md)
@@ -195,6 +199,7 @@ Class | Method | HTTP request | Description
  - [Model.GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
  - [Model.Highlight](docs/Highlight.md)
  - [Model.HighlightFieldOption](docs/HighlightFieldOption.md)
+ - [Model.HighlightFields](docs/HighlightFields.md)
  - [Model.HitsHits](docs/HitsHits.md)
  - [Model.InsertDocumentRequest](docs/InsertDocumentRequest.md)
  - [Model.Join](docs/Join.md)

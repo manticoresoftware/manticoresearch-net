@@ -41,7 +41,7 @@ namespace ManticoreSearch.Model
         /// <param name="matchPhrase">Filter object defining a match phrase.</param>
         /// <param name="matchAll">Filter object to select all documents.</param>
         /// <param name="varBool">varBool.</param>
-        /// <param name="propertyEquals">propertyEquals.</param>
+        /// <param name="propertyEquals">Filter to match exact attribute values..</param>
         /// <param name="varIn">Filter to match a given set of attribute values..</param>
         /// <param name="range">Filter to match a given range of attribute values passed in Range objects.</param>
         /// <param name="geoDistance">geoDistance.</param>
@@ -93,9 +93,10 @@ namespace ManticoreSearch.Model
         public BoolFilter Bool { get; set; }
 
         /// <summary>
-        /// Gets or Sets PropertyEquals
+        /// Filter to match exact attribute values.
         /// </summary>
-        [DataMember(Name = "equals", EmitDefaultValue = true)]
+        /// <value>Filter to match exact attribute values.</value>
+        [DataMember(Name = "equals", EmitDefaultValue = false)]
         public Object PropertyEquals { get; set; }
 
         /// <summary>
