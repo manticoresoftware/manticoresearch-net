@@ -40,7 +40,7 @@ namespace ManticoreSearch.Model
         /// <param name="updated">Number of documents updated.</param>
         /// <param name="id">Document ID.</param>
         /// <param name="result">Result of the update operation, typically &#39;updated&#39;.</param>
-        public UpdateResponse(string table = default, int updated = default, int id = default, string result = default)
+        public UpdateResponse(string table = default, int updated = default, UInt64 id = default, string result = default)
         {
             this.Table = table;
             this.Updated = updated;
@@ -67,7 +67,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>Document ID</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public int Id { get; set; }
+        public UInt64 Id { get; set; }
 
         /// <summary>
         /// Result of the update operation, typically &#39;updated&#39;
