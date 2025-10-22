@@ -44,6 +44,7 @@ namespace ManticoreSearch.Model
             this.Must = must;
             this.MustNot = mustNot;
             this.Should = should;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -68,6 +69,12 @@ namespace ManticoreSearch.Model
         public List<QueryFilter> Should { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -78,6 +85,7 @@ namespace ManticoreSearch.Model
             sb.Append("  Must: ").Append(Must).Append("\n");
             sb.Append("  MustNot: ").Append(MustNot).Append("\n");
             sb.Append("  Should: ").Append(Should).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,7 +107,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

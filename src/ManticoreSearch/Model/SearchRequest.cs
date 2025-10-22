@@ -56,7 +56,7 @@ namespace ManticoreSearch.Model
         /// <param name="sort">Sorting criteria for the search results.</param>
         /// <param name="source">Specify which fields to include or exclude in the response.</param>
         /// <param name="trackScores">Enable or disable result weight calculation used for sorting.</param>
-        public SearchRequest(string table = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, KnnQuery knn = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
+        public SearchRequest(string table = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, Knn knn = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
         {
             // to ensure "table" is required (not null)
             if (table == null)
@@ -117,7 +117,7 @@ namespace ManticoreSearch.Model
         /// Gets or Sets Knn
         /// </summary>
         [DataMember(Name = "knn", EmitDefaultValue = false)]
-        public KnnQuery Knn { get; set; }
+        public Knn Knn { get; set; }
 
         /// <summary>
         /// Defines aggregation settings for grouping results
@@ -232,7 +232,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

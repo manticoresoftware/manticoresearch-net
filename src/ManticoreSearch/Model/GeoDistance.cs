@@ -53,7 +53,6 @@ namespace ManticoreSearch.Model
             Haversine = 2
         }
 
-
         /// <summary>
         /// Algorithm used to calculate the distance
         /// </summary>
@@ -137,15 +136,14 @@ namespace ManticoreSearch.Model
         {
             if (this.Distance != null) {
                 // Distance (string) pattern
-                Regex regexDistance = new Regex(@"^\.+(km|m|cm|mm|mi|yd|ft|in|NM|nmi|kilometers|meters|centimeters|millimeters|miles|yards|foots|inches|nauticalmiles|)$", RegexOptions.CultureInvariant);
-                if (!regexDistance.Match(this.Distance).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Distance, must match a pattern of " + regexDistance, new [] { "Distance" });
-                }
+                                Regex regexDistance = new Regex(@"^\.+(km|m|cm|mm|mi|yd|ft|in|NM|nmi|kilometers|meters|centimeters|millimeters|miles|yards|foots|inches|nauticalmiles|)$", RegexOptions.CultureInvariant);
+                                if (!regexDistance.Match(this.Distance).Success)
+                                {
+                                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Distance, must match a pattern of " + regexDistance, new [] { "Distance" });
+                                }
             }
 
             yield break;
-        }
-    }
+        }    }
 
 }

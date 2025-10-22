@@ -53,7 +53,6 @@ namespace ManticoreSearch.Model
             Html = 2
         }
 
-
         /// <summary>
         /// If set to &#39;html&#39;, retains HTML markup when highlighting
         /// </summary>
@@ -92,7 +91,6 @@ namespace ManticoreSearch.Model
             Retain = 4
         }
 
-
         /// <summary>
         /// Defines the mode for handling HTML markup in the highlight
         /// </summary>
@@ -115,7 +113,6 @@ namespace ManticoreSearch.Model
             /// </summary>
             NUMBER_1 = 1
         }
-
 
         /// <summary>
         /// If set to 1, allows an empty string to be returned as a highlighting result
@@ -148,7 +145,6 @@ namespace ManticoreSearch.Model
             [EnumMember(Value = "score")]
             Score = 3
         }
-
 
         /// <summary>
         /// Sets the sorting order of highlighted snippets
@@ -396,7 +392,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

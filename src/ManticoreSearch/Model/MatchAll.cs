@@ -46,7 +46,6 @@ namespace ManticoreSearch.Model
             All = 1
         }
 
-
         /// <summary>
         /// Gets or Sets All
         /// </summary>
@@ -96,7 +95,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

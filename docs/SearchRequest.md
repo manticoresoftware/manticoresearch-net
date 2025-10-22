@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Join** | [**List&lt;Join&gt;**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | [**Highlight**](Highlight.md) |  | [optional] 
 **Limit** | **int** | Maximum number of results to return | [optional] 
-**Knn** | [**KnnQuery**](KnnQuery.md) |  | [optional] 
+**Knn** | [**Knn**](Knn.md) |  | [optional] 
 **Aggs** | [**Dictionary&lt;string, Aggregation&gt;**](Aggregation.md) | Defines aggregation settings for grouping results | [optional] 
 **Expressions** | **Dictionary&lt;string, string&gt;** | Expressions to calculate additional values for the result | [optional] 
 **MaxMatches** | **int** | Maximum number of matches allowed in the result | [optional] 

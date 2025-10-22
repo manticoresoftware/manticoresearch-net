@@ -42,6 +42,7 @@ namespace ManticoreSearch.Model
         {
             this.Lat = lat;
             this.Lon = lon;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -59,6 +60,12 @@ namespace ManticoreSearch.Model
         public decimal Lon { get; set; }
 
         /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -68,6 +75,7 @@ namespace ManticoreSearch.Model
             sb.Append("class GeoDistanceLocationAnchor {\n");
             sb.Append("  Lat: ").Append(Lat).Append("\n");
             sb.Append("  Lon: ").Append(Lon).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -89,7 +97,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

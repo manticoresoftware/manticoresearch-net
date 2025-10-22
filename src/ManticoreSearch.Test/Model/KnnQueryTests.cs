@@ -54,59 +54,5 @@ namespace ManticoreSearch.Test.Model
             // TODO uncomment below to test "IsType" KnnQuery
             //Assert.IsType<KnnQuery>(instance);
         }
-
-        /// <summary>
-        /// Test the property 'Field'
-        /// </summary>
-        [Fact]
-        public void FieldTest()
-        {
-            // TODO unit test for the property 'Field'
-        }
-
-        /// <summary>
-        /// Test the property 'K'
-        /// </summary>
-        [Fact]
-        public void KTest()
-        {
-            // TODO unit test for the property 'K'
-        }
-
-        /// <summary>
-        /// Test the property 'QueryVector'
-        /// </summary>
-        [Fact]
-        public void QueryVectorTest()
-        {
-            // TODO unit test for the property 'QueryVector'
-        }
-
-        /// <summary>
-        /// Test the property 'DocId'
-        /// </summary>
-        [Fact]
-        public void DocIdTest()
-        {
-            // TODO unit test for the property 'DocId'
-        }
-
-        /// <summary>
-        /// Test the property 'Ef'
-        /// </summary>
-        [Fact]
-        public void EfTest()
-        {
-            // TODO unit test for the property 'Ef'
-        }
-
-        /// <summary>
-        /// Test the property 'Filter'
-        /// </summary>
-        [Fact]
-        public void FilterTest()
-        {
-            // TODO unit test for the property 'Filter'
-        }
     }
 }

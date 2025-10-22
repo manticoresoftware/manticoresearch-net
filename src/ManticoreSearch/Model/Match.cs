@@ -52,7 +52,6 @@ namespace ManticoreSearch.Model
             And = 2
         }
 
-
         /// <summary>
         /// Gets or Sets Operator
         /// </summary>
@@ -125,7 +124,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

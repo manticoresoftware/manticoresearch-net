@@ -40,23 +40,13 @@ namespace ManticoreSearch.Model
         /// <param name="match">Filter object defining a match keyword passed as a string or in a Match object.</param>
         /// <param name="matchPhrase">Filter object defining a match phrase.</param>
         /// <param name="matchAll">Filter object to select all documents.</param>
-        /// <param name="varBool">varBool.</param>
-        /// <param name="propertyEquals">Filter to match exact attribute values..</param>
-        /// <param name="varIn">Filter to match a given set of attribute values..</param>
-        /// <param name="range">Filter to match a given range of attribute values passed in Range objects.</param>
-        /// <param name="geoDistance">geoDistance.</param>
         /// <param name="highlight">highlight.</param>
-        public SearchQuery(string queryString = default, Object match = default, Object matchPhrase = default, Object matchAll = default, BoolFilter varBool = default, Object propertyEquals = default, Object varIn = default, Object range = default, GeoDistance geoDistance = default, Highlight highlight = default)
+        public SearchQuery(string queryString = default, Object match = default, Object matchPhrase = default, Object matchAll = default, Highlight highlight = default)
         {
             this.QueryString = queryString;
             this.Match = match;
             this.MatchPhrase = matchPhrase;
             this.MatchAll = matchAll;
-            this.Bool = varBool;
-            this.PropertyEquals = propertyEquals;
-            this.In = varIn;
-            this.Range = range;
-            this.GeoDistance = geoDistance;
             this.Highlight = highlight;
         }
 
@@ -89,39 +79,6 @@ namespace ManticoreSearch.Model
         public Object MatchAll { get; set; }
 
         /// <summary>
-        /// Gets or Sets Bool
-        /// </summary>
-        [DataMember(Name = "bool", EmitDefaultValue = false)]
-        public BoolFilter Bool { get; set; }
-
-        /// <summary>
-        /// Filter to match exact attribute values.
-        /// </summary>
-        /// <value>Filter to match exact attribute values.</value>
-        [DataMember(Name = "equals", EmitDefaultValue = false)]
-        public Object PropertyEquals { get; set; }
-
-        /// <summary>
-        /// Filter to match a given set of attribute values.
-        /// </summary>
-        /// <value>Filter to match a given set of attribute values.</value>
-        [DataMember(Name = "in", EmitDefaultValue = false)]
-        public Object In { get; set; }
-
-        /// <summary>
-        /// Filter to match a given range of attribute values passed in Range objects
-        /// </summary>
-        /// <value>Filter to match a given range of attribute values passed in Range objects</value>
-        [DataMember(Name = "range", EmitDefaultValue = false)]
-        public Object Range { get; set; }
-
-        /// <summary>
-        /// Gets or Sets GeoDistance
-        /// </summary>
-        [DataMember(Name = "geo_distance", EmitDefaultValue = false)]
-        public GeoDistance GeoDistance { get; set; }
-
-        /// <summary>
         /// Gets or Sets Highlight
         /// </summary>
         [DataMember(Name = "highlight", EmitDefaultValue = false)]
@@ -139,11 +96,6 @@ namespace ManticoreSearch.Model
             sb.Append("  Match: ").Append(Match).Append("\n");
             sb.Append("  MatchPhrase: ").Append(MatchPhrase).Append("\n");
             sb.Append("  MatchAll: ").Append(MatchAll).Append("\n");
-            sb.Append("  Bool: ").Append(Bool).Append("\n");
-            sb.Append("  PropertyEquals: ").Append(PropertyEquals).Append("\n");
-            sb.Append("  In: ").Append(In).Append("\n");
-            sb.Append("  Range: ").Append(Range).Append("\n");
-            sb.Append("  GeoDistance: ").Append(GeoDistance).Append("\n");
             sb.Append("  Highlight: ").Append(Highlight).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -166,7 +118,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

@@ -92,51 +92,6 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Bool'
-        /// </summary>
-        [Fact]
-        public void BoolTest()
-        {
-            // TODO unit test for the property 'Bool'
-        }
-
-        /// <summary>
-        /// Test the property 'PropertyEquals'
-        /// </summary>
-        [Fact]
-        public void PropertyEqualsTest()
-        {
-            // TODO unit test for the property 'PropertyEquals'
-        }
-
-        /// <summary>
-        /// Test the property 'In'
-        /// </summary>
-        [Fact]
-        public void InTest()
-        {
-            // TODO unit test for the property 'In'
-        }
-
-        /// <summary>
-        /// Test the property 'Range'
-        /// </summary>
-        [Fact]
-        public void RangeTest()
-        {
-            // TODO unit test for the property 'Range'
-        }
-
-        /// <summary>
-        /// Test the property 'GeoDistance'
-        /// </summary>
-        [Fact]
-        public void GeoDistanceTest()
-        {
-            // TODO unit test for the property 'GeoDistance'
-        }
-
-        /// <summary>
         /// Test the property 'Highlight'
         /// </summary>
         [Fact]

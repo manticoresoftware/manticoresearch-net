@@ -24,84 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = ManticoreSearch.Client.FileParameter;
 using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Object representing a k-nearest neighbor search query
+    /// KnnQuery
     /// </summary>
-    [DataContract(Name = "knnQuery")]
-    public partial class KnnQuery : IValidatableObject
+    [JsonConverter(typeof(KnnQueryJsonConverter))]
+    [DataContract(Name = "knn_query")]
+    public partial class KnnQuery : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="KnnQuery" /> class.
+        /// Initializes a new instance of the <see cref="KnnQuery" /> class
+        /// with the <see cref="string" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected KnnQuery() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KnnQuery" /> class.
-        /// </summary>
-        /// <param name="field">Field to perform the k-nearest neighbor search on (required).</param>
-        /// <param name="k">The number of nearest neighbors to return (required).</param>
-        /// <param name="queryVector">The vector used as input for the KNN search.</param>
-        /// <param name="docId">The docuemnt ID used as input for the KNN search.</param>
-        /// <param name="ef">Optional parameter controlling the accuracy of the search.</param>
-        /// <param name="filter">filter.</param>
-        public KnnQuery(string field = default, int k = default, List<decimal> queryVector = default, UInt64 docId = default, int ef = default, QueryFilter filter = default)
+        /// <param name="actualInstance">An instance of string.</param>
+        public KnnQuery(string actualInstance)
         {
-            // to ensure "field" is required (not null)
-            if (field == null)
-            {
-                throw new ArgumentNullException("field is a required property for KnnQuery and cannot be null");
-            }
-            this.Field = field;
-            this.K = k;
-            this.QueryVector = queryVector;
-            this.DocId = docId;
-            this.Ef = ef;
-            this.Filter = filter;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Field to perform the k-nearest neighbor search on
+        /// Initializes a new instance of the <see cref="KnnQuery" /> class
+        /// with the <see cref="List{decimal}" /> class
         /// </summary>
-        /// <value>Field to perform the k-nearest neighbor search on</value>
-        [DataMember(Name = "field", IsRequired = true, EmitDefaultValue = true)]
-        public string Field { get; set; }
+        /// <param name="actualInstance">An instance of List&lt;decimal&gt;.</param>
+        public KnnQuery(List<decimal> actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// The number of nearest neighbors to return
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>The number of nearest neighbors to return</value>
-        [DataMember(Name = "k", IsRequired = true, EmitDefaultValue = true)]
-        public int K { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(List<decimal>) || value is List<decimal>)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(string) || value is string)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: List<decimal>, string");
+                }
+            }
+        }
 
         /// <summary>
-        /// The vector used as input for the KNN search
+        /// Get the actual instance of `string`. If the actual instance is not `string`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>The vector used as input for the KNN search</value>
-        [DataMember(Name = "query_vector", EmitDefaultValue = false)]
-        public List<decimal> QueryVector { get; set; }
+        /// <returns>An instance of string</returns>
+        public string GetString()
+        {
+            return (string)this.ActualInstance;
+        }
 
         /// <summary>
-        /// The docuemnt ID used as input for the KNN search
+        /// Get the actual instance of `List&lt;decimal&gt;`. If the actual instance is not `List&lt;decimal&gt;`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        /// <value>The docuemnt ID used as input for the KNN search</value>
-        [DataMember(Name = "doc_id", EmitDefaultValue = false)]
-        public UInt64 DocId { get; set; }
-
-        /// <summary>
-        /// Optional parameter controlling the accuracy of the search
-        /// </summary>
-        /// <value>Optional parameter controlling the accuracy of the search</value>
-        [DataMember(Name = "ef", EmitDefaultValue = false)]
-        public int Ef { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Filter
-        /// </summary>
-        [DataMember(Name = "filter", EmitDefaultValue = false)]
-        public QueryFilter Filter { get; set; }
+        /// <returns>An instance of List&lt;decimal&gt;</returns>
+        public List<decimal> GetList()
+        {
+            return (List<decimal>)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -109,14 +114,9 @@ namespace ManticoreSearch.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class KnnQuery {\n");
-            sb.Append("  Field: ").Append(Field).Append("\n");
-            sb.Append("  K: ").Append(K).Append("\n");
-            sb.Append("  QueryVector: ").Append(QueryVector).Append("\n");
-            sb.Append("  DocId: ").Append(DocId).Append("\n");
-            sb.Append("  Ef: ").Append(Ef).Append("\n");
-            sb.Append("  Filter: ").Append(Filter).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -125,19 +125,139 @@ namespace ManticoreSearch.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, KnnQuery.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of KnnQuery
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of KnnQuery</returns>
+        public static KnnQuery FromJson(string jsonString)
+        {
+            KnnQuery newKnnQuery = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newKnnQuery;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(List<decimal>).GetProperty("AdditionalProperties") == null)
+                {
+                    newKnnQuery = new KnnQuery(JsonConvert.DeserializeObject<List<decimal>>(jsonString, KnnQuery.SerializerSettings));
+                }
+                else
+                {
+                    newKnnQuery = new KnnQuery(JsonConvert.DeserializeObject<List<decimal>>(jsonString, KnnQuery.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("List<decimal>");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into List<decimal>: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(string).GetProperty("AdditionalProperties") == null)
+                {
+                    newKnnQuery = new KnnQuery(JsonConvert.DeserializeObject<string>(jsonString, KnnQuery.SerializerSettings));
+                }
+                else
+                {
+                    newKnnQuery = new KnnQuery(JsonConvert.DeserializeObject<string>(jsonString, KnnQuery.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("string");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into string: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newKnnQuery;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for KnnQuery
+    /// </summary>
+    public class KnnQueryJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(KnnQuery).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.String: 
+                    return new KnnQuery(Convert.ToString(reader.Value));
+                case JsonToken.StartObject:
+                    return KnnQuery.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return KnnQuery.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

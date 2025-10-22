@@ -53,7 +53,6 @@ namespace ManticoreSearch.Model
             Left = 2
         }
 
-
         /// <summary>
         /// Type of the join operation
         /// </summary>
@@ -143,7 +142,6 @@ namespace ManticoreSearch.Model
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
-        }
-    }
+        }    }
 
 }

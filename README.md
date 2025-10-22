@@ -1,6 +1,6 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/9.0.1
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/10.0.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
@@ -205,6 +205,7 @@ Class | Method | HTTP request | Description
  - [Model.Join](docs/Join.md)
  - [Model.JoinCond](docs/JoinCond.md)
  - [Model.JoinOn](docs/JoinOn.md)
+ - [Model.Knn](docs/Knn.md)
  - [Model.KnnQuery](docs/KnnQuery.md)
  - [Model.Match](docs/Match.md)
  - [Model.MatchAll](docs/MatchAll.md)
