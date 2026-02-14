@@ -38,6 +38,7 @@ The DLLs included in the package may not be the latest version. We recommend usi
 | 1.0.0 to 3.3.1          | 6.2.0 or newer                      | ⚠️ Partially Compatible |
 | 1.0.0 to 3.3.1          | 2.5.1 to 6.2.0                      | ✅ Fully Compatible     |
 
+
 ```
 Install-Package Newtonsoft.Json
 Install-Package JsonSubTypes

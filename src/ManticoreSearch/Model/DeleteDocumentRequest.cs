@@ -45,7 +45,7 @@ namespace ManticoreSearch.Model
         /// <param name="cluster">Cluster name.</param>
         /// <param name="id">The ID of document for deletion.</param>
         /// <param name="query">Defines the criteria to match documents for deletion.</param>
-        public DeleteDocumentRequest(string table = default, string cluster = default, int id = default, Object query = default)
+        public DeleteDocumentRequest(string table = default, string cluster = default, UInt64 id = default, Object query = default)
         {
             // to ensure "table" is required (not null)
             if (table == null)
@@ -77,7 +77,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The ID of document for deletion</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public int Id { get; set; }
+        public UInt64 Id { get; set; }
 
         /// <summary>
         /// Defines the criteria to match documents for deletion
