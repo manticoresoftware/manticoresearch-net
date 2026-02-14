@@ -47,8 +47,10 @@ namespace ManticoreSearch.Model
         /// <param name="queryVector">The vector used as input for the KNN search.</param>
         /// <param name="docId">The docuemnt ID used as input for the KNN search.</param>
         /// <param name="ef">Optional parameter controlling the accuracy of the search.</param>
+        /// <param name="rescore">Optional parameter enabling KNN rescoring (disabled by default).</param>
+        /// <param name="oversampling">Optional parameter setting a factor by which k is multiplied when executing the KNN search.</param>
         /// <param name="filter">filter.</param>
-        public Knn(string field = default, int k = default, KnnQuery query = default, List<decimal> queryVector = default, UInt64 docId = default, int ef = default, QueryFilter filter = default)
+        public Knn(string field = default, int k = default, KnnQuery query = default, List<decimal> queryVector = default, UInt64 docId = default, int ef = default, bool rescore = default, decimal oversampling = default, QueryFilter filter = default)
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -61,6 +63,8 @@ namespace ManticoreSearch.Model
             this.QueryVector = queryVector;
             this.DocId = docId;
             this.Ef = ef;
+            this.Rescore = rescore;
+            this.Oversampling = oversampling;
             this.Filter = filter;
         }
 
@@ -106,6 +110,20 @@ namespace ManticoreSearch.Model
         public int Ef { get; set; }
 
         /// <summary>
+        /// Optional parameter enabling KNN rescoring (disabled by default)
+        /// </summary>
+        /// <value>Optional parameter enabling KNN rescoring (disabled by default)</value>
+        [DataMember(Name = "rescore", EmitDefaultValue = true)]
+        public bool Rescore { get; set; }
+
+        /// <summary>
+        /// Optional parameter setting a factor by which k is multiplied when executing the KNN search
+        /// </summary>
+        /// <value>Optional parameter setting a factor by which k is multiplied when executing the KNN search</value>
+        [DataMember(Name = "oversampling", EmitDefaultValue = false)]
+        public decimal Oversampling { get; set; }
+
+        /// <summary>
         /// Gets or Sets Filter
         /// </summary>
         [DataMember(Name = "filter", EmitDefaultValue = false)]
@@ -125,6 +143,8 @@ namespace ManticoreSearch.Model
             sb.Append("  QueryVector: ").Append(QueryVector).Append("\n");
             sb.Append("  DocId: ").Append(DocId).Append("\n");
             sb.Append("  Ef: ").Append(Ef).Append("\n");
+            sb.Append("  Rescore: ").Append(Rescore).Append("\n");
+            sb.Append("  Oversampling: ").Append(Oversampling).Append("\n");
             sb.Append("  Filter: ").Append(Filter).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

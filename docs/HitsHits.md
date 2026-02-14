@@ -6,7 +6,7 @@ Search hit representing a matched document
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int** | The ID of the matched document | [optional] 
-**Score** | **UInt64** | The score of the matched document | [optional]
+**Score** | **int** | The score of the matched document | [optional] 
 **Source** | **Object** | The source data of the matched document | [optional] 
 **KnnDist** | **decimal** | The knn distance of the matched document returned for knn queries | [optional] 
 **Highlight** | **Object** | The highlighting-related data of the matched document | [optional] 

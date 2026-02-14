@@ -24,17 +24,19 @@ The DLLs included in the package may not be the latest version. We recommend usi
 | **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
 | ------------------------| ----------------------------------- | ------------------------|
 | `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
-| 9.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
-| 8.0.0 or newer          | 9.2.14 or newer                     | ✅ Fully Compatible     |
-| 6.0.0 to 8.0.0          | 9.2.14 or newer                     | ⚠️ Partially Compatible |
+| 10.0.0 or newer         | 17.5.1 or newer                     | ✅ Fully Compatible     |
+| 10.0.0 or newer         | 13.2.3 to 17.5.1                    | ⚠️ Partially Compatible |
+| 9.0.0 to 10.0.0         | 17.5.1 or newer                     | ⚠️ Partially Compatible |
+| 9.0.0 to 10.0.0         | 13.2.3 to 17.5.1                    | ✅ Fully Compatible     |
+| 8.0.0 to 9.0.0          | 9.2.14 to 13.2.3                    | ✅ Fully Compatible     |
+| 6.0.0 to 8.0.0          | 9.2.14 to 13.2.3                    | ⚠️ Partially Compatible |
 | 6.0.0 to 8.0.0          | 7.0.0 to 9.2.14                     | ✅ Fully Compatible     |
-| 5.0.0 to 6.0.0          | 7.0.0 or newer                      | ⚠️ Partially Compatible |
+| 5.0.0 to 6.0.0          | 7.0.0 to 13.2.3                     | ⚠️ Partially Compatible |
 | 5.0.0 to 6.0.0          | 6.3.6 to 7.0.0                      | ✅ Fully Compatible     |
-| 3.3.1 to 5.0.0          | 6.3.6 or newer                      | ⚠️ Partially Compatible |
+| 3.3.1 to 5.0.0          | 6.3.6 to 13.2.3                     | ⚠️ Partially Compatible |
 | 3.3.1 to 5.0.0          | 6.2.0 to 6.3.6                      | ✅ Fully Compatible     |
 | 1.0.0 to 3.3.1          | 6.2.0 or newer                      | ⚠️ Partially Compatible |
 | 1.0.0 to 3.3.1          | 2.5.1 to 6.2.0                      | ✅ Fully Compatible     |
-
 
 ```
 Install-Package Newtonsoft.Json

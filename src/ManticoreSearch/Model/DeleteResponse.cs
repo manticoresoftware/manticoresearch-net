@@ -41,7 +41,7 @@ namespace ManticoreSearch.Model
         /// <param name="id">The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned.</param>
         /// <param name="found">Indicates whether any documents to be deleted were found.</param>
         /// <param name="result">Result of the delete operation, typically &#39;deleted&#39;.</param>
-        public DeleteResponse(string table = default, int deleted = default, UInt64 id = default, bool found = default, string result = default)
+        public DeleteResponse(string table = default, int deleted = default, int id = default, bool found = default, string result = default)
         {
             this.Table = table;
             this.Deleted = deleted;
@@ -69,7 +69,7 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <value>The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
-        public UInt64 Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Indicates whether any documents to be deleted were found

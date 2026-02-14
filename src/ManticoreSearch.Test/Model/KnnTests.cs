@@ -110,6 +110,24 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Rescore'
+        /// </summary>
+        [Fact]
+        public void RescoreTest()
+        {
+            // TODO unit test for the property 'Rescore'
+        }
+
+        /// <summary>
+        /// Test the property 'Oversampling'
+        /// </summary>
+        [Fact]
+        public void OversamplingTest()
+        {
+            // TODO unit test for the property 'Oversampling'
+        }
+
+        /// <summary>
         /// Test the property 'Filter'
         /// </summary>
         [Fact]
