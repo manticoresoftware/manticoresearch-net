@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **K** | **int** | The number of nearest neighbors to return | 
 **Query** | [**KnnQuery**](KnnQuery.md) |  | [optional] 
 **QueryVector** | **List&lt;decimal&gt;** | The vector used as input for the KNN search | [optional] 
-**DocId** | **UInt64** | The docuemnt ID used as input for the KNN search | [optional] 
+**DocId** | **int** | The docuemnt ID used as input for the KNN search | [optional] 
 **Ef** | **int** | Optional parameter controlling the accuracy of the search | [optional] 
 **Rescore** | **bool** | Optional parameter enabling KNN rescoring (disabled by default) | [optional] 
 **Oversampling** | **decimal** | Optional parameter setting a factor by which k is multiplied when executing the KNN search | [optional] 
