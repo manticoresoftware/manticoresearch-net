@@ -50,7 +50,7 @@ namespace ManticoreSearch.Model
         /// <param name="rescore">Optional parameter enabling KNN rescoring (disabled by default).</param>
         /// <param name="oversampling">Optional parameter setting a factor by which k is multiplied when executing the KNN search.</param>
         /// <param name="filter">filter.</param>
-        public Knn(string field = default, int k = default, KnnQuery query = default, List<decimal> queryVector = default, UIint64 docId = default, int ef = default, bool rescore = default, decimal oversampling = default, QueryFilter filter = default)
+        public Knn(string field = default, int k = default, KnnQuery query = default, List<decimal> queryVector = default, UInt64 docId = default, int ef = default, bool rescore = default, decimal oversampling = default, QueryFilter filter = default)
         {
             // to ensure "field" is required (not null)
             if (field == null)
