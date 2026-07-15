@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Fields** | [**HighlightFields**](HighlightFields.md) |  | [optional] 
 **ForceAllWords** | **bool** | Ignores the length limit until the result includes all keywords | [optional] 
 **ForceSnippets** | **bool** | Forces snippet generation even if limits allow highlighting the entire text | [optional] 
-**HighlightQuery** | [**QueryFilter**](QueryFilter.md) |  | [optional] 
+**HighlightQuery** | [**QueryFilter**](QueryFilter.md) | Optional query object to customize highlighting behavior | [optional] 
 **HtmlStripMode** | **string** | Defines the mode for handling HTML markup in the highlight | [optional] 
 **LimitsPerField** | **bool** | Determines whether the &#39;limit&#39;, &#39;limit_words&#39;, and &#39;limit_snippets&#39; options operate as individual limits in each field of the document | [optional] 
 **NoMatchSize** | **int** | If set to 1, allows an empty string to be returned as a highlighting result | [optional] 

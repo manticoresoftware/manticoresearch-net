@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Response object containing the results of a search request
+    /// Response object containing search results. For conversational search requests that include a &#x60;chat&#x60; object, the optional chat fields below are also populated. For conversational search response fields see [Conversational search](https://manual.manticoresearch.com/Searching/Conversational_search#Response) 
     /// </summary>
     [DataContract(Name = "searchResponse")]
     public partial class SearchResponse : IValidatableObject
@@ -38,12 +38,17 @@ namespace ManticoreSearch.Model
         /// </summary>
         /// <param name="took">Time taken to execute the search.</param>
         /// <param name="timedOut">Indicates whether the search operation timed out.</param>
-        /// <param name="aggregations">Aggregated search results grouped by the specified criteria.</param>
+        /// <param name="aggregations">Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a &#x60;buckets&#x60; array (or keyed map) of bucket objects with &#x60;key&#x60;, &#x60;doc_count&#x60;, and optional &#x60;status&#x60;. .</param>
         /// <param name="hits">hits.</param>
         /// <param name="profile">Profile information about the search execution, if profiling is enabled.</param>
         /// <param name="scroll">Scroll token to be used fo pagination.</param>
         /// <param name="warning">Warnings encountered during the search operation.</param>
-        public SearchResponse(int took = default, bool timedOut = default, Object aggregations = default, SearchResponseHits hits = default, Object profile = default, string scroll = default, Object warning = default)
+        /// <param name="conversationUuid">Existing or generated conversation id (conversational search).</param>
+        /// <param name="userQuery">Original user query (conversational search).</param>
+        /// <param name="searchQuery">Standalone search query used for KNN retrieval (conversational search).</param>
+        /// <param name="response">LLM answer as generated (conversational search).</param>
+        /// <param name="sources">JSON string containing retrieved source rows used as LLM context (conversational search). .</param>
+        public SearchResponse(int took = default, bool timedOut = default, Dictionary<string, AggBucketsResult> aggregations = default, SearchResponseHits hits = default, Object profile = default, string scroll = default, Object warning = default, string conversationUuid = default, string userQuery = default, string searchQuery = default, string response = default, string sources = default)
         {
             this.Took = took;
             this.TimedOut = timedOut;
@@ -52,6 +57,11 @@ namespace ManticoreSearch.Model
             this.Profile = profile;
             this.Scroll = scroll;
             this.Warning = warning;
+            this.ConversationUuid = conversationUuid;
+            this.UserQuery = userQuery;
+            this.SearchQuery = searchQuery;
+            this.Response = response;
+            this.Sources = sources;
         }
 
         /// <summary>
@@ -69,11 +79,14 @@ namespace ManticoreSearch.Model
         public bool TimedOut { get; set; }
 
         /// <summary>
-        /// Aggregated search results grouped by the specified criteria
+        /// Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a &#x60;buckets&#x60; array (or keyed map) of bucket objects with &#x60;key&#x60;, &#x60;doc_count&#x60;, and optional &#x60;status&#x60;. 
         /// </summary>
-        /// <value>Aggregated search results grouped by the specified criteria</value>
+        /// <value>Aggregated search results grouped by the specified criteria. Each named aggregation typically contains a &#x60;buckets&#x60; array (or keyed map) of bucket objects with &#x60;key&#x60;, &#x60;doc_count&#x60;, and optional &#x60;status&#x60;. </value>
+        /*
+        <example>{sizes&#x3D;{buckets&#x3D;[{key&#x3D;small, doc_count&#x3D;1, status&#x3D;selected}, {key&#x3D;large, doc_count&#x3D;1, status&#x3D;available}]}, colors&#x3D;{buckets&#x3D;[{key&#x3D;10, doc_count&#x3D;1019}, {key&#x3D;9, doc_count&#x3D;954, status&#x3D;unavailable}]}}</example>
+        */
         [DataMember(Name = "aggregations", EmitDefaultValue = false)]
-        public Object Aggregations { get; set; }
+        public Dictionary<string, AggBucketsResult> Aggregations { get; set; }
 
         /// <summary>
         /// Gets or Sets Hits
@@ -103,6 +116,56 @@ namespace ManticoreSearch.Model
         public Object Warning { get; set; }
 
         /// <summary>
+        /// Existing or generated conversation id (conversational search)
+        /// </summary>
+        /// <value>Existing or generated conversation id (conversational search)</value>
+        /*
+        <example>docs-chat-001</example>
+        */
+        [DataMember(Name = "conversation_uuid", EmitDefaultValue = false)]
+        public string ConversationUuid { get; set; }
+
+        /// <summary>
+        /// Original user query (conversational search)
+        /// </summary>
+        /// <value>Original user query (conversational search)</value>
+        /*
+        <example>What is vector search?</example>
+        */
+        [DataMember(Name = "user_query", EmitDefaultValue = false)]
+        public string UserQuery { get; set; }
+
+        /// <summary>
+        /// Standalone search query used for KNN retrieval (conversational search)
+        /// </summary>
+        /// <value>Standalone search query used for KNN retrieval (conversational search)</value>
+        /*
+        <example>vector search, embeddings, similarity search</example>
+        */
+        [DataMember(Name = "search_query", EmitDefaultValue = false)]
+        public string SearchQuery { get; set; }
+
+        /// <summary>
+        /// LLM answer as generated (conversational search)
+        /// </summary>
+        /// <value>LLM answer as generated (conversational search)</value>
+        /*
+        <example>Vector search finds similar items by comparing embeddings...</example>
+        */
+        [DataMember(Name = "response", EmitDefaultValue = false)]
+        public string Response { get; set; }
+
+        /// <summary>
+        /// JSON string containing retrieved source rows used as LLM context (conversational search). 
+        /// </summary>
+        /// <value>JSON string containing retrieved source rows used as LLM context (conversational search). </value>
+        /*
+        <example>[{&quot;id&quot;:1,&quot;title&quot;:&quot;Vector Search&quot;,&quot;content&quot;:&quot;...&quot;,&quot;knn_dist&quot;:0.12}]</example>
+        */
+        [DataMember(Name = "sources", EmitDefaultValue = false)]
+        public string Sources { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -117,6 +180,11 @@ namespace ManticoreSearch.Model
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  Scroll: ").Append(Scroll).Append("\n");
             sb.Append("  Warning: ").Append(Warning).Append("\n");
+            sb.Append("  ConversationUuid: ").Append(ConversationUuid).Append("\n");
+            sb.Append("  UserQuery: ").Append(UserQuery).Append("\n");
+            sb.Append("  SearchQuery: ").Append(SearchQuery).Append("\n");
+            sb.Append("  Response: ").Append(Response).Append("\n");
+            sb.Append("  Sources: ").Append(Sources).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

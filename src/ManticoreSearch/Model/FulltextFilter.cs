@@ -46,7 +46,6 @@ namespace ManticoreSearch.Model
             this.Match = match;
             this.MatchPhrase = matchPhrase;
             this.MatchAll = matchAll;
-            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -78,12 +77,6 @@ namespace ManticoreSearch.Model
         public Object MatchAll { get; set; }
 
         /// <summary>
-        /// Gets or Sets additional properties
-        /// </summary>
-        [JsonExtensionData]
-        public IDictionary<string, object> AdditionalProperties { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -95,7 +88,6 @@ namespace ManticoreSearch.Model
             sb.Append("  Match: ").Append(Match).Append("\n");
             sb.Append("  MatchPhrase: ").Append(MatchPhrase).Append("\n");
             sb.Append("  MatchAll: ").Append(MatchAll).Append("\n");
-            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

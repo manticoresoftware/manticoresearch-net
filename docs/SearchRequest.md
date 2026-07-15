@@ -1,18 +1,22 @@
 # ManticoreSearch.Model.SearchRequest
-Request object for search operation
+Request object for search operation. Either `table` (regular search) or `chat` (conversational search) must be provided. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Table** | **string** | The table to perform the search on | 
+**Table** | **string** | The table to perform the search on | [optional] 
+**Chat** | [**Chat**](Chat.md) |  | [optional] 
 **Query** | [**SearchQuery**](SearchQuery.md) |  | [optional] 
 **Join** | [**List&lt;Join&gt;**](Join.md) | Join clause to combine search data from multiple tables | [optional] 
 **Highlight** | [**Highlight**](Highlight.md) |  | [optional] 
 **Limit** | **int** | Maximum number of results to return | [optional] 
-**Knn** | [**Knn**](Knn.md) |  | [optional] 
+**Knn** | [**Knn**](Knn.md) | K-nearest neighbor search settings. Pass a single &#x60;knn&#x60; object or an array of objects for multi-vector search.  | [optional] 
+**Hybrid** | [**Hybrid**](Hybrid.md) |  | [optional] 
+**FacetFilterMode** | **FacetFilterMode** |  | [optional] 
 **Aggs** | [**Dictionary&lt;string, Aggregation&gt;**](Aggregation.md) | Defines aggregation settings for grouping results | [optional] 
-**Expressions** | **Dictionary&lt;string, string&gt;** | Expressions to calculate additional values for the result | [optional] 
+**Expressions** | **Dictionary&lt;string, string&gt;** | Expressions to calculate additional values for the result. Simpler alternative to &#x60;script_fields&#x60;; expression names must be lowercase.  | [optional] 
+**ScriptFields** | [**Dictionary&lt;string, ScriptField&gt;**](ScriptField.md) | Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields)  | [optional] 
 **MaxMatches** | **int** | Maximum number of matches allowed in the result | [optional] 
 **Offset** | **int** | Starting point for pagination of the result | [optional] 
 **Options** | **Object** | Additional search options | [optional] 

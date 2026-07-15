@@ -40,12 +40,32 @@ namespace ManticoreSearch.Model
         /// <param name="sort">sort.</param>
         /// <param name="composite">composite.</param>
         /// <param name="histogram">histogram.</param>
-        public Aggregation(AggTerms terms = default, List<Object> sort = default, AggComposite composite = default, AggHistogram histogram = default)
+        /// <param name="dateHistogram">dateHistogram.</param>
+        /// <param name="range">range.</param>
+        /// <param name="dateRange">dateRange.</param>
+        /// <param name="percentiles">percentiles.</param>
+        /// <param name="percentileRanks">percentileRanks.</param>
+        /// <param name="medianAbsoluteDeviation">medianAbsoluteDeviation.</param>
+        /// <param name="min">min.</param>
+        /// <param name="max">max.</param>
+        /// <param name="sum">sum.</param>
+        /// <param name="avg">avg.</param>
+        public Aggregation(AggTerms terms = default, List<Object> sort = default, AggComposite composite = default, AggHistogram histogram = default, AggDateHistogram dateHistogram = default, AggRange range = default, AggRange dateRange = default, AggPercentiles percentiles = default, AggPercentileRanks percentileRanks = default, AggMedianAbsoluteDeviation medianAbsoluteDeviation = default, AggMetric min = default, AggMetric max = default, AggMetric sum = default, AggMetric avg = default)
         {
             this.Terms = terms;
             this.Sort = sort;
             this.Composite = composite;
             this.Histogram = histogram;
+            this.DateHistogram = dateHistogram;
+            this.Range = range;
+            this.DateRange = dateRange;
+            this.Percentiles = percentiles;
+            this.PercentileRanks = percentileRanks;
+            this.MedianAbsoluteDeviation = medianAbsoluteDeviation;
+            this.Min = min;
+            this.Max = max;
+            this.Sum = sum;
+            this.Avg = avg;
         }
 
         /// <summary>
@@ -73,6 +93,66 @@ namespace ManticoreSearch.Model
         public AggHistogram Histogram { get; set; }
 
         /// <summary>
+        /// Gets or Sets DateHistogram
+        /// </summary>
+        [DataMember(Name = "date_histogram", EmitDefaultValue = false)]
+        public AggDateHistogram DateHistogram { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Range
+        /// </summary>
+        [DataMember(Name = "range", EmitDefaultValue = false)]
+        public AggRange Range { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DateRange
+        /// </summary>
+        [DataMember(Name = "date_range", EmitDefaultValue = false)]
+        public AggRange DateRange { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Percentiles
+        /// </summary>
+        [DataMember(Name = "percentiles", EmitDefaultValue = false)]
+        public AggPercentiles Percentiles { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PercentileRanks
+        /// </summary>
+        [DataMember(Name = "percentile_ranks", EmitDefaultValue = false)]
+        public AggPercentileRanks PercentileRanks { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MedianAbsoluteDeviation
+        /// </summary>
+        [DataMember(Name = "median_absolute_deviation", EmitDefaultValue = false)]
+        public AggMedianAbsoluteDeviation MedianAbsoluteDeviation { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Min
+        /// </summary>
+        [DataMember(Name = "min", EmitDefaultValue = false)]
+        public AggMetric Min { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Max
+        /// </summary>
+        [DataMember(Name = "max", EmitDefaultValue = false)]
+        public AggMetric Max { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sum
+        /// </summary>
+        [DataMember(Name = "sum", EmitDefaultValue = false)]
+        public AggMetric Sum { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Avg
+        /// </summary>
+        [DataMember(Name = "avg", EmitDefaultValue = false)]
+        public AggMetric Avg { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +164,16 @@ namespace ManticoreSearch.Model
             sb.Append("  Sort: ").Append(Sort).Append("\n");
             sb.Append("  Composite: ").Append(Composite).Append("\n");
             sb.Append("  Histogram: ").Append(Histogram).Append("\n");
+            sb.Append("  DateHistogram: ").Append(DateHistogram).Append("\n");
+            sb.Append("  Range: ").Append(Range).Append("\n");
+            sb.Append("  DateRange: ").Append(DateRange).Append("\n");
+            sb.Append("  Percentiles: ").Append(Percentiles).Append("\n");
+            sb.Append("  PercentileRanks: ").Append(PercentileRanks).Append("\n");
+            sb.Append("  MedianAbsoluteDeviation: ").Append(MedianAbsoluteDeviation).Append("\n");
+            sb.Append("  Min: ").Append(Min).Append("\n");
+            sb.Append("  Max: ").Append(Max).Append("\n");
+            sb.Append("  Sum: ").Append(Sum).Append("\n");
+            sb.Append("  Avg: ").Append(Avg).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

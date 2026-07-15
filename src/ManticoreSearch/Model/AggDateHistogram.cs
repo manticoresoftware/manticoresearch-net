@@ -42,10 +42,10 @@ namespace ManticoreSearch.Model
         /// Initializes a new instance of the <see cref="AggDateHistogram" /> class.
         /// </summary>
         /// <param name="field">Field to group by (required).</param>
-        /// <param name="interval">Interval of the histogram values (required).</param>
+        /// <param name="calendarInterval">Interval of the histogram values (required).</param>
         /// <param name="offset">Offset of the histogram values. Default value is 0..</param>
         /// <param name="keyed">Flag that defines if a search response will be a dictionary with the bucket keys. Default value is false..</param>
-        public AggDateHistogram(string field = default, int interval = default, int offset = default, bool keyed = default)
+        public AggDateHistogram(string field = default, int calendarInterval = default, int offset = default, bool keyed = default)
         {
             // to ensure "field" is required (not null)
             if (field == null)
@@ -53,7 +53,7 @@ namespace ManticoreSearch.Model
                 throw new ArgumentNullException("field is a required property for AggDateHistogram and cannot be null");
             }
             this.Field = field;
-            this.Interval = interval;
+            this.CalendarInterval = calendarInterval;
             this.Offset = offset;
             this.Keyed = keyed;
         }
@@ -75,8 +75,8 @@ namespace ManticoreSearch.Model
         /*
         <example>10</example>
         */
-        [DataMember(Name = "interval", IsRequired = true, EmitDefaultValue = true)]
-        public int Interval { get; set; }
+        [DataMember(Name = "calendar_interval", IsRequired = true, EmitDefaultValue = true)]
+        public int CalendarInterval { get; set; }
 
         /// <summary>
         /// Offset of the histogram values. Default value is 0.
@@ -107,7 +107,7 @@ namespace ManticoreSearch.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AggDateHistogram {\n");
             sb.Append("  Field: ").Append(Field).Append("\n");
-            sb.Append("  Interval: ").Append(Interval).Append("\n");
+            sb.Append("  CalendarInterval: ").Append(CalendarInterval).Append("\n");
             sb.Append("  Offset: ").Append(Offset).Append("\n");
             sb.Append("  Keyed: ").Append(Keyed).Append("\n");
             sb.Append("}\n");

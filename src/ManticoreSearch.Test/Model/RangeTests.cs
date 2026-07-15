@@ -56,39 +56,21 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Lt'
+        /// Test the property 'From'
         /// </summary>
         [Fact]
-        public void LtTest()
+        public void FromTest()
         {
-            // TODO unit test for the property 'Lt'
+            // TODO unit test for the property 'From'
         }
 
         /// <summary>
-        /// Test the property 'Lte'
+        /// Test the property 'To'
         /// </summary>
         [Fact]
-        public void LteTest()
+        public void ToTest()
         {
-            // TODO unit test for the property 'Lte'
-        }
-
-        /// <summary>
-        /// Test the property 'Gt'
-        /// </summary>
-        [Fact]
-        public void GtTest()
-        {
-            // TODO unit test for the property 'Gt'
-        }
-
-        /// <summary>
-        /// Test the property 'Gte'
-        /// </summary>
-        [Fact]
-        public void GteTest()
-        {
-            // TODO unit test for the property 'Gte'
+            // TODO unit test for the property 'To'
         }
     }
 }

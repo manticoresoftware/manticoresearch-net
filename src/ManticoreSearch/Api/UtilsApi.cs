@@ -51,6 +51,27 @@ namespace ManticoreSearch.Api
         /// <param name="rawResponse">Optional parameter, defines a format of response. Can be set to &#x60;False&#x60; for Select only queries and set to &#x60;True&#x60; for any type of queries. Default value is &#39;True&#39;.  (optional, default to true)</param>
         /// <returns>ApiResponse of SqlResponse</returns>
         ApiResponse<SqlResponse> SqlWithHttpInfo(string body, bool? rawResponse = default);
+        /// <summary>
+        /// Create or rotate a bearer token
+        /// </summary>
+        /// <remarks>
+        /// Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>string</returns>
+        string Token(Object body);
+
+        /// <summary>
+        /// Create or rotate a bearer token
+        /// </summary>
+        /// <remarks>
+        /// Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of string</returns>
+        ApiResponse<string> TokenWithHttpInfo(Object body);
         #endregion Synchronous Operations
     }
 
@@ -85,6 +106,29 @@ namespace ManticoreSearch.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SqlResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<SqlResponse>> SqlWithHttpInfoAsync(string body, bool? rawResponse = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create or rotate a bearer token
+        /// </summary>
+        /// <remarks>
+        /// Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of string</returns>
+        System.Threading.Tasks.Task<string> TokenAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create or rotate a bearer token
+        /// </summary>
+        /// <remarks>
+        /// Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        System.Threading.Tasks.Task<ApiResponse<string>> TokenWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -347,6 +391,18 @@ namespace ManticoreSearch.Api
             }
             localVarRequestOptions.Data = body;
 
+            // authentication (basicAuth) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + ManticoreSearch.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<SqlResponse>("/sql", localVarRequestOptions, this.Configuration);
@@ -413,6 +469,18 @@ namespace ManticoreSearch.Api
             }
             localVarRequestOptions.Data = body;
 
+            // authentication (basicAuth) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + ManticoreSearch.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
 
             // make the HTTP request
 
@@ -421,6 +489,137 @@ namespace ManticoreSearch.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("Sql", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create or rotate a bearer token Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>string</returns>
+        public string Token(Object body)
+        {
+            ManticoreSearch.Client.ApiResponse<string> localVarResponse = TokenWithHttpInfo(body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create or rotate a bearer token Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of string</returns>
+        public ManticoreSearch.Client.ApiResponse<string> TokenWithHttpInfo(Object body)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'body' when calling UtilsApi->Token");
+
+            ManticoreSearch.Client.RequestOptions localVarRequestOptions = new ManticoreSearch.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json",
+                "text/plain"
+            };
+
+            var localVarContentType = ManticoreSearch.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = body;
+
+            // authentication (basicAuth) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + ManticoreSearch.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<string>("/token", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Token", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create or rotate a bearer token Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of string</returns>
+        public async System.Threading.Tasks.Task<string> TokenAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
+        {
+            ManticoreSearch.Client.ApiResponse<string> localVarResponse = await TokenWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create or rotate a bearer token Create or rotate a bearer token for the authenticated HTTP user. Requires HTTP Basic authentication with a Manticore user name and password. The endpoint returns the raw token. Example:    &#x60;&#x60;&#x60;   curl -u admin:password -X POST http://127.0.0.1:9308/token -d \&quot;{}\&quot;   &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="ManticoreSearch.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (string)</returns>
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<string>> TokenWithHttpInfoAsync(Object body, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ManticoreSearch.Client.ApiException(400, "Missing required parameter 'body' when calling UtilsApi->Token");
+
+
+            ManticoreSearch.Client.RequestOptions localVarRequestOptions = new ManticoreSearch.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json",
+                "text/plain"
+            };
+
+
+            var localVarContentType = ManticoreSearch.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = ManticoreSearch.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = body;
+
+            // authentication (basicAuth) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + ManticoreSearch.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<string>("/token", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("Token", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

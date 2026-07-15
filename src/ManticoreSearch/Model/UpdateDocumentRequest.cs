@@ -45,7 +45,7 @@ namespace ManticoreSearch.Model
         /// <param name="cluster">Name of the document cluster.</param>
         /// <param name="doc">Object containing the document fields to update (required).</param>
         /// <param name="id">Document ID.</param>
-        /// <param name="query">query.</param>
+        /// <param name="query">Object defining conditions to perform the updates.</param>
         public UpdateDocumentRequest(string table = default, string cluster = default, Object doc = default, UInt64 id = default, QueryFilter query = default)
         {
             // to ensure "table" is required (not null)
@@ -97,9 +97,13 @@ namespace ManticoreSearch.Model
         public UInt64 Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Query
+        /// Object defining conditions to perform the updates
         /// </summary>
-        [DataMember(Name = "query", EmitDefaultValue = true)]
+        /// <value>Object defining conditions to perform the updates</value>
+        /*
+        <example>{query&#x3D;{match&#x3D;{title&#x3D;match me}}}</example>
+        */
+        [DataMember(Name = "query", EmitDefaultValue = false)]
         public QueryFilter Query { get; set; }
 
         /// <summary>

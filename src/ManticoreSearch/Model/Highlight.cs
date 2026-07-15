@@ -169,7 +169,7 @@ namespace ManticoreSearch.Model
         /// <param name="fields">fields.</param>
         /// <param name="forceAllWords">Ignores the length limit until the result includes all keywords.</param>
         /// <param name="forceSnippets">Forces snippet generation even if limits allow highlighting the entire text.</param>
-        /// <param name="highlightQuery">highlightQuery.</param>
+        /// <param name="highlightQuery">Optional query object to customize highlighting behavior.</param>
         /// <param name="htmlStripMode">Defines the mode for handling HTML markup in the highlight.</param>
         /// <param name="limitsPerField">Determines whether the &#39;limit&#39;, &#39;limit_words&#39;, and &#39;limit_snippets&#39; options operate as individual limits in each field of the document.</param>
         /// <param name="noMatchSize">If set to 1, allows an empty string to be returned as a highlighting result.</param>
@@ -300,8 +300,9 @@ namespace ManticoreSearch.Model
         public bool ForceSnippets { get; set; }
 
         /// <summary>
-        /// Gets or Sets HighlightQuery
+        /// Optional query object to customize highlighting behavior
         /// </summary>
+        /// <value>Optional query object to customize highlighting behavior</value>
         [DataMember(Name = "highlight_query", EmitDefaultValue = false)]
         public QueryFilter HighlightQuery { get; set; }
 

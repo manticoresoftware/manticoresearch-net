@@ -223,5 +223,21 @@ namespace ManticoreSearch.Test.Api
             	Assert.IsType<SqlResponse>(response);
             }
         }
+
+        /// <summary>
+        /// Test Token
+        /// </summary>
+        [Fact]
+        public void TokenTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //Object body = null;
+            //var response = instance.Token(body);
+			object response = this.CheckTest( System.Reflection.MethodBase.GetCurrentMethod().Name );
+            if (response != null)
+            {
+            	Assert.IsType<string>(response);
+            }
+        }
     }
 }

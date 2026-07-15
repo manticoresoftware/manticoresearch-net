@@ -86,7 +86,7 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Gets or Sets Type
         /// </summary>
-        [DataMember(Name = "type", EmitDefaultValue = true)]
+        [DataMember(Name = "type", EmitDefaultValue = false)]
         public Object Type { get; set; }
 
         /// <summary>

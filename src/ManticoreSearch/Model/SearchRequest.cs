@@ -28,27 +28,32 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Request object for search operation
+    /// Request object for search operation. Either &#x60;table&#x60; (regular search) or &#x60;chat&#x60; (conversational search) must be provided. 
     /// </summary>
     [DataContract(Name = "searchRequest")]
     public partial class SearchRequest : IValidatableObject
     {
+
+        /// <summary>
+        /// Gets or Sets FacetFilterMode
+        /// </summary>
+        [DataMember(Name = "facet_filter_mode", EmitDefaultValue = false)]
+        public FacetFilterMode? FacetFilterMode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SearchRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SearchRequest" /> class.
-        /// </summary>
-        /// <param name="table">The table to perform the search on (required).</param>
+        /// <param name="table">The table to perform the search on.</param>
+        /// <param name="chat">chat.</param>
         /// <param name="query">query.</param>
         /// <param name="join">Join clause to combine search data from multiple tables.</param>
         /// <param name="highlight">highlight.</param>
         /// <param name="limit">Maximum number of results to return.</param>
-        /// <param name="knn">knn.</param>
+        /// <param name="knn">K-nearest neighbor search settings. Pass a single &#x60;knn&#x60; object or an array of objects for multi-vector search. .</param>
+        /// <param name="hybrid">hybrid.</param>
+        /// <param name="facetFilterMode">facetFilterMode.</param>
         /// <param name="aggs">Defines aggregation settings for grouping results.</param>
-        /// <param name="expressions">Expressions to calculate additional values for the result.</param>
+        /// <param name="expressions">Expressions to calculate additional values for the result. Simpler alternative to &#x60;script_fields&#x60;; expression names must be lowercase. .</param>
+        /// <param name="scriptFields">Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields) .</param>
         /// <param name="maxMatches">Maximum number of matches allowed in the result.</param>
         /// <param name="offset">Starting point for pagination of the result.</param>
         /// <param name="options">Additional search options.</param>
@@ -56,21 +61,20 @@ namespace ManticoreSearch.Model
         /// <param name="sort">Sorting criteria for the search results.</param>
         /// <param name="source">Specify which fields to include or exclude in the response.</param>
         /// <param name="trackScores">Enable or disable result weight calculation used for sorting.</param>
-        public SearchRequest(string table = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, Knn knn = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
+        public SearchRequest(string table = default, Chat chat = default, SearchQuery query = default, List<Join> join = default, Highlight highlight = default, int limit = default, Knn knn = default, Hybrid hybrid = default, FacetFilterMode? facetFilterMode = default, Dictionary<string, Aggregation> aggs = default, Dictionary<string, string> expressions = default, Dictionary<string, ScriptField> scriptFields = default, int maxMatches = default, int offset = default, Object options = default, bool profile = default, Object sort = default, Object source = default, bool trackScores = default)
         {
-            // to ensure "table" is required (not null)
-            if (table == null)
-            {
-                throw new ArgumentNullException("table is a required property for SearchRequest and cannot be null");
-            }
             this.Table = table;
+            this.Chat = chat;
             this.Query = query;
             this.Join = join;
             this.Highlight = highlight;
             this.Limit = limit;
             this.Knn = knn;
+            this.Hybrid = hybrid;
+            this.FacetFilterMode = facetFilterMode;
             this.Aggs = aggs;
             this.Expressions = expressions;
+            this.ScriptFields = scriptFields;
             this.MaxMatches = maxMatches;
             this.Offset = offset;
             this.Options = options;
@@ -84,8 +88,14 @@ namespace ManticoreSearch.Model
         /// The table to perform the search on
         /// </summary>
         /// <value>The table to perform the search on</value>
-        [DataMember(Name = "table", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "table", EmitDefaultValue = false)]
         public string Table { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Chat
+        /// </summary>
+        [DataMember(Name = "chat", EmitDefaultValue = false)]
+        public Chat Chat { get; set; }
 
         /// <summary>
         /// Gets or Sets Query
@@ -114,10 +124,17 @@ namespace ManticoreSearch.Model
         public int Limit { get; set; }
 
         /// <summary>
-        /// Gets or Sets Knn
+        /// K-nearest neighbor search settings. Pass a single &#x60;knn&#x60; object or an array of objects for multi-vector search. 
         /// </summary>
+        /// <value>K-nearest neighbor search settings. Pass a single &#x60;knn&#x60; object or an array of objects for multi-vector search. </value>
         [DataMember(Name = "knn", EmitDefaultValue = false)]
         public Knn Knn { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Hybrid
+        /// </summary>
+        [DataMember(Name = "hybrid", EmitDefaultValue = false)]
+        public Hybrid Hybrid { get; set; }
 
         /// <summary>
         /// Defines aggregation settings for grouping results
@@ -130,14 +147,24 @@ namespace ManticoreSearch.Model
         public Dictionary<string, Aggregation> Aggs { get; set; }
 
         /// <summary>
-        /// Expressions to calculate additional values for the result
+        /// Expressions to calculate additional values for the result. Simpler alternative to &#x60;script_fields&#x60;; expression names must be lowercase. 
         /// </summary>
-        /// <value>Expressions to calculate additional values for the result</value>
+        /// <value>Expressions to calculate additional values for the result. Simpler alternative to &#x60;script_fields&#x60;; expression names must be lowercase. </value>
         /*
         <example>{title_len&#x3D;crc32(title)}</example>
         */
         [DataMember(Name = "expressions", EmitDefaultValue = false)]
         public Dictionary<string, string> Expressions { get; set; }
+
+        /// <summary>
+        /// Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields) 
+        /// </summary>
+        /// <value>Named expressions computed at search time. Each value defines an inline script whose result is stored under the field name. For more information see [Expressions](https://manual.manticoresearch.com/Searching/Expressions#script_fields) </value>
+        /*
+        <example>{add_all&#x3D;{script&#x3D;{inline&#x3D;( gid * 10 ) | crc32(title)}}, title_len&#x3D;{script&#x3D;{inline&#x3D;crc32(title)}}}</example>
+        */
+        [DataMember(Name = "script_fields", EmitDefaultValue = false)]
+        public Dictionary<string, ScriptField> ScriptFields { get; set; }
 
         /// <summary>
         /// Maximum number of matches allowed in the result
@@ -197,13 +224,17 @@ namespace ManticoreSearch.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SearchRequest {\n");
             sb.Append("  Table: ").Append(Table).Append("\n");
+            sb.Append("  Chat: ").Append(Chat).Append("\n");
             sb.Append("  Query: ").Append(Query).Append("\n");
             sb.Append("  Join: ").Append(Join).Append("\n");
             sb.Append("  Highlight: ").Append(Highlight).Append("\n");
             sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Knn: ").Append(Knn).Append("\n");
+            sb.Append("  Hybrid: ").Append(Hybrid).Append("\n");
+            sb.Append("  FacetFilterMode: ").Append(FacetFilterMode).Append("\n");
             sb.Append("  Aggs: ").Append(Aggs).Append("\n");
             sb.Append("  Expressions: ").Append(Expressions).Append("\n");
+            sb.Append("  ScriptFields: ").Append(ScriptFields).Append("\n");
             sb.Append("  MaxMatches: ").Append(MaxMatches).Append("\n");
             sb.Append("  Offset: ").Append(Offset).Append("\n");
             sb.Append("  Options: ").Append(Options).Append("\n");

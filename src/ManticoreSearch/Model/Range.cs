@@ -28,7 +28,7 @@ using OpenAPIDateConverter = ManticoreSearch.Client.OpenAPIDateConverter;
 namespace ManticoreSearch.Model
 {
     /// <summary>
-    /// Filter helper object defining the &#39;range&#39; condition
+    /// An aggregation range. 
     /// </summary>
     [DataContract(Name = "range")]
     public partial class Range : IValidatableObject
@@ -36,41 +36,25 @@ namespace ManticoreSearch.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Range" /> class.
         /// </summary>
-        /// <param name="lt">lt.</param>
-        /// <param name="lte">lte.</param>
-        /// <param name="gt">gt.</param>
-        /// <param name="gte">gte.</param>
-        public Range(Object lt = default, Object lte = default, Object gt = default, Object gte = default)
+        /// <param name="from">from.</param>
+        /// <param name="to">to.</param>
+        public Range(Object from = default, Object to = default)
         {
-            this.Lt = lt;
-            this.Lte = lte;
-            this.Gt = gt;
-            this.Gte = gte;
+            this.From = from;
+            this.To = to;
         }
 
         /// <summary>
-        /// Gets or Sets Lt
+        /// Gets or Sets From
         /// </summary>
-        [DataMember(Name = "lt", EmitDefaultValue = true)]
-        public Object Lt { get; set; }
+        [DataMember(Name = "from", EmitDefaultValue = true)]
+        public Object From { get; set; }
 
         /// <summary>
-        /// Gets or Sets Lte
+        /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "lte", EmitDefaultValue = true)]
-        public Object Lte { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Gt
-        /// </summary>
-        [DataMember(Name = "gt", EmitDefaultValue = true)]
-        public Object Gt { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Gte
-        /// </summary>
-        [DataMember(Name = "gte", EmitDefaultValue = true)]
-        public Object Gte { get; set; }
+        [DataMember(Name = "to", EmitDefaultValue = true)]
+        public Object To { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,10 +64,8 @@ namespace ManticoreSearch.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Range {\n");
-            sb.Append("  Lt: ").Append(Lt).Append("\n");
-            sb.Append("  Lte: ").Append(Lte).Append("\n");
-            sb.Append("  Gt: ").Append(Gt).Append("\n");
-            sb.Append("  Gte: ").Append(Gte).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
+            sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

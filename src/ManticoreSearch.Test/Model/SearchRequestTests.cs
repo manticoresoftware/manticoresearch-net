@@ -65,6 +65,15 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Chat'
+        /// </summary>
+        [Fact]
+        public void ChatTest()
+        {
+            // TODO unit test for the property 'Chat'
+        }
+
+        /// <summary>
         /// Test the property 'Query'
         /// </summary>
         [Fact]
@@ -110,6 +119,24 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Hybrid'
+        /// </summary>
+        [Fact]
+        public void HybridTest()
+        {
+            // TODO unit test for the property 'Hybrid'
+        }
+
+        /// <summary>
+        /// Test the property 'FacetFilterMode'
+        /// </summary>
+        [Fact]
+        public void FacetFilterModeTest()
+        {
+            // TODO unit test for the property 'FacetFilterMode'
+        }
+
+        /// <summary>
         /// Test the property 'Aggs'
         /// </summary>
         [Fact]
@@ -125,6 +152,15 @@ namespace ManticoreSearch.Test.Model
         public void ExpressionsTest()
         {
             // TODO unit test for the property 'Expressions'
+        }
+
+        /// <summary>
+        /// Test the property 'ScriptFields'
+        /// </summary>
+        [Fact]
+        public void ScriptFieldsTest()
+        {
+            // TODO unit test for the property 'ScriptFields'
         }
 
         /// <summary>

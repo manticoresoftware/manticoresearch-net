@@ -117,5 +117,50 @@ namespace ManticoreSearch.Test.Model
         {
             // TODO unit test for the property 'Warning'
         }
+
+        /// <summary>
+        /// Test the property 'ConversationUuid'
+        /// </summary>
+        [Fact]
+        public void ConversationUuidTest()
+        {
+            // TODO unit test for the property 'ConversationUuid'
+        }
+
+        /// <summary>
+        /// Test the property 'UserQuery'
+        /// </summary>
+        [Fact]
+        public void UserQueryTest()
+        {
+            // TODO unit test for the property 'UserQuery'
+        }
+
+        /// <summary>
+        /// Test the property 'SearchQuery'
+        /// </summary>
+        [Fact]
+        public void SearchQueryTest()
+        {
+            // TODO unit test for the property 'SearchQuery'
+        }
+
+        /// <summary>
+        /// Test the property 'Response'
+        /// </summary>
+        [Fact]
+        public void ResponseTest()
+        {
+            // TODO unit test for the property 'Response'
+        }
+
+        /// <summary>
+        /// Test the property 'Sources'
+        /// </summary>
+        [Fact]
+        public void SourcesTest()
+        {
+            // TODO unit test for the property 'Sources'
+        }
     }
 }

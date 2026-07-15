@@ -90,5 +90,95 @@ namespace ManticoreSearch.Test.Model
         {
             // TODO unit test for the property 'Histogram'
         }
+
+        /// <summary>
+        /// Test the property 'DateHistogram'
+        /// </summary>
+        [Fact]
+        public void DateHistogramTest()
+        {
+            // TODO unit test for the property 'DateHistogram'
+        }
+
+        /// <summary>
+        /// Test the property 'Range'
+        /// </summary>
+        [Fact]
+        public void RangeTest()
+        {
+            // TODO unit test for the property 'Range'
+        }
+
+        /// <summary>
+        /// Test the property 'DateRange'
+        /// </summary>
+        [Fact]
+        public void DateRangeTest()
+        {
+            // TODO unit test for the property 'DateRange'
+        }
+
+        /// <summary>
+        /// Test the property 'Percentiles'
+        /// </summary>
+        [Fact]
+        public void PercentilesTest()
+        {
+            // TODO unit test for the property 'Percentiles'
+        }
+
+        /// <summary>
+        /// Test the property 'PercentileRanks'
+        /// </summary>
+        [Fact]
+        public void PercentileRanksTest()
+        {
+            // TODO unit test for the property 'PercentileRanks'
+        }
+
+        /// <summary>
+        /// Test the property 'MedianAbsoluteDeviation'
+        /// </summary>
+        [Fact]
+        public void MedianAbsoluteDeviationTest()
+        {
+            // TODO unit test for the property 'MedianAbsoluteDeviation'
+        }
+
+        /// <summary>
+        /// Test the property 'Min'
+        /// </summary>
+        [Fact]
+        public void MinTest()
+        {
+            // TODO unit test for the property 'Min'
+        }
+
+        /// <summary>
+        /// Test the property 'Max'
+        /// </summary>
+        [Fact]
+        public void MaxTest()
+        {
+            // TODO unit test for the property 'Max'
+        }
+
+        /// <summary>
+        /// Test the property 'Sum'
+        /// </summary>
+        [Fact]
+        public void SumTest()
+        {
+            // TODO unit test for the property 'Sum'
+        }
+
+        /// <summary>
+        /// Test the property 'Avg'
+        /// </summary>
+        [Fact]
+        public void AvgTest()
+        {
+            // TODO unit test for the property 'Avg'
+        }
     }
 }

@@ -1,6 +1,6 @@
 # Manticore .Net client
 
-❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/11.0.0
+❗ WARNING: this is a development version of the client. The latest release's readme is https://github.com/manticoresoftware/manticoresearch-net/tree/11.1.0
 
 - API version: 5.0.0
 - Build package: org.openapitools.codegen.languages.CSharpClientCodegen
@@ -24,10 +24,12 @@ The DLLs included in the package may not be the latest version. We recommend usi
 | **manticoresearch-net*  | **Manticore Search**                | **Compatibility**       |
 | ------------------------| ----------------------------------- | ------------------------|
 | `manticoresearch-dev`   | `dev` (latest development version)  | ✅ Fully Compatible     |
-| 11.0.0 or newer         | 17.5.1 or newer                     | ✅ Fully Compatible     |
-| 11.0.0 or newer         | 13.2.3 to 17.5.1                    | ⚠️ Partially Compatible |
-| 9.0.0 to 11.0.0         | 17.5.1 or newer                     | ⚠️ Partially Compatible |
-| 9.0.0 to 11.0.0         | 13.2.3 to 17.5.1                    | ✅ Fully Compatible     |
+| 11.1.0 or newer         | 28.4.4 or newer                     | ✅ Fully Compatible     |
+| 10.0.0 to 11.1.0        | 28.4.4 or newer                     | ⚠️ Partially Compatible |
+| 10.0.0 to 11.1.0        | 17.5.1 to 28.4.4                    | ✅ Fully Compatible     |
+| 10.0.0 to 11.1.0        | 13.2.3 to 17.5.1                    | ⚠️ Partially Compatible |
+| 9.0.0 to 10.0.0         | 17.5.1 or newer                     | ⚠️ Partially Compatible |
+| 9.0.0 to 10.0.0         | 13.2.3 to 17.5.1                    | ✅ Fully Compatible     |
 | 8.0.0 to 9.0.0          | 9.2.14 to 13.2.3                    | ✅ Fully Compatible     |
 | 6.0.0 to 8.0.0          | 9.2.14 to 13.2.3                    | ⚠️ Partially Compatible |
 | 6.0.0 to 8.0.0          | 7.0.0 to 9.2.14                     | ✅ Fully Compatible     |
@@ -114,6 +116,12 @@ namespace Example
 
             Configuration config = new Configuration();
             config.BasePath = "http://127.0.0.1:9308";
+            // Configure HTTP basic authorization: basicAuth
+            config.Username = "YOUR_USERNAME";
+            config.Password = "YOUR_PASSWORD";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
             // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -179,24 +187,36 @@ Class | Method | HTTP request | Description
 *SearchApi* | [**Percolate**](docs/SearchApi.md#percolate) | **POST** /pq/{table}/search | Perform reverse search on a percolate table
 *SearchApi* | [**Search**](docs/SearchApi.md#search) | **POST** /search | Performs a search on a table
 *UtilsApi* | [**Sql**](docs/UtilsApi.md#sql) | **POST** /sql | Perform SQL requests
+*UtilsApi* | [**Token**](docs/UtilsApi.md#token) | **POST** /token | Create or rotate a bearer token
 
 
 <a id="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.AggBucket](docs/AggBucket.md)
+ - [Model.AggBucketsResult](docs/AggBucketsResult.md)
  - [Model.AggComposite](docs/AggComposite.md)
  - [Model.AggCompositeSource](docs/AggCompositeSource.md)
  - [Model.AggCompositeTerm](docs/AggCompositeTerm.md)
  - [Model.AggDateHistogram](docs/AggDateHistogram.md)
  - [Model.AggHistogram](docs/AggHistogram.md)
+ - [Model.AggMedianAbsoluteDeviation](docs/AggMedianAbsoluteDeviation.md)
+ - [Model.AggMetric](docs/AggMetric.md)
+ - [Model.AggPercentileRanks](docs/AggPercentileRanks.md)
+ - [Model.AggPercentiles](docs/AggPercentiles.md)
+ - [Model.AggRange](docs/AggRange.md)
+ - [Model.AggTDigest](docs/AggTDigest.md)
  - [Model.AggTerms](docs/AggTerms.md)
  - [Model.Aggregation](docs/Aggregation.md)
  - [Model.AutocompleteRequest](docs/AutocompleteRequest.md)
  - [Model.BoolFilter](docs/BoolFilter.md)
  - [Model.BulkResponse](docs/BulkResponse.md)
+ - [Model.Chat](docs/Chat.md)
  - [Model.DeleteDocumentRequest](docs/DeleteDocumentRequest.md)
  - [Model.DeleteResponse](docs/DeleteResponse.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
+ - [Model.FacetBucketStatus](docs/FacetBucketStatus.md)
+ - [Model.FacetFilterMode](docs/FacetFilterMode.md)
  - [Model.FulltextFilter](docs/FulltextFilter.md)
  - [Model.GeoDistance](docs/GeoDistance.md)
  - [Model.GeoDistanceLocationAnchor](docs/GeoDistanceLocationAnchor.md)
@@ -204,6 +224,7 @@ Class | Method | HTTP request | Description
  - [Model.HighlightFieldOption](docs/HighlightFieldOption.md)
  - [Model.HighlightFields](docs/HighlightFields.md)
  - [Model.HitsHits](docs/HitsHits.md)
+ - [Model.Hybrid](docs/Hybrid.md)
  - [Model.InsertDocumentRequest](docs/InsertDocumentRequest.md)
  - [Model.Join](docs/Join.md)
  - [Model.JoinCond](docs/JoinCond.md)
@@ -216,9 +237,12 @@ Class | Method | HTTP request | Description
  - [Model.PercolateRequestQuery](docs/PercolateRequestQuery.md)
  - [Model.QueryFilter](docs/QueryFilter.md)
  - [Model.Range](docs/Range.md)
+ - [Model.RangeFilter](docs/RangeFilter.md)
  - [Model.ReplaceDocumentRequest](docs/ReplaceDocumentRequest.md)
  - [Model.ResponseError](docs/ResponseError.md)
  - [Model.ResponseErrorDetails](docs/ResponseErrorDetails.md)
+ - [Model.ScriptField](docs/ScriptField.md)
+ - [Model.ScriptFieldScript](docs/ScriptFieldScript.md)
  - [Model.SearchQuery](docs/SearchQuery.md)
  - [Model.SearchRequest](docs/SearchRequest.md)
  - [Model.SearchResponse](docs/SearchResponse.md)
@@ -234,5 +258,15 @@ Class | Method | HTTP request | Description
 <a id="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+<a id="basicAuth"></a>
+### basicAuth
+
+- **Type**: HTTP basic authentication
+
+<a id="bearerAuth"></a>
+### bearerAuth
+
+- **Type**: Bearer Authentication
 

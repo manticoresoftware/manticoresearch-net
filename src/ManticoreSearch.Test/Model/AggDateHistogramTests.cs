@@ -65,12 +65,12 @@ namespace ManticoreSearch.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Interval'
+        /// Test the property 'CalendarInterval'
         /// </summary>
         [Fact]
-        public void IntervalTest()
+        public void CalendarIntervalTest()
         {
-            // TODO unit test for the property 'Interval'
+            // TODO unit test for the property 'CalendarInterval'
         }
 
         /// <summary>
