@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Object containing data for inserting a new document into the table 
     /// </summary>
     [DataContract(Name = "insertDocumentRequest")]
-    public partial class InsertDocumentRequest : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class InsertDocumentRequest : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InsertDocumentRequest" /> class.
@@ -83,6 +84,10 @@ namespace ManticoreSearch.Model
         /// <value>Document ID. If not provided, an ID will be auto-generated </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Object containing document data 

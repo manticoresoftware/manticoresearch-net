@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Success response returned after updating one or more documents
     /// </summary>
     [DataContract(Name = "updateResponse")]
-    public partial class UpdateResponse : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class UpdateResponse : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateResponse" /> class.
@@ -68,6 +69,10 @@ namespace ManticoreSearch.Model
         /// <value>Document ID</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Result of the update operation, typically &#39;updated&#39;

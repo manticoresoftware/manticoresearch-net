@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Table** | **string** | Table name | 
 **Cluster** | **string** | Cluster name | [optional] 
-**Id** | **UInt64** | The ID of document for deletion | [optional]
+**Id** | **int** | The ID of document for deletion | [optional] 
 **Query** | **Object** | Defines the criteria to match documents for deletion | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

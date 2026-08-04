@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Payload for updating a document or multiple documents in a table
     /// </summary>
     [DataContract(Name = "updateDocumentRequest")]
-    public partial class UpdateDocumentRequest : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class UpdateDocumentRequest : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateDocumentRequest" /> class.
@@ -95,6 +96,10 @@ namespace ManticoreSearch.Model
         /// <value>Document ID</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Object defining conditions to perform the updates

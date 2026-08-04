@@ -31,14 +31,15 @@ namespace ManticoreSearch.Model
     /// Response object for successful delete request
     /// </summary>
     [DataContract(Name = "deleteResponse")]
-    public partial class DeleteResponse : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class DeleteResponse : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteResponse" /> class.
         /// </summary>
         /// <param name="table">The name of the table from which the document was deleted.</param>
         /// <param name="deleted">Number of documents deleted.</param>
-        /// <param name="id">The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned.</param>
+        /// <param name="id">The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned .</param>
         /// <param name="found">Indicates whether any documents to be deleted were found.</param>
         /// <param name="result">Result of the delete operation, typically &#39;deleted&#39;.</param>
         public DeleteResponse(string table = default, int deleted = default, UInt64 id = default, bool found = default, string result = default)
@@ -65,11 +66,15 @@ namespace ManticoreSearch.Model
         public int Deleted { get; set; }
 
         /// <summary>
-        /// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned
+        /// The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned 
         /// </summary>
-        /// <value>The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned</value>
+        /// <value>The ID of the deleted document. If multiple documents are deleted, the ID of the first deleted document is returned </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Indicates whether any documents to be deleted were found

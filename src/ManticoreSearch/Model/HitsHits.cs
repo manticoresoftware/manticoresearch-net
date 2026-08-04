@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Search hit representing a matched document
     /// </summary>
     [DataContract(Name = "hitsHits")]
-    public partial class HitsHits : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class HitsHits : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HitsHits" /> class.
@@ -62,6 +63,10 @@ namespace ManticoreSearch.Model
         /// <value>The ID of the matched document</value>
         [DataMember(Name = "_id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "_uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// The score of the matched document

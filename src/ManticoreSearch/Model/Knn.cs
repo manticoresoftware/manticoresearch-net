@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Object representing a k-nearest neighbor search query
     /// </summary>
     [DataContract(Name = "knn")]
-    public partial class Knn : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class Knn : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Knn" /> class.
@@ -42,10 +43,10 @@ namespace ManticoreSearch.Model
         /// Initializes a new instance of the <see cref="Knn" /> class.
         /// </summary>
         /// <param name="field">Field to perform the k-nearest neighbor search on (required).</param>
-        /// <param name="k">The number of nearest neighbors to return (required).</param>
+        /// <param name="k">Deprecated. Use the top-level &#x60;limit&#x60; parameter instead..</param>
         /// <param name="query">query.</param>
         /// <param name="queryVector">The vector used as input for the KNN search.</param>
-        /// <param name="docId">The docuemnt ID used as input for the KNN search.</param>
+        /// <param name="docId">The document ID used as input for the KNN search.</param>
         /// <param name="ef">Optional parameter controlling the accuracy of the search.</param>
         /// <param name="rescore">Optional parameter enabling KNN rescoring (disabled by default).</param>
         /// <param name="oversampling">Optional parameter setting a factor by which k is multiplied when executing the KNN search.</param>
@@ -76,10 +77,11 @@ namespace ManticoreSearch.Model
         public string Field { get; set; }
 
         /// <summary>
-        /// The number of nearest neighbors to return
+        /// Deprecated. Use the top-level &#x60;limit&#x60; parameter instead.
         /// </summary>
-        /// <value>The number of nearest neighbors to return</value>
-        [DataMember(Name = "k", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Deprecated. Use the top-level &#x60;limit&#x60; parameter instead.</value>
+        [DataMember(Name = "k", EmitDefaultValue = false)]
+        [Obsolete]
         public int K { get; set; }
 
         /// <summary>
@@ -96,11 +98,15 @@ namespace ManticoreSearch.Model
         public List<decimal> QueryVector { get; set; }
 
         /// <summary>
-        /// The docuemnt ID used as input for the KNN search
+        /// The document ID used as input for the KNN search
         /// </summary>
-        /// <value>The docuemnt ID used as input for the KNN search</value>
+        /// <value>The document ID used as input for the KNN search</value>
         [DataMember(Name = "doc_id", EmitDefaultValue = false)]
         public UInt64 DocId { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Optional parameter controlling the accuracy of the search

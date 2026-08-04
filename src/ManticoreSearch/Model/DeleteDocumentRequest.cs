@@ -31,7 +31,8 @@ namespace ManticoreSearch.Model
     /// Payload for delete request. Documents can be deleted either one by one by specifying the document id or by providing a query object. For more information see  [Delete API](https://manual.manticoresearch.com/Deleting_documents) 
     /// </summary>
     [DataContract(Name = "deleteDocumentRequest")]
-    public partial class DeleteDocumentRequest : IValidatableObject
+    [JsonConverter(typeof(UuidDocumentIdConverter))]
+    public partial class DeleteDocumentRequest : IValidatableObject, IUuidDocumentId
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteDocumentRequest" /> class.
@@ -78,6 +79,10 @@ namespace ManticoreSearch.Model
         /// <value>The ID of document for deletion</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public UInt64 Id { get; set; }
+
+        /// <summary>UUID companion for the document ID.</summary>
+        [DataMember(Name = "uuid", EmitDefaultValue = false)]
+        public string Uuid { get; set; }
 
         /// <summary>
         /// Defines the criteria to match documents for deletion

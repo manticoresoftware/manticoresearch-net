@@ -102,7 +102,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        UpdateResponse PartialReplace(string table, int id, ReplaceDocumentRequest replaceDocumentRequest);
+        UpdateResponse PartialReplace(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest);
 
         /// <summary>
         /// Partially replaces a document in a table
@@ -115,7 +115,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, int id, ReplaceDocumentRequest replaceDocumentRequest);
+        ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest);
         /// <summary>
         /// Replace new document in a table
         /// </summary>
@@ -248,7 +248,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Partially replaces a document in a table
@@ -262,7 +262,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace new document in a table
         /// </summary>
@@ -953,7 +953,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>UpdateResponse</returns>
-        public UpdateResponse PartialReplace(string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
+        public UpdateResponse PartialReplace(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = PartialReplaceWithHttpInfo(table, id, replaceDocumentRequest);
             return localVarResponse.Data;
@@ -967,7 +967,7 @@ namespace ManticoreSearch.Api
         /// <param name="id">Id of the document to replace</param>
         /// <param name="replaceDocumentRequest"></param>
         /// <returns>ApiResponse of UpdateResponse</returns>
-        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
+        public ManticoreSearch.Client.ApiResponse<UpdateResponse> PartialReplaceWithHttpInfo(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest)
         {
             // verify the required parameter 'table' is set
             if (table == null)
@@ -1032,7 +1032,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateResponse</returns>
-        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateResponse> PartialReplaceAsync(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             ManticoreSearch.Client.ApiResponse<UpdateResponse> localVarResponse = await PartialReplaceWithHttpInfoAsync(table, id, replaceDocumentRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1047,7 +1047,7 @@ namespace ManticoreSearch.Api
         /// <param name="replaceDocumentRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateResponse)</returns>
-        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, int id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ManticoreSearch.Client.ApiResponse<UpdateResponse>> PartialReplaceWithHttpInfoAsync(string table, UInt64 id, ReplaceDocumentRequest replaceDocumentRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'table' is set
             if (table == null)

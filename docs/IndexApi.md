@@ -8,6 +8,7 @@ All URIs are relative to *http://127.0.0.1:9308*
 | [**Delete**](IndexApi.md#delete) | **POST** /delete | Delete a document in a table |
 | [**Insert**](IndexApi.md#insert) | **POST** /insert | Create a new document in a table |
 | [**PartialReplace**](IndexApi.md#partialreplace) | **POST** /{table}/_update/{id} | Partially replaces a document in a table |
+| [**PartialReplaceUuid**](IndexApi.md#partialreplaceuuid) | **POST** /{table}/_update/{id} | Partially replaces a document in a table by UUID |
 | [**Replace**](IndexApi.md#replace) | **POST** /replace | Replace new document in a table |
 | [**Update**](IndexApi.md#update) | **POST** /update | Update a document in a table |
 
@@ -319,7 +320,7 @@ catch (ApiException e)
 
 <a id="partialreplace"></a>
 # **PartialReplace**
-> UpdateResponse PartialReplace (string table, int id, ReplaceDocumentRequest replaceDocumentRequest)
+> UpdateResponse PartialReplace (string table, long id, ReplaceDocumentRequest replaceDocumentRequest)
 
 Partially replaces a document in a table
 
@@ -353,7 +354,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new IndexApi(httpClient, config, httpClientHandler);
             var table = "table_example";  // string | Name of the percolate table
-            var id = 56;  // int | Id of the document to replace
+            var id = new int(); // int | Id of the document to replace
             var replaceDocumentRequest = new ReplaceDocumentRequest(); // ReplaceDocumentRequest | 
 
             try
@@ -398,7 +399,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **table** | **string** | Name of the percolate table |  |
-| **id** | **int** | Id of the document to replace |  |
+| **id** | [**int**](int.md) | Id of the document to replace |  |
 | **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md) |  |  |
 
 ### Return type
@@ -424,6 +425,68 @@ catch (ApiException e)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="replace"></a>
+# **PartialReplaceUuid**
+> UpdateResponse PartialReplaceUuid (string table, string uuid, ReplaceDocumentRequest replaceDocumentRequest)
+
+Partially replaces a document in a table by UUID string id
+
+Same endpoint as `PartialReplace`, but the path `{id}` is a UUID string (for tables created with `id uuid`). Prefer this helper instead of passing a UUID into the numeric `PartialReplace` API.
+
+### Example
+```csharp
+using System.Diagnostics;
+using ManticoreSearch.Api;
+using ManticoreSearch.Client;
+using ManticoreSearch.Model;
+
+namespace Example
+{
+    public class PartialReplaceUuidExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "http://127.0.0.1:9308";
+            var apiInstance = new IndexApi(config);
+            var table = "movies_uuid";
+            var uuid = "550e8400-e29b-41d4-a716-446655440000";
+            var replaceDocumentRequest = new ReplaceDocumentRequest(doc: new Dictionary<string, Object> { { "title", "updated" } });
+            try
+            {
+                UpdateResponse result = apiInstance.PartialReplaceUuid(table, uuid, replaceDocumentRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException e)
+            {
+                Debug.Print("Exception when calling IndexApi.PartialReplaceUuid: " + e.Message);
+            }
+        }
+    }
+}
+```
+
+#### Parameters
+
+Name | Type | Description | Notes
+------------- | ------------- | ------------- | -------------
+ **table** | **string**| Name of the table | 
+ **uuid** | **string**| UUID of the document to replace | 
+ **replaceDocumentRequest** | [**ReplaceDocumentRequest**](ReplaceDocumentRequest.md)|  | 
+
+#### Return type
+
+[**UpdateResponse**](UpdateResponse.md)
+
+#### Authorization
+
+No authorization required
+
+#### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
 # **Replace**
 > SuccessResponse Replace (InsertDocumentRequest insertDocumentRequest)
 
