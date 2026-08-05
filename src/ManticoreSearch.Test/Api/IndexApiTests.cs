@@ -121,13 +121,13 @@ namespace ManticoreSearch.Test.Api
                             {
                             	var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
 
-                                string body = "DROP TABLE IF EXISTS products";
+                                string body = "DROP TABLE IF EXISTS products_sql";
                                 utilsApi.Sql(body, true);
                                 
-                                body = "CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)";
+                                body = "CREATE TABLE IF NOT EXISTS products_sql (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)";
                                 utilsApi.Sql(body, true);
 
-                                body = "SELECT * FROM products";
+                                body = "SELECT * FROM products_sql";
                                 utilsApi.Sql(body, true);
 
                                 utilsApi.Sql(body, false);
@@ -147,21 +147,21 @@ namespace ManticoreSearch.Test.Api
                                 var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
                                 var indexApi = new IndexApi(httpClient, config, httpClientHandler);
                                 
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
+                                utilsApi.Sql("DROP TABLE IF EXISTS products_insert", true);
+                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products_insert (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
 
                                 Dictionary<string, Object> doc = new Dictionary<string, Object>(); 
                                 doc.Add("title", "test");
                                 doc.Add("tags1", new List<int>() {1,2,4,5});
 
-                                InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(table: "products", doc: doc);
+                                InsertDocumentRequest insertDocumentRequest = new InsertDocumentRequest(table: "products_insert", doc: doc);
                                 indexApi.Insert(insertDocumentRequest);
 
-                                insertDocumentRequest = new InsertDocumentRequest(table: "products", doc: doc);
+                                insertDocumentRequest = new InsertDocumentRequest(table: "products_insert", doc: doc);
                                 insertDocumentRequest.Id = 100;
                                 var res = indexApi.Insert(insertDocumentRequest);
                                 
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
+                                utilsApi.Sql("DROP TABLE IF EXISTS products_insert", true);
                                 return res;
                             }
                         },
@@ -170,19 +170,19 @@ namespace ManticoreSearch.Test.Api
                                 var utilsApi = new UtilsApi(httpClient, config, httpClientHandler);
                                 var indexApi = new IndexApi(httpClient, config, httpClientHandler);
                                 
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
-                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
+                                utilsApi.Sql("DROP TABLE IF EXISTS products_bulk", true);
+                                utilsApi.Sql("CREATE TABLE IF NOT EXISTS products_bulk (title text, price float, sizes multi, meta json, coeff float, tags1 multi, tags2 multi)", true);
                                 
-                                string body = "{\"insert\": {\"table\" : \"products\", \"id\" : 3, \"doc\" : {\"title\" : \"Crossbody Bag with Tassel\", \"price\" : 19.85}}}" +"\n"+
-                                    "{\"insert\": {\"table\" : \"products\", \"id\" : 4, \"doc\" : {\"title\" : \"microfiber sheet set\", \"price\" : 19.99}}}"+"\n"+
-                                    "{\"insert\": {\"table\" : \"products\", \"id\" : 5, \"doc\" : {\"title\" : \"CPet Hair Remover Glove\", \"price\" : 7.99}}}"+"\n";         
+                                string body = "{\"insert\": {\"table\" : \"products_bulk\", \"id\" : 3, \"doc\" : {\"title\" : \"Crossbody Bag with Tassel\", \"price\" : 19.85}}}" +"\n"+
+                                    "{\"insert\": {\"table\" : \"products_bulk\", \"id\" : 4, \"doc\" : {\"title\" : \"microfiber sheet set\", \"price\" : 19.99}}}"+"\n"+
+                                    "{\"insert\": {\"table\" : \"products_bulk\", \"id\" : 5, \"doc\" : {\"title\" : \"CPet Hair Remover Glove\", \"price\" : 7.99}}}"+"\n";         
                                 var res = indexApi.Bulk(body);
         
-                                body = "{ \"update\" : { \"table\" : \"products\", \"doc\": { \"coeff\" : 1000 }, \"query\": { \"range\": { \"price\": { \"gte\": 1000 } } } }} "+"\n"+
-                                    "{ \"update\" : { \"table\" : \"products\", \"doc\": { \"coeff\" : 0 }, \"query\": { \"range\": { \"price\": { \"lt\": 1000 } } } } }"+"\n";         
+                                body = "{ \"update\" : { \"table\" : \"products_bulk\", \"doc\": { \"coeff\" : 1000 }, \"query\": { \"range\": { \"price\": { \"gte\": 1000 } } } }} "+"\n"+
+                                    "{ \"update\" : { \"table\" : \"products_bulk\", \"doc\": { \"coeff\" : 0 }, \"query\": { \"range\": { \"price\": { \"lt\": 1000 } } } } }"+"\n";         
                                 res = indexApi.Bulk(body);
 
-                                utilsApi.Sql("DROP TABLE IF EXISTS products", true);
+                                utilsApi.Sql("DROP TABLE IF EXISTS products_bulk", true);
                                 return res;
                             }
                         },
